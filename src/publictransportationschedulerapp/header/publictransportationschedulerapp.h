@@ -1,17 +1,11 @@
-/**
- * @file publictransportationschedulerapp.h
- * @brief PublicTransportationScheduler Application header file
- */
+#ifndef PUBLICTRANSPORTATIONSCHEDULERAPP_H
+#define PUBLICTRANSPORTATIONSCHEDULERAPP_H
 
-#ifndef PUBLICTRANSPORTATIONSCHEDULER_APP_H
-#define PUBLICTRANSPORTATIONSCHEDULER_APP_H
+void showMainMenu();
+void showUserAuthenticationMenu();
+void showBandManagementMenu();
+void showSchedulingMenu();
+void showTicketSalesMenu();
+void showVendorSponsorMenu();
 
-#include <string>
-
-void showMenu();
-void viewStopInformation();
-void estimatePassengerCount();
-void calculateDistanceBetweenStops();
-void performCustomCalculation();
-
-#endif // PUBLICTRANSPORTATIONSCHEDULER_APP_H
+#endif // PUBLICTRANSPORTATIONSCHEDULERAPP_H
