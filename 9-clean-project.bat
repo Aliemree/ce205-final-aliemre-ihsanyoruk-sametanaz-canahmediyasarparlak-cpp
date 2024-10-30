@@ -10,11 +10,11 @@ del /Q /F "doxygen_test_win.log"
 del /Q /F "doxygen_test_linux.log"
 
 del /Q /F "utility_tests_unit_win.cov"
-del /Q /F "calculator_tests_unit_win.cov"
+del /Q /F "publictransportationscheduler_tests_unit_win.cov"
 
 
 del /Q /F "utility_tests_unit_linux.cov"
-del /Q /F "calculator_tests_unit_linux.cov"
+del /Q /F "publictransportationscheduler_tests_unit_linux.cov"
 
 
 del /Q /F "LastCoverageResults.log"
