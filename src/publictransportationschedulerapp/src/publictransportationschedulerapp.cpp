@@ -1,229 +1,443 @@
 ﻿#include "publictransportationschedulerapp.h"
 #include "publictransportationscheduler.h"
 #include <iostream>
+#include <conio.h>
+#include <windows.h>
 
 using namespace Coruh::PublicTransportationScheduler;
 
+// Dinamik ekran genişliğini almak için bir fonksiyon
+int getConsoleWidth() {
+  CONSOLE_SCREEN_BUFFER_INFO csbi;
+  int columns;
+  GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+  columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+  return columns;
+}
+
+// Dinamik ekran yüksekliğini almak için bir fonksiyon
+int getConsoleHeight() {
+  CONSOLE_SCREEN_BUFFER_INFO csbi;
+  int rows;
+  GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+  rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+  return rows;
+}
+
+// Metni ekranın ortasına hizalamak için fonksiyon
+void centerText(const std::string &text) {
+  int screenWidth = getConsoleWidth();
+  int padding = (screenWidth - text.length()) / 2;
+  std::cout << std::string(padding > 0 ? padding : 0, ' ') << text << "\n";
+}
+
+// Ekranı dikey olarak ortalamak için fonksiyon
+void centerVertically(int contentHeight) {
+  int screenHeight = getConsoleHeight();
+  int padding = (screenHeight - contentHeight) / 2;
+
+  for (int i = 0; i < padding; ++i) std::cout << "\n";
+}
+
+// İmleci gizlemek için fonksiyon
+void hideCursor() {
+  HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+  CONSOLE_CURSOR_INFO info;
+  info.dwSize = 100;
+  info.bVisible = FALSE;
+  SetConsoleCursorInfo(consoleHandle, &info);
+}
+
+// İmleci göstermek için fonksiyon
+void showCursor() {
+  HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+  CONSOLE_CURSOR_INFO info;
+  info.dwSize = 100;
+  info.bVisible = TRUE;
+  SetConsoleCursorInfo(consoleHandle, &info);
+}
+
+// Proje başlığı
+void showProjectTitle() {
+  centerText("=================================");
+  centerText("   Public Transportation Scheduler   ");
+  centerText("=================================\n");
+}
+
+// Otobüs resmi
+void showBusArt() {
+  centerText("          ___________________");
+  centerText("         ||                 ||");
+  centerText("         ||   BUS ROUTES    ||");
+  centerText("         ||_________________||");
+  centerText("      __||___________________||__");
+  centerText("     |                           |");
+  centerText("    (O)-----------------------(O)");
+}
+
+// Kullanıcı yönetimi için avatar
+void showUserAuthArt() {
+  centerText("        O");
+  centerText("       /|\\");
+  centerText("       / \\");
+  centerText("    USER AUTHENTICATION");
+}
+
+// Sanatçılar ve etkinlikler için mikrofon
+void showArtistArt() {
+  centerText("        ________");
+  centerText("       (________)");
+  centerText("     .-'----------`-.");
+  centerText("   /                  \\");
+  centerText("  |     BAND & ARTIST  |");
+  centerText("   \\__________________/");
+}
+
+// Çizelgeleme için saat resmi
+void showScheduleArt() {
+  centerText("       , - ~ ~ ~ - ,");
+  centerText("   , '               ' ,");
+  centerText("  ,                       ,");
+  centerText(" ,        SCHEDULE         ,");
+  centerText(" ,                           ,");
+  centerText("   ' ,                   , '");
+  centerText("      ' - , _ _ _ ,  '");
+}
+
+// Bilet satışı için bilet resmi
+void showTicketArt() {
+  centerText("     ________________");
+  centerText("    /                /|");
+  centerText("   /   TICKET SALES / |");
+  centerText("  /________________ / /");
+  centerText("  |                |/");
+}
+
+// Sponsor ve vendor yönetimi için el sıkışma
+void showSponsorArt() {
+  centerText("     O==[]=========>");
+  centerText("         VENDORS & SPONSORS");
+}
+
+// Ana Menü
 void showMainMenu() {
-  int choice;
+  int choice = 0;
+  const char *options[] = {
+    "User Authentication",
+    "Band and Artist Management",
+    "Scheduling Performances",
+    "Ticket Sales Tracking",
+    "Vendor and Sponsor Coordination",
+    "Exit"
+  };
+  int n_options = sizeof(options) / sizeof(options[0]);
+  int contentHeight = 14;
+  hideCursor();
 
   while (true) {
-    std::cout << "\n=== Main Menu ===\n";
-    std::cout << "1. User Authentication\n";
-    std::cout << "2. Band and Artist Management\n";
-    std::cout << "3. Scheduling Performances\n";
-    std::cout << "4. Ticket Sales Tracking\n";
-    std::cout << "5. Vendor and Sponsor Coordination\n";
-    std::cout << "0. Exit\n";
-    std::cout << "Select an option: ";
-    std::cin >> choice;
+    system("cls");
+    centerVertically(contentHeight);
+    showProjectTitle();
+    showBusArt();
 
-    switch (choice) {
-      case 1:
-        showUserAuthenticationMenu();
-        break;
+    for (int i = 0; i < n_options; ++i) {
+      if (i == choice) {
+        centerText("> " + std::string(options[i]));
+      } else {
+        centerText("  " + std::string(options[i]));
+      }
+    }
 
-      case 2:
-        showBandManagementMenu();
-        break;
+    int ch = _getch();
 
-      case 3:
-        showSchedulingMenu();
-        break;
+    if (ch == 224) {
+      ch = _getch();
 
-      case 4:
-        showTicketSalesMenu();
-        break;
+      switch (ch) {
+        case 72:
+          choice = (choice - 1 + n_options) % n_options;
+          break;
 
-      case 5:
-        showVendorSponsorMenu();
-        break;
+        case 80:
+          choice = (choice + 1) % n_options;
+          break;
+      }
+    } else if (ch == 13) {
+      switch (choice) {
+        case 0:
+          showUserAuthenticationMenu();
+          break;
 
-      case 0:
-        std::cout << "Exiting the application.\n";
-        return;
+        case 1:
+          showBandManagementMenu();
+          break;
 
-      default:
-        std::cout << "Invalid choice. Please try again.\n";
-        break;
+        case 2:
+          showSchedulingMenu();
+          break;
+
+        case 3:
+          showTicketSalesMenu();
+          break;
+
+        case 4:
+          showVendorSponsorMenu();
+          break;
+
+        case 5:
+          showCursor();
+          return;
+      }
     }
   }
 }
 
+// Kullanıcı Kimlik Doğrulama Menüsü
 void showUserAuthenticationMenu() {
-  int choice;
+  int choice = 0;
+  const char *options[] = { "Login", "Register", "Guest Mode", "Back to Main Menu" };
+  int n_options = sizeof(options) / sizeof(options[0]);
+  int contentHeight = 12;
+  hideCursor();
 
   while (true) {
-    std::cout << "\n=== User Authentication ===\n";
-    std::cout << "1. Login\n";
-    std::cout << "2. Register\n";
-    std::cout << "3. Guest Mode\n";
-    std::cout << "0. Back to Main Menu\n";
-    std::cout << "Select an option: ";
-    std::cin >> choice;
-    std::string username, password;
+    system("cls");
+    centerVertically(contentHeight);
+    showProjectTitle();
+    showUserAuthArt();
 
-    switch (choice) {
-      case 1:
-        std::cout << "Enter username: ";
-        std::cin >> username;
-        std::cout << "Enter password: ";
-        std::cin >> password;
+    for (int i = 0; i < n_options; ++i) {
+      if (i == choice) {
+        centerText("> " + std::string(options[i]));
+      } else {
+        centerText("  " + std::string(options[i]));
+      }
+    }
 
-        if (!PublicTransportationScheduler::login(username, password)) {
-          std::cout << "Login failed.\n";
-        }
+    int ch = _getch();
 
-        break;
+    if (ch == 224) {
+      ch = _getch();
 
-      case 2:
-        std::cout << "Enter new username: ";
-        std::cin >> username;
-        std::cout << "Enter new password: ";
-        std::cin >> password;
-        PublicTransportationScheduler::registerUser(username, password);
-        break;
+      switch (ch) {
+        case 72:
+          choice = (choice - 1 + n_options) % n_options;
+          break;
 
-      case 3:
-        std::cout << "Entering guest mode...\n";
-        break;
+        case 80:
+          choice = (choice + 1) % n_options;
+          break;
+      }
+    } else if (ch == 13) {
+      system("cls");
 
-      case 0:
-        return;
+      switch (choice) {
+        case 3:
+          showCursor();
+          return;
+      }
 
-      default:
-        std::cout << "Invalid choice. Please try again.\n";
-        break;
+      system("pause");
     }
   }
 }
 
+// Band ve Artist Menüsü
 void showBandManagementMenu() {
-  int choice;
+  int choice = 0;
+  const char *options[] = { "Add Band/Artist", "Edit Band/Artist", "View Band/Artist List", "Back to Main Menu" };
+  int n_options = sizeof(options) / sizeof(options[0]);
+  int contentHeight = 12;
+  hideCursor();
 
   while (true) {
-    std::cout << "\n=== Band and Artist Management ===\n";
-    std::cout << "1. Add Band/Artist\n";
-    std::cout << "2. Edit Band/Artist\n";
-    std::cout << "3. View Band/Artist List\n";
-    std::cout << "0. Back to Main Menu\n";
-    std::cout << "Select an option: ";
-    std::cin >> choice;
+    system("cls");
+    centerVertically(contentHeight);
+    showProjectTitle();
+    showArtistArt();
 
-    switch (choice) {
-      case 1:
-        std::cout << "Adding band/artist...\n";
-        break;
+    for (int i = 0; i < n_options; ++i) {
+      if (i == choice) {
+        centerText("> " + std::string(options[i]));
+      } else {
+        centerText("  " + std::string(options[i]));
+      }
+    }
 
-      case 2:
-        std::cout << "Editing band/artist...\n";
-        break;
+    int ch = _getch();
 
-      case 3:
-        std::cout << "Viewing band/artist list...\n";
-        break;
+    if (ch == 224) {
+      ch = _getch();
 
-      case 0:
-        return;
+      switch (ch) {
+        case 72:
+          choice = (choice - 1 + n_options) % n_options;
+          break;
 
-      default:
-        std::cout << "Invalid choice. Please try again.\n";
-        break;
+        case 80:
+          choice = (choice + 1) % n_options;
+          break;
+      }
+    } else if (ch == 13) {
+      system("cls");
+
+      switch (choice) {
+        case 3:
+          showCursor();
+          return;
+      }
+
+      system("pause");
     }
   }
 }
 
+// Çizelgeleme Menüsü
 void showSchedulingMenu() {
-  int choice;
+  int choice = 0;
+  const char *options[] = { "Create Schedule", "Edit Schedule", "View Festival Lineup", "Back to Main Menu" };
+  int n_options = sizeof(options) / sizeof(options[0]);
+  int contentHeight = 12;
+  hideCursor();
 
   while (true) {
-    std::cout << "\n=== Scheduling Performances ===\n";
-    std::cout << "1. Create Schedule\n";
-    std::cout << "2. Edit Schedule\n";
-    std::cout << "3. View Festival Lineup\n";
-    std::cout << "0. Back to Main Menu\n";
-    std::cout << "Select an option: ";
-    std::cin >> choice;
+    system("cls");
+    centerVertically(contentHeight);
+    showProjectTitle();
+    showScheduleArt();
 
-    switch (choice) {
-      case 1:
-        std::cout << "Creating schedule...\n";
-        break;
+    for (int i = 0; i < n_options; ++i) {
+      if (i == choice) {
+        centerText("> " + std::string(options[i]));
+      } else {
+        centerText("  " + std::string(options[i]));
+      }
+    }
 
-      case 2:
-        std::cout << "Editing schedule...\n";
-        break;
+    int ch = _getch();
 
-      case 3:
-        std::cout << "Viewing festival lineup...\n";
-        break;
+    if (ch == 224) {
+      ch = _getch();
 
-      case 0:
-        return;
+      switch (ch) {
+        case 72:
+          choice = (choice - 1 + n_options) % n_options;
+          break;
 
-      default:
-        std::cout << "Invalid choice. Please try again.\n";
-        break;
+        case 80:
+          choice = (choice + 1) % n_options;
+          break;
+      }
+    } else if (ch == 13) {
+      system("cls");
+
+      switch (choice) {
+        case 3:
+          showCursor();
+          return;
+      }
+
+      system("pause");
     }
   }
 }
 
+// Bilet Satış Menüsü
 void showTicketSalesMenu() {
-  int choice;
+  int choice = 0;
+  const char *options[] = { "View Sales Data", "Generate Reports", "Back to Main Menu" };
+  int n_options = sizeof(options) / sizeof(options[0]);
+  int contentHeight = 10;
+  hideCursor();
 
   while (true) {
-    std::cout << "\n=== Ticket Sales Tracking ===\n";
-    std::cout << "1. View Sales Data\n";
-    std::cout << "2. Generate Reports\n";
-    std::cout << "0. Back to Main Menu\n";
-    std::cout << "Select an option: ";
-    std::cin >> choice;
+    system("cls");
+    centerVertically(contentHeight);
+    showProjectTitle();
+    showTicketArt();
 
-    switch (choice) {
-      case 1:
-        std::cout << "Viewing sales data...\n";
-        break;
+    for (int i = 0; i < n_options; ++i) {
+      if (i == choice) {
+        centerText("> " + std::string(options[i]));
+      } else {
+        centerText("  " + std::string(options[i]));
+      }
+    }
 
-      case 2:
-        std::cout << "Generating reports...\n";
-        break;
+    int ch = _getch();
 
-      case 0:
-        return;
+    if (ch == 224) {
+      ch = _getch();
 
-      default:
-        std::cout << "Invalid choice. Please try again.\n";
-        break;
+      switch (ch) {
+        case 72:
+          choice = (choice - 1 + n_options) % n_options;
+          break;
+
+        case 80:
+          choice = (choice + 1) % n_options;
+          break;
+      }
+    } else if (ch == 13) {
+      system("cls");
+
+      switch (choice) {
+        case 2:
+          showCursor();
+          return;
+      }
+
+      system("pause");
     }
   }
 }
 
+// Sponsor ve Vendor Menüsü
 void showVendorSponsorMenu() {
-  int choice;
+  int choice = 0;
+  const char *options[] = { "Manage Vendors", "Track Sponsors", "Back to Main Menu" };
+  int n_options = sizeof(options) / sizeof(options[0]);
+  int contentHeight = 10;
+  hideCursor();
 
   while (true) {
-    std::cout << "\n=== Vendor and Sponsor Coordination ===\n";
-    std::cout << "1. Manage Vendors\n";
-    std::cout << "2. Track Sponsors\n";
-    std::cout << "0. Back to Main Menu\n";
-    std::cout << "Select an option: ";
-    std::cin >> choice;
+    system("cls");
+    centerVertically(contentHeight);
+    showProjectTitle();
+    showSponsorArt();
 
-    switch (choice) {
-      case 1:
-        std::cout << "Managing vendors...\n";
-        break;
+    for (int i = 0; i < n_options; ++i) {
+      if (i == choice) {
+        centerText("> " + std::string(options[i]));
+      } else {
+        centerText("  " + std::string(options[i]));
+      }
+    }
 
-      case 2:
-        std::cout << "Tracking sponsors...\n";
-        break;
+    int ch = _getch();
 
-      case 0:
-        return;
+    if (ch == 224) {
+      ch = _getch();
 
-      default:
-        std::cout << "Invalid choice. Please try again.\n";
-        break;
+      switch (ch) {
+        case 72:
+          choice = (choice - 1 + n_options) % n_options;
+          break;
+
+        case 80:
+          choice = (choice + 1) % n_options;
+          break;
+      }
+    } else if (ch == 13) {
+      system("cls");
+
+      switch (choice) {
+        case 2:
+          showCursor();
+          return;
+      }
+
+      system("pause");
     }
   }
 }
