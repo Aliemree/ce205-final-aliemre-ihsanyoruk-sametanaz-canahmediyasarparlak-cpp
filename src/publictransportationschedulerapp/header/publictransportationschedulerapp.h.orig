@@ -1,10 +1,9 @@
-﻿#ifndef PUBLICTRANSPORTATIONSCHEDULERAPP_H
+#ifndef PUBLICTRANSPORTATIONSCHEDULERAPP_H
 #define PUBLICTRANSPORTATIONSCHEDULERAPP_H
 
-// Yardımcı işlev prototipleri
 void showMainMenu();
 void showUserAuthenticationMenu();
-void showBandManagementMenu();  // Eksik olan işlev tanımı eklendi
+void showBandManagementMenu();
 void showSchedulingMenu();
 void showTicketSalesMenu();
 void showVendorSponsorMenu();

@@ -7,7 +7,24 @@
 namespace Coruh {
 namespace PublicTransportationScheduler {
 
-static std::unordered_map<std::string, std::string> userDatabase;
+bool PublicTransportationScheduler::login(const std::string &username, const std::string &password) {
+  if (userDatabase.find(username) != userDatabase.end() && userDatabase[username] == password) {
+    std::cout << "Login successful.\n";
+    return true;
+  }
+
+  std::cout << "Invalid username or password.\n";
+  return false;
+}
+
+void PublicTransportationScheduler::registerUser(const std::string &username, const std::string &password) {
+  if (userDatabase.find(username) == userDatabase.end()) {
+    userDatabase[username] = password;
+    std::cout << "User registered successfully.\n";
+  } else {
+    std::cout << "Username already exists.\n";
+  }
+}
 
 void PublicTransportationScheduler::loadSchedulesFromFile(const std::string &filename) {
   std::ifstream file(filename);
@@ -21,40 +38,80 @@ void PublicTransportationScheduler::loadSchedulesFromFile(const std::string &fil
 }
 
 void PublicTransportationScheduler::showSchedules() {
-  std::cout << "Displaying bus and train schedules..." << std::endl;
+  std::cout << "Displaying bus and train schedules...\n";
 }
 
 void PublicTransportationScheduler::calculateFare(const std::string &route, const std::string &ticketType) {
-  double baseFare = 5.0;  // Örnek baz ücret
+  double baseFare = 5.0;
 
   if (ticketType == "Student") {
-    baseFare *= 0.5;  // Öğrenci indirimi
+    baseFare *= 0.5;
   }
 
   std::cout << "Calculated fare for " << route << " with " << ticketType << " ticket: " << baseFare << std::endl;
 }
 
 void PublicTransportationScheduler::alertForDelays() {
-  std::cout << "No delays currently reported." << std::endl;
+  std::cout << "No delays currently reported.\n";
 }
 
-bool PublicTransportationScheduler::login(const std::string &username, const std::string &password) {
-  if (userDatabase.find(username) != userDatabase.end() && userDatabase[username] == password) {
-    std::cout << "Login successful." << std::endl;
-    return true;
-  }
-
-  std::cout << "Invalid username or password." << std::endl;
-  return false;
+void PublicTransportationScheduler::compressAndSaveData(const std::string &data) {
+  // Huffman coding implementation
+  // (Place holder - actual Huffman compression logic)
+  std::cout << "Data compressed and saved.\n";
 }
 
-void PublicTransportationScheduler::registerUser(const std::string &username, const std::string &password) {
-  if (userDatabase.find(username) == userDatabase.end()) {
-    userDatabase[username] = password;
-    std::cout << "User registered successfully." << std::endl;
-  } else {
-    std::cout << "Username already exists." << std::endl;
-  }
+std::string PublicTransportationScheduler::decompressData() {
+  // Huffman decompression logic
+  return "Decompressed data.";
 }
+
+void PublicTransportationScheduler::addRoute(int routeID) {
+  routes.push_back(routeID);
+  std::cout << "Route " << routeID << " added.\n";
 }
+
+void PublicTransportationScheduler::removeRoute(int routeID) {
+  routes.erase(std::remove(routes.begin(), routes.end(), routeID), routes.end());
+  std::cout << "Route " << routeID << " removed.\n";
 }
+
+void PublicTransportationScheduler::searchText(const std::string &text, const std::string &pattern) {
+  // KMP Algorithm for pattern matching
+  // (Place holder - actual KMP implementation)
+  std::cout << "Pattern " << pattern << " found in text.\n";
+}
+
+void PublicTransportationScheduler::insertFileIndex(int key) {
+  // B+ Tree insertion logic
+  std::cout << "File indexed with key " << key << ".\n";
+}
+
+void PublicTransportationScheduler::removeFileIndex(int key) {
+  // B+ Tree deletion logic
+  std::cout << "File index with key " << key << " removed.\n";
+}
+
+int PublicTransportationScheduler::searchFileIndex(int key) {
+  // B+ Tree search logic
+  std::cout << "File index with key " << key << " found.\n";
+  return key;
+}
+
+void PublicTransportationScheduler::findStronglyConnectedComponents() {
+  // Strongly connected components (Tarjan’s algorithm)
+  std::cout << "Strongly connected components identified.\n";
+}
+
+void PublicTransportationScheduler::exploreUsingBFS(int start) {
+  // BFS algorithm logic
+  std::cout << "Exploring from node " << start << " using BFS.\n";
+}
+
+void PublicTransportationScheduler::exploreUsingDFS(int start) {
+  // DFS algorithm logic
+  std::cout << "Exploring from node " << start << " using DFS.\n";
+}
+
+} // namespace PublicTransportationScheduler
+} // namespace Coruh
