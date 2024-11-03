@@ -9,4 +9,9 @@ void showSchedulingMenu();
 void showTicketSalesMenu();
 void showVendorSponsorMenu();
 
+// Yardımcı Fonksiyonlar
+int getConsoleWidth();
+void centerText(const char* text);
+void centerMenuOption(const char* text, int isSelected);
+
 #endif // PUBLICTRANSPORTATIONSCHEDULERAPP_H
