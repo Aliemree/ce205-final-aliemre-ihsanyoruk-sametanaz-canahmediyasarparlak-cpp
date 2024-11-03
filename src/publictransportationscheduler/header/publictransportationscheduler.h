@@ -1,54 +1,33 @@
 ﻿#ifndef PUBLICTRANSPORTATIONSCHEDULER_H
 #define PUBLICTRANSPORTATIONSCHEDULER_H
 
-#include <string>
-#include <unordered_map>
-#include <stack>
-#include <queue>
-#include <vector>
+// Kullanıcı doğrulama işlevleri
+int login(const char *username, const char *password);
+void registerUser(const char *username, const char *password);
 
-namespace Coruh {
-namespace PublicTransportationScheduler {
+// Güzergah ve tarif yönetimi işlevleri
+void loadSchedulesFromFile(const char *filename);
+void showSchedules();
+void calculateFare(const char *route, const char *ticketType);
+void alertForDelays();
 
-class PublicTransportationScheduler {
- public:
-  // User Authentication
-  bool login(const std::string &username, const std::string &password);
-  void registerUser(const std::string &username, const std::string &password);
+// Veri işleme algoritmaları
+void compressAndSaveData(const char *data); // Huffman Kodlaması için placeholder
+char *decompressData();                      // Huffman Kodlaması için placeholder
+void addRoute(int routeID);                  // Çift yönlü bağlı liste işlevi
+void removeRoute(int routeID);
+void searchText(const char *text, const char *pattern); // KMP Algoritması için placeholder
 
-  // Schedule and Route Management
-  void loadSchedulesFromFile(const std::string &filename);
-  void showSchedules();
-  void calculateFare(const std::string &route, const std::string &ticketType);
-  void alertForDelays();
+// Dosya saklama ve geri çağırma (B+ Ağaç yapısı yerine basit işlevler)
+void insertFileIndex(int key);
+void removeFileIndex(int key);
+int searchFileIndex(int key);
 
-  // Algorithms for data handling
-  void compressAndSaveData(const std::string &data); // Huffman Coding
-  std::string decompressData();
-  void addRoute(int routeID);    // Double Linked List
-  void removeRoute(int routeID);
-  void searchText(const std::string &text, const std::string &pattern); // KMP Algorithm
+// Güçlü bağlantılı bileşenleri bulma işlevi
+void findStronglyConnectedComponents();
 
-  // File storage and retrieval using a B+ Tree structure
-  void insertFileIndex(int key);
-  void removeFileIndex(int key);
-  int searchFileIndex(int key);
-
-  // Strongly Connected Components
-  void findStronglyConnectedComponents();
-
-  // BFS/DFS for network exploration
-  void exploreUsingBFS(int start);
-  void exploreUsingDFS(int start);
-
- private:
-  std::unordered_map<std::string, std::string> userDatabase;
-  std::vector<int> routes;
-  std::stack<std::string> historyStack;
-  std::priority_queue<int> priorityQueue;
-};
-
-} // namespace PublicTransportationScheduler
-} // namespace Coruh
+// Ağ keşfi için BFS/DFS algoritmaları
+void exploreUsingBFS(int start);
+void exploreUsingDFS(int start);
 
 #endif // PUBLICTRANSPORTATIONSCHEDULER_H

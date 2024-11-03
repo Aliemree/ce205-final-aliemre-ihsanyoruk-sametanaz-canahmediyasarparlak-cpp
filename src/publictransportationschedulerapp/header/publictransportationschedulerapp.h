@@ -4,7 +4,7 @@
 // Yardımcı işlev prototipleri
 void showMainMenu();
 void showUserAuthenticationMenu();
-void showBandManagementMenu();  // Eksik olan işlev tanımı eklendi
+void showBandManagementMenu();
 void showSchedulingMenu();
 void showTicketSalesMenu();
 void showVendorSponsorMenu();

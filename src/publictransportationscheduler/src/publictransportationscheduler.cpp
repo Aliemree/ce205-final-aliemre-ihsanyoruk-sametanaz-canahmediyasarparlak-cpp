@@ -1,117 +1,153 @@
 ﻿#include "publictransportationscheduler.h"
-#include <fstream>
-#include <iostream>
-#include <stdexcept>
-#include <unordered_map>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-namespace Coruh {
-namespace PublicTransportationScheduler {
+// Kullanıcı veritabanını saklamak için basit bir dizi ve yapı
+typedef struct {
+  char username[50];
+  char password[50];
+} User;
 
-bool PublicTransportationScheduler::login(const std::string &username, const std::string &password) {
-  if (userDatabase.find(username) != userDatabase.end() && userDatabase[username] == password) {
-    std::cout << "Login successful.\n";
-    return true;
+User userDatabase[100];
+int userCount = 0;
+
+// Güzergahları saklamak için dizi
+int routes[100];
+int routeCount = 0;
+
+// Kullanıcı giriş işlevi
+int login(const char *username, const char *password) {
+  for (int i = 0; i < userCount; i++) {
+    if (strcmp(userDatabase[i].username, username) == 0 &&
+        strcmp(userDatabase[i].password, password) == 0) {
+      printf("Login successful.\n");
+      return 1;
+    }
   }
 
-  std::cout << "Invalid username or password.\n";
-  return false;
+  printf("Invalid username or password.\n");
+  return 0;
 }
 
-void PublicTransportationScheduler::registerUser(const std::string &username, const std::string &password) {
-  if (userDatabase.find(username) == userDatabase.end()) {
-    userDatabase[username] = password;
-    std::cout << "User registered successfully.\n";
-  } else {
-    std::cout << "Username already exists.\n";
+// Kullanıcı kayıt işlevi
+void registerUser(const char *username, const char *password) {
+  for (int i = 0; i < userCount; i++) {
+    if (strcmp(userDatabase[i].username, username) == 0) {
+      printf("Username already exists.\n");
+      return;
+    }
   }
+
+  strcpy(userDatabase[userCount].username, username);
+  strcpy(userDatabase[userCount].password, password);
+  userCount++;
+  printf("User registered successfully.\n");
 }
 
-void PublicTransportationScheduler::loadSchedulesFromFile(const std::string &filename) {
-  std::ifstream file(filename);
+// Dosyadan güzergahları yükleme işlevi
+void loadSchedulesFromFile(const char *filename) {
+  FILE *file = fopen(filename, "r");
 
   if (!file) {
-    std::cerr << "Error opening file: " << filename << std::endl;
+    printf("Error opening file: %s\n", filename);
     return;
   }
 
-  std::cout << "Schedules loaded from file: " << filename << std::endl;
+  printf("Schedules loaded from file: %s\n", filename);
+  fclose(file);
 }
 
-void PublicTransportationScheduler::showSchedules() {
-  std::cout << "Displaying bus and train schedules...\n";
+// Güzergahları gösterme işlevi
+void showSchedules() {
+  printf("Displaying bus and train schedules...\n");
 }
 
-void PublicTransportationScheduler::calculateFare(const std::string &route, const std::string &ticketType) {
+// Ücret hesaplama işlevi
+void calculateFare(const char *route, const char *ticketType) {
   double baseFare = 5.0;
 
-  if (ticketType == "Student") {
+  if (strcmp(ticketType, "Student") == 0) {
     baseFare *= 0.5;
   }
 
-  std::cout << "Calculated fare for " << route << " with " << ticketType << " ticket: " << baseFare << std::endl;
+  printf("Calculated fare for %s with %s ticket: %.2f\n", route, ticketType, baseFare);
 }
 
-void PublicTransportationScheduler::alertForDelays() {
-  std::cout << "No delays currently reported.\n";
+// Gecikme bildirim işlevi
+void alertForDelays() {
+  printf("No delays currently reported.\n");
 }
 
-void PublicTransportationScheduler::compressAndSaveData(const std::string &data) {
-  // Huffman coding implementation
-  // (Place holder - actual Huffman compression logic)
-  std::cout << "Data compressed and saved.\n";
+// Veriyi sıkıştırıp kaydetme işlevi (Huffman kodlama yerine bir mesaj)
+void compressAndSaveData(const char *data) {
+  printf("Data compressed and saved.\n");
 }
 
-std::string PublicTransportationScheduler::decompressData() {
-  // Huffman decompression logic
+// Veriyi açma işlevi
+char *decompressData() {
   return "Decompressed data.";
 }
 
-void PublicTransportationScheduler::addRoute(int routeID) {
-  routes.push_back(routeID);
-  std::cout << "Route " << routeID << " added.\n";
+// Güzergah ekleme işlevi
+void addRoute(int routeID) {
+  routes[routeCount++] = routeID;
+  printf("Route %d added.\n", routeID);
 }
 
-void PublicTransportationScheduler::removeRoute(int routeID) {
-  routes.erase(std::remove(routes.begin(), routes.end(), routeID), routes.end());
-  std::cout << "Route " << routeID << " removed.\n";
+// Güzergah silme işlevi
+void removeRoute(int routeID) {
+  for (int i = 0; i < routeCount; i++) {
+    if (routes[i] == routeID) {
+      for (int j = i; j < routeCount - 1; j++) {
+        routes[j] = routes[j + 1];
+      }
+
+      routeCount--;
+      printf("Route %d removed.\n", routeID);
+      return;
+    }
+  }
+
+  printf("Route %d not found.\n", routeID);
 }
 
-void PublicTransportationScheduler::searchText(const std::string &text, const std::string &pattern) {
-  // KMP Algorithm for pattern matching
-  // (Place holder - actual KMP implementation)
-  std::cout << "Pattern " << pattern << " found in text.\n";
+// Metin arama işlevi (KMP algoritması yerine basit bir arama)
+void searchText(const char *text, const char *pattern) {
+  if (strstr(text, pattern) != NULL) {
+    printf("Pattern %s found in text.\n", pattern);
+  } else {
+    printf("Pattern %s not found in text.\n", pattern);
+  }
 }
 
-void PublicTransportationScheduler::insertFileIndex(int key) {
-  // B+ Tree insertion logic
-  std::cout << "File indexed with key " << key << ".\n";
+// Dosya indeksi ekleme işlevi (B+ ağacı yerine mesaj)
+void insertFileIndex(int key) {
+  printf("File indexed with key %d.\n", key);
 }
 
-void PublicTransportationScheduler::removeFileIndex(int key) {
-  // B+ Tree deletion logic
-  std::cout << "File index with key " << key << " removed.\n";
+// Dosya indeksi kaldırma işlevi
+void removeFileIndex(int key) {
+  printf("File index with key %d removed.\n", key);
 }
 
-int PublicTransportationScheduler::searchFileIndex(int key) {
-  // B+ Tree search logic
-  std::cout << "File index with key " << key << " found.\n";
+// Dosya indeksi arama işlevi
+int searchFileIndex(int key) {
+  printf("File index with key %d found.\n", key);
   return key;
 }
 
-void PublicTransportationScheduler::findStronglyConnectedComponents() {
-  // Strongly connected components (Tarjan’s algorithm)
-  std::cout << "Strongly connected components identified.\n";
+// Güçlü bağlı bileşenleri bulma işlevi
+void findStronglyConnectedComponents() {
+  printf("Strongly connected components identified.\n");
 }
 
-void PublicTransportationScheduler::exploreUsingBFS(int start) {
-  // BFS algorithm logic
-  std::cout << "Exploring from node " << start << " using BFS.\n";
+// Genişlik öncelikli arama işlevi
+void exploreUsingBFS(int start) {
+  printf("Exploring from node %d using BFS.\n", start);
 }
 
-void PublicTransportationScheduler::exploreUsingDFS(int start) {
-  // DFS algorithm logic
-  std::cout << "Exploring from node " << start << " using DFS.\n";
+// Derinlik öncelikli arama işlevi
+void exploreUsingDFS(int start) {
+  printf("Exploring from node %d using DFS.\n", start);
 }
-
-} // namespace PublicTransportationScheduler
-} // namespace Coruh
