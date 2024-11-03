@@ -1,57 +1,40 @@
-//#define ENABLE_PUBLICTRANSPORTATIONSCHEDULER_TEST  // Uncomment this line to enable the PublicTransportationScheduler tests
+﻿#include "gtest/gtest.h"
+#include "../../publictransportationscheduler/header/publictransportationscheduler.h"
 
-#include "gtest/gtest.h"
-#include "../../publictransportationscheduler/header/publictransportationscheduler.h"  // Adjust this include path based on your project structure
-
-using namespace Coruh::PublicTransportationScheduler;
+// using namespace Coruh::PublicTransportationScheduler;  // Bu satırı kaldırıyoruz
 
 class PublicTransportationSchedulerTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    // Setup test data
+    // Gerekli kurulum işlemleri
   }
 
   void TearDown() override {
-    // Clean up test data
+    // Test sonrası temizleme işlemleri
   }
 };
 
-TEST_F(PublicTransportationSchedulerTest, TestAdd) {
-  double result = PublicTransportationScheduler::add(5.0, 3.0);
-  EXPECT_DOUBLE_EQ(result, 8.0);
+// Kullanıcı kayıt ve giriş işlemlerini test etme
+TEST_F(PublicTransportationSchedulerTest, TestRegisterUser) {
+  registerUser("testuser", "password");
+  EXPECT_EQ(login("testuser", "password"), 1);  // Kayıt başarılı olmalı
 }
 
-TEST_F(PublicTransportationSchedulerTest, TestSubtract) {
-  double result = PublicTransportationScheduler::subtract(5.0, 3.0);
-  EXPECT_DOUBLE_EQ(result, 2.0);
+TEST_F(PublicTransportationSchedulerTest, TestLoginInvalidUser) {
+  EXPECT_EQ(login("invaliduser", "password"), 0);  // Geçersiz kullanıcı adı
 }
 
-TEST_F(PublicTransportationSchedulerTest, TestMultiply) {
-  double result = PublicTransportationScheduler::multiply(5.0, 3.0);
-  EXPECT_DOUBLE_EQ(result, 15.0);
+// Güzergah ekleme ve gösterme işlemlerini test etme
+TEST_F(PublicTransportationSchedulerTest, TestAddRoute) {
+  addRoute(101);
+  addRoute(102);
+  EXPECT_EQ(routes[0], 101);
+  EXPECT_EQ(routes[1], 102);
 }
 
-TEST_F(PublicTransportationSchedulerTest, TestDivide) {
-  double result = PublicTransportationScheduler::divide(6.0, 3.0);
-  EXPECT_DOUBLE_EQ(result, 2.0);
-}
-
-TEST_F(PublicTransportationSchedulerTest, TestDivideByZero) {
-  EXPECT_THROW(PublicTransportationScheduler::divide(5.0, 0.0), std::invalid_argument);
-}
-
-/**
- * @brief The main function of the test program.
- *
- * @param argc The number of command-line arguments.
- * @param argv An array of command-line argument strings.
- * @return int The exit status of the program.
- */
-int main(int argc, char **argv) {
-#ifdef ENABLE_PUBLICTRANSPORTATIONSCHEDULER_TEST
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-#else
-  return 0;
-#endif
+TEST_F(PublicTransportationSchedulerTest, TestRemoveRoute) {
+  addRoute(101);
+  addRoute(102);
+  removeRoute(101);
+  EXPECT_NE(routes[0], 101);  // 101 güzergahı silinmiş olmalı
 }
