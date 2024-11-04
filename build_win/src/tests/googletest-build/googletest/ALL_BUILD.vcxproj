@@ -17,7 +17,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{EEB3061A-680C-3BA0-8B98-F79AA7E8C37C}</ProjectGuid>
+    <ProjectGuid>{A3912373-0062-3C23-955F-B4FB73A1255C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -49,7 +49,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\aliem\Desktop\ce205-midterm-\src\tests\googletest\googletest\include;C:\Users\aliem\Desktop\ce205-midterm-\src\tests\googletest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\include;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -59,7 +59,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\aliem\Desktop\ce205-midterm-\src\tests\googletest\googletest\include;C:\Users\aliem\Desktop\ce205-midterm-\src\tests\googletest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\include;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -68,11 +68,11 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\aliem\Desktop\ce205-midterm-\src\tests\googletest\googletest\CMakeLists.txt">
+    <CustomBuild Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/aliem/Desktop/ce205-midterm-/src/tests/googletest/googletest/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/src/tests/googletest/googletest/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-C:\Strawberry\c\bin\cmake.exe -SC:/Users/aliem/Desktop/ce205-midterm- -BC:/Users/aliem/Desktop/ce205-midterm-/build_win --check-stamp-file C:/Users/aliem/Desktop/ce205-midterm-/build_win/src/tests/googletest-build/googletest/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-" "-BC:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win" --check-stamp-file "C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/src/tests/googletest-build/googletest/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -80,12 +80,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Strawberry\c\share\cmake-3.26\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Strawberry\c\share\cmake-3.26\Modules\CMakePackageConfigHelpers.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\CheckCSourceCompiles.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\CheckIncludeFile.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\CheckLibraryExists.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\FindPackageHandleStandardArgs.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\FindPackageMessage.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\FindThreads.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\Internal\CheckSourceCompiles.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\aliem\Desktop\ce205-midterm-\src\tests\googletest\googletest\cmake\Config.cmake.in;C:\Users\aliem\Desktop\ce205-midterm-\src\tests\googletest\googletest\cmake\gtest.pc.in;C:\Users\aliem\Desktop\ce205-midterm-\src\tests\googletest\googletest\cmake\gtest_main.pc.in;C:\Users\aliem\Desktop\ce205-midterm-\src\tests\googletest\googletest\cmake\internal_utils.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\aliem\Desktop\ce205-midterm-\build_win\src\tests\googletest-build\googletest\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\cmake\Config.cmake.in;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\cmake\gtest.pc.in;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\cmake\gtest_main.pc.in;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\cmake\internal_utils.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\src\tests\googletest-build\googletest\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/aliem/Desktop/ce205-midterm-/src/tests/googletest/googletest/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/src/tests/googletest/googletest/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-C:\Strawberry\c\bin\cmake.exe -SC:/Users/aliem/Desktop/ce205-midterm- -BC:/Users/aliem/Desktop/ce205-midterm-/build_win --check-stamp-file C:/Users/aliem/Desktop/ce205-midterm-/build_win/src/tests/googletest-build/googletest/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-" "-BC:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win" --check-stamp-file "C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/src/tests/googletest-build/googletest/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -93,26 +93,26 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Strawberry\c\share\cmake-3.26\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Strawberry\c\share\cmake-3.26\Modules\CMakePackageConfigHelpers.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\CheckCSourceCompiles.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\CheckIncludeFile.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\CheckLibraryExists.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\FindPackageHandleStandardArgs.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\FindPackageMessage.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\FindThreads.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\Internal\CheckSourceCompiles.cmake;C:\Strawberry\c\share\cmake-3.26\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\aliem\Desktop\ce205-midterm-\src\tests\googletest\googletest\cmake\Config.cmake.in;C:\Users\aliem\Desktop\ce205-midterm-\src\tests\googletest\googletest\cmake\gtest.pc.in;C:\Users\aliem\Desktop\ce205-midterm-\src\tests\googletest\googletest\cmake\gtest_main.pc.in;C:\Users\aliem\Desktop\ce205-midterm-\src\tests\googletest\googletest\cmake\internal_utils.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\aliem\Desktop\ce205-midterm-\build_win\src\tests\googletest-build\googletest\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\cmake\Config.cmake.in;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\cmake\gtest.pc.in;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\cmake\gtest_main.pc.in;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\cmake\internal_utils.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\src\tests\googletest-build\googletest\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\aliem\Desktop\ce205-midterm-\build_win\ZERO_CHECK.vcxproj">
-      <Project>{F131F1CF-F711-3B14-A594-02E2A32FFFCF}</Project>
+    <ProjectReference Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\ZERO_CHECK.vcxproj">
+      <Project>{D55AF825-D256-39A8-A34B-FCC3361CA509}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\aliem\Desktop\ce205-midterm-\build_win\src\tests\googletest-build\googletest\gtest.vcxproj">
-      <Project>{C3737F66-EAF1-3C6B-A719-B098DC1A0227}</Project>
+    <ProjectReference Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\src\tests\googletest-build\googletest\gtest.vcxproj">
+      <Project>{50BB38D1-AD54-3A11-8B62-E705A8626623}</Project>
       <Name>gtest</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\aliem\Desktop\ce205-midterm-\build_win\src\tests\googletest-build\googletest\gtest_main.vcxproj">
-      <Project>{596279AA-554D-3D41-9303-DC36CE7D9875}</Project>
+    <ProjectReference Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\src\tests\googletest-build\googletest\gtest_main.vcxproj">
+      <Project>{0AF2F716-4DA4-32C8-A0D4-62AADD791D27}</Project>
       <Name>gtest_main</Name>
     </ProjectReference>
   </ItemGroup>

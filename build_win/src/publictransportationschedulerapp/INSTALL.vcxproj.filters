@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\aliem\Desktop\ce205-midterm-\build_win\CMakeFiles\0123ae44d1ec42f3e52cd56a6440d5b2\INSTALL_force.rule">
+    <CustomBuild Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\CMakeFiles\ba6c512d7802188895a4a2bf5e2e7d1c\INSTALL_force.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{EF0F44D2-0051-32F1-AF66-E84B3E85FBCB}</UniqueIdentifier>
+      <UniqueIdentifier>{8203EC73-389B-39A1-83C1-A86924DD8E64}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
