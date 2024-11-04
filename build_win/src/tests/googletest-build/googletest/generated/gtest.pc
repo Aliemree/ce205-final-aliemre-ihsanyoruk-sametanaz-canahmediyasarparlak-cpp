@@ -1,5 +1,5 @@
-libdir=C:/Users/aliem/Desktop/ce205-midterm-/build_win/install/lib
-includedir=C:/Users/aliem/Desktop/ce205-midterm-/build_win/install/include
+libdir=publish_win/lib
+includedir=publish_win/include
 
 Name: gtest
 Description: GoogleTest (without main() function)
