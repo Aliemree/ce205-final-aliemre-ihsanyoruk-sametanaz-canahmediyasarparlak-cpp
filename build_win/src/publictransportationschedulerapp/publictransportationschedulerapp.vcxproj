@@ -14,7 +14,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{FC705F46-B4FF-3226-95B3-01C4345837BC}</ProjectGuid>
+    <ProjectGuid>{05BCE0C6-7674-3329-B1EF-BE08E28074B9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -41,13 +41,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\build\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\build\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">publictransportationschedulerapp.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">publictransportationschedulerapp</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\build\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\build\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">publictransportationschedulerapp.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">publictransportationschedulerapp</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
@@ -56,30 +56,27 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\..\publictransportationscheduler\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationscheduler\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationscheduler\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\..\publictransportationscheduler\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationscheduler\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationscheduler\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
-      <MinimalRebuild></MinimalRebuild>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;ENABLE_UTILITY_TEST;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_TEST;ENABLE_UTILITY_LOGGER;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_LOGGER;MSVC_ENV;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;ENABLE_UTILITY_TEST;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_TEST;ENABLE_UTILITY_LOGGER;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_LOGGER;MSVC_ENV;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\..\publictransportationscheduler\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationscheduler\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationscheduler\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\..\publictransportationscheduler\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationscheduler\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationscheduler\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\..\publictransportationscheduler\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationscheduler\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationscheduler\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\..\publictransportationscheduler\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationscheduler\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationscheduler\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -92,8 +89,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/src/publictransportationschedulerapp/Debug/publictransportationschedulerapp.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/build/Debug/publictransportationschedulerapp.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/src/publictransportationschedulerapp/Debug/publictransportationschedulerapp.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/build/Debug/publictransportationschedulerapp.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -102,31 +99,27 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\..\publictransportationscheduler\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationscheduler\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationscheduler\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\..\publictransportationscheduler\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationscheduler\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationscheduler\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <MinimalRebuild></MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ENABLE_UTILITY_TEST;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_TEST;ENABLE_UTILITY_LOGGER;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_LOGGER;MSVC_ENV;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ENABLE_UTILITY_TEST;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_TEST;ENABLE_UTILITY_LOGGER;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_LOGGER;MSVC_ENV;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\..\publictransportationscheduler\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationscheduler\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationscheduler\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\..\publictransportationscheduler\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationscheduler\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationscheduler\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\..\publictransportationscheduler\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationscheduler\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationscheduler\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\..\publictransportationscheduler\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationscheduler\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationscheduler\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -139,8 +132,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/src/publictransportationschedulerapp/Release/publictransportationschedulerapp.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/build/Release/publictransportationschedulerapp.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/src/publictransportationschedulerapp/Release/publictransportationschedulerapp.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/build/Release/publictransportationschedulerapp.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -148,11 +141,11 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\CMakeLists.txt">
+    <CustomBuild Include="C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/src/publictransportationschedulerapp/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/aliem/Desktop/1/ce205-midterm-/src/publictransportationschedulerapp/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-" "-BC:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win" --check-stamp-file "C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/src/publictransportationschedulerapp/CMakeFiles/generate.stamp"
+C:\Strawberry\c\bin\cmake.exe -SC:/Users/aliem/Desktop/1/ce205-midterm- -BC:/Users/aliem/Desktop/1/ce205-midterm-/build_win --check-stamp-file C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/src/publictransportationschedulerapp/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -161,11 +154,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\src\publictransportationschedulerapp\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\src\publictransportationschedulerapp\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/src/publictransportationschedulerapp/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/aliem/Desktop/1/ce205-midterm-/src/publictransportationschedulerapp/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-" "-BC:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win" --check-stamp-file "C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/src/publictransportationschedulerapp/CMakeFiles/generate.stamp"
+C:\Strawberry\c\bin\cmake.exe -SC:/Users/aliem/Desktop/1/ce205-midterm- -BC:/Users/aliem/Desktop/1/ce205-midterm-/build_win --check-stamp-file C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/src/publictransportationschedulerapp/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -174,27 +167,27 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\src\publictransportationschedulerapp\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\src\publictransportationschedulerapp\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\header\publictransportationschedulerapp.h" />
-    <ClCompile Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\publictransportationschedulerapp\src\publictransportationschedulerapp.cpp" />
+    <ClInclude Include="C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\header\publictransportationschedulerapp.h" />
+    <ClCompile Include="C:\Users\aliem\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\src\publictransportationschedulerapp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\ZERO_CHECK.vcxproj">
-      <Project>{D55AF825-D256-39A8-A34B-FCC3361CA509}</Project>
+    <ProjectReference Include="C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\ZERO_CHECK.vcxproj">
+      <Project>{DA55185D-ED86-3ED3-A1B2-AAE32B531738}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\src\publictransportationscheduler\publictransportationscheduler.vcxproj">
-      <Project>{9B907DF2-0BF7-3056-A01E-38EB52701855}</Project>
+    <ProjectReference Include="C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\src\publictransportationscheduler\publictransportationscheduler.vcxproj">
+      <Project>{04756C3C-E304-312F-9553-067E7CB8E171}</Project>
       <Name>publictransportationscheduler</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\src\utility\utility.vcxproj">
-      <Project>{3847F7AA-1B0F-30CF-AAE9-5463F7C8B31E}</Project>
+    <ProjectReference Include="C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\src\utility\utility.vcxproj">
+      <Project>{A35B7C0B-4D41-3D3C-AA8C-99144A5AB315}</Project>
       <Name>utility</Name>
     </ProjectReference>
   </ItemGroup>

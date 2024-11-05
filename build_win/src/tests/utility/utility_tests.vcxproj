@@ -14,7 +14,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8AFCD249-5D3E-3AAC-A16E-1227377B3BA7}</ProjectGuid>
+    <ProjectGuid>{D5FD3EF0-B994-3A55-A1FA-F91BD16EAE10}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -41,13 +41,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\build\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\build\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">utility_tests.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">utility_tests</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\build\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\build\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">utility_tests.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">utility_tests</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
@@ -56,8 +56,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\utility\..\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\utility;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/src/tests/googletest/googletest/include" /external:I "C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/src/tests/googletest/googletest"</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\utility\..\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\utility;C:\Users\aliem\Desktop\1\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/aliem/Desktop/1/ce205-midterm-/src/tests/googletest/googletest/include" /external:I "C:/Users/aliem/Desktop/1/ce205-midterm-/src/tests/googletest/googletest"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -65,24 +65,21 @@
       <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;ENABLE_UTILITY_TEST;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_TEST;ENABLE_UTILITY_LOGGER;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_LOGGER;MSVC_ENV;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;ENABLE_UTILITY_TEST;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_TEST;ENABLE_UTILITY_LOGGER;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_LOGGER;MSVC_ENV;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\utility\..\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\utility;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\include;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\utility\..\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\utility;C:\Users\aliem\Desktop\1\ce205-midterm-\src\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\googletest\googletest\include;C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\googletest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\utility\..\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\utility;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\include;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\utility\..\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\utility;C:\Users\aliem\Desktop\1\ce205-midterm-\src\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\googletest\googletest\include;C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\googletest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -92,7 +89,7 @@
     <PostBuildEvent>
       <Message></Message>
       <Command>setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -D TEST_TARGET=utility_tests -D "TEST_EXECUTABLE=C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/build/Debug/utility_tests.exe" -D TEST_EXECUTOR= -D "TEST_WORKING_DIR=C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/src/tests/utility" -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=utility_tests_TESTS -D "CTEST_FILE=C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/src/tests/utility/utility_tests[1]_tests.cmake" -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P "C:/Program Files/CMake/share/cmake-3.30/Modules/GoogleTestAddTests.cmake"
+C:\Strawberry\c\bin\cmake.exe -D TEST_TARGET=utility_tests -D TEST_EXECUTABLE=C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/build/Debug/utility_tests.exe -D TEST_EXECUTOR= -D TEST_WORKING_DIR=C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/src/tests/utility -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=utility_tests_TESTS -D CTEST_FILE=C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/src/tests/utility/utility_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P C:/Strawberry/c/share/cmake-3.26/Modules/GoogleTestAddTests.cmake
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -107,8 +104,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/src/tests/utility/Debug/utility_tests.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/build/Debug/utility_tests.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/src/tests/utility/Debug/utility_tests.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/build/Debug/utility_tests.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -117,34 +114,30 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\utility\..\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\utility;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/src/tests/googletest/googletest/include" /external:I "C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/src/tests/googletest/googletest"</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\utility\..\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\utility;C:\Users\aliem\Desktop\1\ce205-midterm-\src\utility\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/aliem/Desktop/1/ce205-midterm-/src/tests/googletest/googletest/include" /external:I "C:/Users/aliem/Desktop/1/ce205-midterm-/src/tests/googletest/googletest"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
       <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <LanguageStandard>stdcpp14</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ENABLE_UTILITY_TEST;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_TEST;ENABLE_UTILITY_LOGGER;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_LOGGER;MSVC_ENV;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
-      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ENABLE_UTILITY_TEST;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_TEST;ENABLE_UTILITY_LOGGER;ENABLE_PUBLICTRANSPORTATIONSCHEDULER_LOGGER;MSVC_ENV;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\utility\..\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\utility;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\include;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\utility\..\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\utility;C:\Users\aliem\Desktop\1\ce205-midterm-\src\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\googletest\googletest\include;C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\googletest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\utility\..\..\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\utility;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\utility\header;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest\include;C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\googletest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\utility\..\..\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\utility;C:\Users\aliem\Desktop\1\ce205-midterm-\src\utility\header;C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\googletest\googletest\include;C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\googletest\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -154,7 +147,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <PostBuildEvent>
       <Message></Message>
       <Command>setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -D TEST_TARGET=utility_tests -D "TEST_EXECUTABLE=C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/build/Release/utility_tests.exe" -D TEST_EXECUTOR= -D "TEST_WORKING_DIR=C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/src/tests/utility" -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=utility_tests_TESTS -D "CTEST_FILE=C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/src/tests/utility/utility_tests[1]_tests.cmake" -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P "C:/Program Files/CMake/share/cmake-3.30/Modules/GoogleTestAddTests.cmake"
+C:\Strawberry\c\bin\cmake.exe -D TEST_TARGET=utility_tests -D TEST_EXECUTABLE=C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/build/Release/utility_tests.exe -D TEST_EXECUTOR= -D TEST_WORKING_DIR=C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/src/tests/utility -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=utility_tests_TESTS -D CTEST_FILE=C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/src/tests/utility/utility_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P C:/Strawberry/c/share/cmake-3.26/Modules/GoogleTestAddTests.cmake
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -169,8 +162,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/src/tests/utility/Release/utility_tests.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/build/Release/utility_tests.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/src/tests/utility/Release/utility_tests.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/build/Release/utility_tests.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -178,11 +171,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\utility\CMakeLists.txt">
+    <CustomBuild Include="C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\utility\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/src/tests/utility/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/aliem/Desktop/1/ce205-midterm-/src/tests/utility/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-" "-BC:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win" --check-stamp-file "C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/src/tests/utility/CMakeFiles/generate.stamp"
+C:\Strawberry\c\bin\cmake.exe -SC:/Users/aliem/Desktop/1/ce205-midterm- -BC:/Users/aliem/Desktop/1/ce205-midterm-/build_win --check-stamp-file C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/src/tests/utility/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -190,12 +183,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\GoogleTest.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\src\tests\utility\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Strawberry\c\share\cmake-3.26\Modules\GoogleTest.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\src\tests\utility\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/src/tests/utility/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/aliem/Desktop/1/ce205-midterm-/src/tests/utility/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-" "-BC:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win" --check-stamp-file "C:/Users/samet/OneDrive/Masaüstü/Programming/Data Structurs.Re/ce205-midterm-/build_win/src/tests/utility/CMakeFiles/generate.stamp"
+C:\Strawberry\c\bin\cmake.exe -SC:/Users/aliem/Desktop/1/ce205-midterm- -BC:/Users/aliem/Desktop/1/ce205-midterm-/build_win --check-stamp-file C:/Users/aliem/Desktop/1/ce205-midterm-/build_win/src/tests/utility/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -203,31 +196,31 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\GoogleTest.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\src\tests\utility\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Strawberry\c\share\cmake-3.26\Modules\GoogleTest.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\src\tests\utility\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\src\tests\utility\utility_test.cpp" />
+    <ClCompile Include="C:\Users\aliem\Desktop\1\ce205-midterm-\src\tests\utility\utility_test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\ZERO_CHECK.vcxproj">
-      <Project>{D55AF825-D256-39A8-A34B-FCC3361CA509}</Project>
+    <ProjectReference Include="C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\ZERO_CHECK.vcxproj">
+      <Project>{DA55185D-ED86-3ED3-A1B2-AAE32B531738}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\src\tests\googletest-build\googletest\gtest.vcxproj">
-      <Project>{50BB38D1-AD54-3A11-8B62-E705A8626623}</Project>
+    <ProjectReference Include="C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\src\tests\googletest-build\googletest\gtest.vcxproj">
+      <Project>{42C95B8B-B490-307B-9D4E-2C9CE0FF79E7}</Project>
       <Name>gtest</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\src\tests\googletest-build\googletest\gtest_main.vcxproj">
-      <Project>{0AF2F716-4DA4-32C8-A0D4-62AADD791D27}</Project>
+    <ProjectReference Include="C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\src\tests\googletest-build\googletest\gtest_main.vcxproj">
+      <Project>{FFB2B43D-0919-33FB-B874-29E7858CDDCD}</Project>
       <Name>gtest_main</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\samet\OneDrive\Masaüstü\Programming\Data Structurs.Re\ce205-midterm-\build_win\src\utility\utility.vcxproj">
-      <Project>{3847F7AA-1B0F-30CF-AAE9-5463F7C8B31E}</Project>
+    <ProjectReference Include="C:\Users\aliem\Desktop\1\ce205-midterm-\build_win\src\utility\utility.vcxproj">
+      <Project>{A35B7C0B-4D41-3D3C-AA8C-99144A5AB315}</Project>
       <Name>utility</Name>
     </ProjectReference>
   </ItemGroup>

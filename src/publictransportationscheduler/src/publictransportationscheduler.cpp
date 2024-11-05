@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdint.h> // uintptr_t için
+#include <stdint.h> // for uintptr_t
 
-// Kullanıcı, band ve schedule veritabanı tanımları
+// User, band, and schedule database definitions
 int userCount = 0;
 User userDatabase[100];
 
@@ -14,24 +14,33 @@ Band bandDatabase[100];
 int scheduleCount = 0;
 Schedule scheduleDatabase[100];
 
-// Bilet satış veritabanı
+// Ticket sales database
 TicketSale salesDatabase[100];
 int salesCount = 0;
 
-// Satıcı veritabanı
+// Vendor database
 Vendor vendorDatabase[100];
 int vendorCount = 0;
 
-// Sponsor veritabanı
+// Sponsor database
 Sponsor sponsorDatabase[100];
 int sponsorCount = 0;
 
-// XOR işlevi
+// XOR function for XOR linked list nodes
+/**
+ * XORs two pointers to create a single XORed pointer.
+ * @param a First pointer
+ * @param b Second pointer
+ * @return XORed pointer result
+ */
 XORNode* XOR(XORNode* a, XORNode* b) {
     return (XORNode*)((uintptr_t)(a) ^ (uintptr_t)(b));
 }
 
-// Kullanıcı Doğrulama İşlemleri
+// User Authentication Functions
+/**
+ * Loads the user database from a binary file.
+ */
 void loadUserDatabase() {
     FILE* file;
     fopen_s(&file, "userDatabase.bin", "rb");
@@ -42,6 +51,9 @@ void loadUserDatabase() {
     }
 }
 
+/**
+ * Saves the user database to a binary file.
+ */
 void saveUserDatabase() {
     FILE* file;
     fopen_s(&file, "userDatabase.bin", "wb");
@@ -50,6 +62,12 @@ void saveUserDatabase() {
     fclose(file);
 }
 
+/**
+ * Authenticates a user by verifying their username and password.
+ * @param username The username to authenticate
+ * @param password The password to authenticate
+ * @return 1 if login is successful, 0 otherwise
+ */
 int login(const char* username, const char* password) {
     loadUserDatabase();
     for (int i = 0; i < userCount; i++) {
@@ -63,6 +81,11 @@ int login(const char* username, const char* password) {
     return 0;
 }
 
+/**
+ * Registers a new user by adding them to the user database.
+ * @param username The username for the new user
+ * @param password The password for the new user
+ */
 void registerUser(const char* username, const char* password) {
     loadUserDatabase();
     for (int i = 0; i < userCount; i++) {
@@ -78,11 +101,17 @@ void registerUser(const char* username, const char* password) {
     printf("User registered successfully.\n");
 }
 
+/**
+ * Activates guest mode with limited access.
+ */
 void activateGuestMode() {
     printf("Guest Mode activated. Limited access granted.\n");
 }
 
-// Band ve Sanatçı Yönetimi İşlemleri
+// Band and Artist Management Functions
+/**
+ * Loads the band database from a binary file.
+ */
 void loadBandDatabase() {
     FILE* file;
     fopen_s(&file, "bandDatabase.bin", "rb");
@@ -93,6 +122,9 @@ void loadBandDatabase() {
     }
 }
 
+/**
+ * Saves the band database to a binary file.
+ */
 void saveBandDatabase() {
     FILE* file;
     fopen_s(&file, "bandDatabase.bin", "wb");
@@ -101,6 +133,10 @@ void saveBandDatabase() {
     fclose(file);
 }
 
+/**
+ * Adds a new band or artist to the band database.
+ * @param name The name of the band or artist
+ */
 void addBand(const char* name) {
     loadBandDatabase();
     strcpy_s(bandDatabase[bandCount].name, sizeof(bandDatabase[bandCount].name), name);
@@ -109,6 +145,11 @@ void addBand(const char* name) {
     printf("Band/Artist %s added.\n", name);
 }
 
+/**
+ * Edits the name of an existing band or artist.
+ * @param oldName The current name of the band or artist
+ * @param newName The new name for the band or artist
+ */
 void editBand(const char* oldName, const char* newName) {
     loadBandDatabase();
     for (int i = 0; i < bandCount; i++) {
@@ -122,6 +163,9 @@ void editBand(const char* oldName, const char* newName) {
     printf("Band/Artist %s not found.\n", oldName);
 }
 
+/**
+ * Displays the list of bands and artists.
+ */
 void viewBands() {
     loadBandDatabase();
     printf("Band and Artist List:\n");
@@ -130,7 +174,10 @@ void viewBands() {
     }
 }
 
-// Schedule İşlemleri
+// Schedule Management Functions
+/**
+ * Loads the schedule database from a binary file.
+ */
 void loadScheduleDatabase() {
     FILE* file;
     fopen_s(&file, "scheduleDatabase.bin", "rb");
@@ -141,6 +188,9 @@ void loadScheduleDatabase() {
     }
 }
 
+/**
+ * Saves the schedule database to a binary file.
+ */
 void saveScheduleDatabase() {
     FILE* file;
     fopen_s(&file, "scheduleDatabase.bin", "wb");
@@ -149,6 +199,12 @@ void saveScheduleDatabase() {
     fclose(file);
 }
 
+/**
+ * Creates a new schedule entry for a band or artist.
+ * @param scheduleID The unique ID for the schedule entry
+ * @param bandName The name of the band or artist in the schedule
+ * @param date The date of the scheduled performance
+ */
 void createSchedule(int scheduleID, const char* bandName, const char* date) {
     loadScheduleDatabase();
     scheduleDatabase[scheduleCount].scheduleID = scheduleID;
@@ -159,6 +215,12 @@ void createSchedule(int scheduleID, const char* bandName, const char* date) {
     printf("Schedule created for band %s on %s.\n", bandName, date);
 }
 
+/**
+ * Edits an existing schedule entry.
+ * @param scheduleID The unique ID of the schedule entry to edit
+ * @param newBandName The new band or artist name for the schedule
+ * @param newDate The new date for the scheduled performance
+ */
 void editSchedule(int scheduleID, const char* newBandName, const char* newDate) {
     loadScheduleDatabase();
     for (int i = 0; i < scheduleCount; i++) {
@@ -173,6 +235,9 @@ void editSchedule(int scheduleID, const char* newBandName, const char* newDate) 
     printf("Schedule %d not found.\n", scheduleID);
 }
 
+/**
+ * Displays the festival lineup with scheduled performances.
+ */
 void viewSchedules() {
     loadScheduleDatabase();
     printf("Festival Lineup:\n");
@@ -181,7 +246,12 @@ void viewSchedules() {
     }
 }
 
-// Ücret Hesaplama ve Gecikme Bildirimi
+// Fare Calculation and Delay Notification Functions
+/**
+ * Calculates the fare based on route and ticket type.
+ * @param route The route for fare calculation
+ * @param ticketType The type of ticket (e.g., "Student", "Regular")
+ */
 void calculateFare(const char* route, const char* ticketType) {
     double baseFare = 5.0;
     if (strcmp(ticketType, "Student") == 0) {
@@ -190,20 +260,34 @@ void calculateFare(const char* route, const char* ticketType) {
     printf("Calculated fare for %s with %s ticket: %.2f\n", route, ticketType, baseFare);
 }
 
+/**
+ * Alerts for any current delays.
+ */
 void alertForDelays() {
     printf("No delays currently reported.\n");
 }
 
-// Veriyi Sıkıştırma ve Açma (Örnek işlevler)
+// Data Compression and Decompression Functions (Example functions)
+/**
+ * Compresses data and saves it to a file (example function).
+ * @param data The data to be compressed and saved
+ */
 void compressAndSaveData(const char* data) {
     printf("Data compressed and saved.\n");
 }
 
+/**
+ * Decompresses data from a file (example function).
+ * @return The decompressed data as a string
+ */
 char* decompressData() {
     return "Decompressed data.";
 }
 
-// Ticket Sales Tracking İşlemleri
+// Ticket Sales Tracking Functions
+/**
+ * Loads the ticket sales database from a binary file.
+ */
 void loadSalesDatabase() {
     FILE* file;
     fopen_s(&file, "salesDatabase.bin", "rb");
@@ -214,6 +298,9 @@ void loadSalesDatabase() {
     }
 }
 
+/**
+ * Saves the ticket sales database to a binary file.
+ */
 void saveSalesDatabase() {
     FILE* file;
     fopen_s(&file, "salesDatabase.bin", "wb");
@@ -222,6 +309,9 @@ void saveSalesDatabase() {
     fclose(file);
 }
 
+/**
+ * Displays ticket sales data.
+ */
 void viewSalesData() {
     loadSalesDatabase();
     printf("Ticket Sales Data:\n");
@@ -234,6 +324,9 @@ void viewSalesData() {
     }
 }
 
+/**
+ * Generates a sales report summarizing total sales.
+ */
 void generateSalesReport() {
     loadSalesDatabase();
     double totalAmount = 0.0;
@@ -245,7 +338,10 @@ void generateSalesReport() {
     printf("Total Sales Amount: %.2f\n", totalAmount);
 }
 
-// Vendor and Sponsor Coordination İşlemleri
+// Vendor and Sponsor Coordination Functions
+/**
+ * Loads the vendor database from a binary file.
+ */
 void loadVendorDatabase() {
     FILE* file;
     fopen_s(&file, "vendorDatabase.bin", "rb");
@@ -256,6 +352,9 @@ void loadVendorDatabase() {
     }
 }
 
+/**
+ * Saves the vendor database to a binary file.
+ */
 void saveVendorDatabase() {
     FILE* file;
     fopen_s(&file, "vendorDatabase.bin", "wb");
@@ -264,6 +363,9 @@ void saveVendorDatabase() {
     fclose(file);
 }
 
+/**
+ * Manages and displays the list of vendors.
+ */
 void manageVendors() {
     loadVendorDatabase();
     printf("Vendors List:\n");
@@ -275,6 +377,9 @@ void manageVendors() {
     }
 }
 
+/**
+ * Loads the sponsor database from a binary file.
+ */
 void loadSponsorDatabase() {
     FILE* file;
     fopen_s(&file, "sponsorDatabase.bin", "rb");
@@ -285,6 +390,9 @@ void loadSponsorDatabase() {
     }
 }
 
+/**
+ * Saves the sponsor database to a binary file.
+ */
 void saveSponsorDatabase() {
     FILE* file;
     fopen_s(&file, "sponsorDatabase.bin", "wb");
@@ -293,6 +401,9 @@ void saveSponsorDatabase() {
     fclose(file);
 }
 
+/**
+ * Tracks and displays the list of sponsors.
+ */
 void trackSponsors() {
     loadSponsorDatabase();
     printf("Sponsors List:\n");
@@ -304,7 +415,12 @@ void trackSponsors() {
     }
 }
 
-// Double Linked List İşlevleri
+// Double Linked List Functions
+/**
+ * Inserts a new node at the beginning of a double linked list.
+ * @param head The head pointer of the double linked list
+ * @param data The data to insert in the new node
+ */
 void insertDoubleNode(DoubleNode** head, int data) {
     DoubleNode* newNode = (DoubleNode*)malloc(sizeof(DoubleNode));
     newNode->data = data;
@@ -316,6 +432,11 @@ void insertDoubleNode(DoubleNode** head, int data) {
     *head = newNode;
 }
 
+/**
+ * Saves a double linked list to a binary file.
+ * @param head The head of the double linked list
+ * @param filename The file to save the list
+ */
 void saveDoubleLinkedListToFile(DoubleNode* head, const char* filename) {
     FILE* file;
     fopen_s(&file, filename, "wb");
@@ -332,6 +453,11 @@ void saveDoubleLinkedListToFile(DoubleNode* head, const char* filename) {
     }
 }
 
+/**
+ * Loads a double linked list from a binary file.
+ * @param head The head pointer of the double linked list
+ * @param filename The file to load the list from
+ */
 void loadDoubleLinkedListFromFile(DoubleNode** head, const char* filename) {
     FILE* file;
     fopen_s(&file, filename, "rb");
@@ -347,7 +473,12 @@ void loadDoubleLinkedListFromFile(DoubleNode** head, const char* filename) {
     }
 }
 
-// XOR Linked List İşlevleri
+// XOR Linked List Functions
+/**
+ * Saves an XOR linked list to a binary file.
+ * @param head The head of the XOR linked list
+ * @param filename The file to save the list
+ */
 void saveXORLinkedListToFile(XORNode* head, const char* filename) {
     FILE* file;
     fopen_s(&file, filename, "wb");
@@ -368,6 +499,11 @@ void saveXORLinkedListToFile(XORNode* head, const char* filename) {
     }
 }
 
+/**
+ * Loads an XOR linked list from a binary file.
+ * @param head The head pointer of the XOR linked list
+ * @param filename The file to load the list from
+ */
 void loadXORLinkedListFromFile(XORNode** head, const char* filename) {
     FILE* file;
     fopen_s(&file, filename, "rb");
@@ -383,7 +519,12 @@ void loadXORLinkedListFromFile(XORNode** head, const char* filename) {
     }
 }
 
-// Seyrek Matris İşlevleri
+// Sparse Matrix Functions
+/**
+ * Saves a sparse matrix to a binary file.
+ * @param head The head of the sparse matrix
+ * @param filename The file to save the matrix
+ */
 void saveSparseMatrixToFile(SparseMatrixNode* head, const char* filename) {
     FILE* file;
     fopen_s(&file, filename, "wb");
@@ -402,6 +543,11 @@ void saveSparseMatrixToFile(SparseMatrixNode* head, const char* filename) {
     }
 }
 
+/**
+ * Loads a sparse matrix from a binary file.
+ * @param head The head pointer of the sparse matrix
+ * @param filename The file to load the matrix from
+ */
 void loadSparseMatrixFromFile(SparseMatrixNode** head, const char* filename) {
     FILE* file;
     fopen_s(&file, filename, "rb");
@@ -419,6 +565,11 @@ void loadSparseMatrixFromFile(SparseMatrixNode** head, const char* filename) {
     }
 }
 
+/**
+ * Inserts a new node into an XOR linked list.
+ * @param head The head pointer of the XOR linked list
+ * @param data The data to insert in the new node
+ */
 void insertXORNode(XORNode** head, int data) {
     XORNode* newNode = (XORNode*)malloc(sizeof(XORNode));
     newNode->data = data;
@@ -430,6 +581,13 @@ void insertXORNode(XORNode** head, int data) {
     *head = newNode;
 }
 
+/**
+ * Inserts a new node into a sparse matrix.
+ * @param head The head pointer of the sparse matrix
+ * @param row The row index of the matrix node
+ * @param col The column index of the matrix node
+ * @param value The value to insert in the matrix node
+ */
 void insertSparseNode(SparseMatrixNode** head, int row, int col, int value) {
     SparseMatrixNode* newNode = (SparseMatrixNode*)malloc(sizeof(SparseMatrixNode));
     newNode->row = row;
@@ -438,4 +596,3 @@ void insertSparseNode(SparseMatrixNode** head, int row, int col, int value) {
     newNode->next = *head;
     *head = newNode;
 }
-
