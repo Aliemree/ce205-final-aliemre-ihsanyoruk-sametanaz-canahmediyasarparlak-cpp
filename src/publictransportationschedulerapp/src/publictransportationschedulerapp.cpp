@@ -5,12 +5,9 @@
 #include <windows.h>
 #include "publictransportationscheduler.h"
 #include "publictransportationschedulerapp.h"
+#include "../../publictransportationscheduler/src/publictransportationscheduler.cpp"
 
-// Function to dynamically get console width
-/**
- * Gets the current width of the console window.
- * @return The width of the console in characters
- */
+// Get console width for centering text
 int getConsoleWidth() {
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     int columns;
@@ -19,15 +16,10 @@ int getConsoleWidth() {
     return columns;
 }
 
-// Function to center-align text in the console
-/**
- * Centers and displays text in the console.
- * @param text The text to be centered and displayed
- */
+// Center text in the console
 void centerText(const char* text) {
     int screenWidth = getConsoleWidth();
     int padding = (screenWidth - strlen(text)) / 2;
-
     if (padding > 0) {
         printf("%*s%s\n", padding, "", text);
     }
@@ -36,16 +28,10 @@ void centerText(const char* text) {
     }
 }
 
-// Function to center-align menu options with selection indicator
-/**
- * Centers a menu option in the console with an indicator if selected.
- * @param text The menu option text
- * @param isSelected A flag indicating if the option is selected (1 for selected, 0 otherwise)
- */
+// Center menu options with selection
 void centerMenuOption(const char* text, int isSelected) {
     int screenWidth = getConsoleWidth();
     int padding = (screenWidth - strlen(text) - 2) / 2;
-
     if (padding > 0) {
         if (isSelected) {
             printf("%*s> %s\n", padding, "", text);
@@ -64,7 +50,6 @@ void centerMenuOption(const char* text, int isSelected) {
     }
 }
 
-// User Authentication Menu
 void showUserAuthenticationMenu() {
     int choice = 0;
     const char* options[] = { "Login", "Register", "Guest Mode", "Back to Main Menu" };
@@ -74,70 +59,78 @@ void showUserAuthenticationMenu() {
         system("cls");
         centerText("=== User Authentication ===\n");
 
-        // Display each option in the menu, highlighting the selected one
         for (int i = 0; i < n_options; ++i) {
             centerMenuOption(options[i], i == choice);
         }
 
         int ch = _getch();
-
-        if (ch == 224) { // Handle arrow key inputs
+        if (ch == 224) {
             ch = _getch();
             switch (ch) {
-            case 72: // Up arrow
+            case 72:
                 choice = (choice - 1 + n_options) % n_options;
                 break;
-            case 80: // Down arrow
+            case 80:
                 choice = (choice + 1) % n_options;
                 break;
             }
         }
-        else if (ch == 13) { // Enter key to select an option
+        else if (ch == 13) {
             char username[50], password[50];
             switch (choice) {
-            case 0: // Login
+            case 0:
                 printf("Username: ");
                 scanf("%s", username);
                 printf("Password: ");
                 scanf("%s", password);
-                login(username, password);
+                if (verifyUserInHashTable(username, password)) {
+                    printf("Login successful. Redirecting to main menu...\n");
+                    
+                    return;
+                }
+                else {
+                    printf("Invalid username or password.\n");
+                }
                 break;
-            case 1: // Register
+            case 1:
                 printf("Username: ");
                 scanf("%s", username);
                 printf("Password: ");
                 scanf("%s", password);
-                registerUser(username, password);
+                addUserToHashTable(username, password);
+                printf("User registered successfully. Logging in...\n");
+                if (verifyUserInHashTable(username, password)) {
+                    printf("Registration and login successful. Redirecting to main menu...\n");
+                    return;
+                }
                 break;
-            case 2: // Guest Mode
-                activateGuestMode();
-                break;
-            case 3: // Back to Main Menu
+            case 2:
+                printf("Guest Mode activated. Limited access granted.\n");
+                
+                return;
+            case 3:
                 return;
             }
             system("pause");
         }
     }
 }
-
-// Band and Artist Management Menu
-void showBandManagementMenu() {
+// Route Management Menu
+void showRouteManagementMenu() {
     int choice = 0;
-    const char* options[] = { "Add Band/Artist", "Edit Band/Artist", "View Band/Artist List", "Back to Main Menu" };
+    const char* options[] = { "Add Route", "Edit Route", "View Routes", "Delete Route", "Search Route", "Back to Main Menu" };
     int n_options = sizeof(options) / sizeof(options[0]);
 
     while (1) {
         system("cls");
-        centerText("=== Band and Artist Management ===\n");
+        centerText("=== Route Management ===\n");
 
-        // Display each option in the menu, highlighting the selected one
         for (int i = 0; i < n_options; ++i) {
             centerMenuOption(options[i], i == choice);
         }
 
         int ch = _getch();
-
-        if (ch == 224) { // Handle arrow key inputs
+        if (ch == 224) {
             ch = _getch();
             switch (ch) {
             case 72: // Up arrow
@@ -148,50 +141,101 @@ void showBandManagementMenu() {
                 break;
             }
         }
-        else if (ch == 13) { // Enter key to select an option
-            char bandName[50], oldName[50], newName[50];
+        else if (ch == 13) { // Enter key
+            int routeID;
+            char routeName[50];
+            char startPoint[50];
+            char endPoint[50];
+
             switch (choice) {
-            case 0: // Add Band/Artist
-                printf("Enter Band/Artist Name: ");
-                scanf("%s", bandName);
-                addBand(bandName);
+            case 0: { // Add Route
+                printf("Enter route ID: ");
+                scanf("%d", &routeID);
+                printf("Enter route name: ");
+                scanf("%s", routeName);
+                printf("Enter starting point: ");
+                scanf("%s", startPoint);
+                printf("Enter ending point: ");
+                scanf("%s", endPoint);
+                addRoute(routeID, routeName, startPoint, endPoint);
+                printf("Route added.\n");
                 break;
-            case 1: // Edit Band/Artist
-                printf("Enter Current Name of Band/Artist: ");
-                scanf("%s", oldName);
-                printf("Enter New Name of Band/Artist: ");
-                scanf("%s", newName);
-                editBand(oldName, newName);
+            }
+            case 1: { // Edit Route
+                printf("Enter route ID to edit: ");
+                scanf("%d", &routeID);
+                DoubleNode* routeNode = findDoubleNode(routeListHead, routeID);
+                if (routeNode) {
+                    printf("Enter new route name: ");
+                    scanf("%s", routeName);
+                    printf("Enter new starting point: ");
+                    scanf("%s", startPoint);
+                    printf("Enter new ending point: ");
+                    scanf("%s", endPoint);
+                    editRoute(routeNode, routeName, startPoint, endPoint);
+                    printf("Route updated.\n");
+                }
+                else {
+                    printf("Route not found.\n");
+                }
                 break;
-            case 2: // View Band/Artist List
-                viewBands();
+            }
+            case 2: { // View Routes
+                printDetailedRouteList(routeListHead);
                 break;
-            case 3: // Back to Main Menu
+            }
+            case 3: { // Delete Route
+                printf("Enter route ID to delete: ");
+                scanf("%d", &routeID);
+                if (deleteDoubleNode(&routeListHead, routeID)) {
+                    printf("Route deleted.\n");
+                }
+                else {
+                    printf("Route not found.\n");
+                }
+                break;
+            }
+            case 4: { // Search Route
+                printf("Enter route ID to search: ");
+                scanf("%d", &routeID);
+                DoubleNode* routeNode = findDoubleNode(routeListHead, routeID);
+                if (routeNode) {
+                    printf("Route found:\n");
+                    printf("ID: %d | Name: %s | Start: %s | End: %s\n",
+                        routeNode->data, routeNode->routeName, routeNode->startPoint, routeNode->endPoint);
+                }
+                else {
+                    printf("Route not found.\n");
+                }
+                break;
+            }
+            case 5: { // Back to Main Menu
                 return;
+            }
             }
             system("pause");
         }
     }
 }
 
-// Scheduling Performances Menu
+
+
+// Scheduling Menu
 void showSchedulingMenu() {
     int choice = 0;
-    const char* options[] = { "Create Schedule", "Edit Schedule", "View Festival Lineup", "Back to Main Menu" };
+    const char* options[] = { "Create Schedule", "Edit Schedule", "View Schedules", "Delete Schedule", "Back to Main Menu" };
     int n_options = sizeof(options) / sizeof(options[0]);
 
     while (1) {
         system("cls");
-        centerText("=== Scheduling Performances ===\n");
+        centerText("=== Scheduling ===\n");
 
-        // Display each option in the menu, highlighting the selected one
         for (int i = 0; i < n_options; ++i) {
             centerMenuOption(options[i], i == choice);
         }
 
         int ch = _getch();
-
-        if (ch == 224) { // Handle arrow key inputs
+        if (ch == 224) {
             ch = _getch();
             switch (ch) {
             case 72: // Up arrow
@@ -202,32 +246,37 @@ void showSchedulingMenu() {
                 break;
             }
         }
-        else if (ch == 13) { // Enter key to select an option
+        else if (ch == 13) { // Enter key
             int scheduleID;
-            char bandName[50], date[20], newBandName[50], newDate[20];
+            char bandName[50], date[20];
             switch (choice) {
             case 0: // Create Schedule
                 printf("Enter Schedule ID: ");
                 scanf("%d", &scheduleID);
                 printf("Enter Band/Artist Name: ");
                 scanf("%s", bandName);
-                printf("Enter Date (e.g., YYYY-MM-DD): ");
+                printf("Enter Date (YYYY-MM-DD): ");
                 scanf("%s", date);
                 createSchedule(scheduleID, bandName, date);
                 break;
             case 1: // Edit Schedule
-                printf("Enter Schedule ID to Edit: ");
+                printf("Enter Schedule ID to edit: ");
                 scanf("%d", &scheduleID);
-                printf("Enter New Band/Artist Name: ");
-                scanf("%s", newBandName);
-                printf("Enter New Date (e.g., YYYY-MM-DD): ");
-                scanf("%s", newDate);
-                editSchedule(scheduleID, newBandName, newDate);
+                printf("Enter new Band/Artist Name: ");
+                scanf("%s", bandName);
+                printf("Enter new Date (YYYY-MM-DD): ");
+                scanf("%s", date);
+                editSchedule(scheduleID, bandName, date);
                 break;
-            case 2: // View Festival Lineup
+            case 2: // View Schedules
                 viewSchedules();
                 break;
-            case 3: // Back to Main Menu
+            case 3: // Delete Schedule
+                printf("Enter Schedule ID to delete: ");
+                scanf("%d", &scheduleID);
+                deleteSchedule(scheduleID);
+                break;
+            case 4: // Back to Main Menu
                 return;
             }
             system("pause");
@@ -235,24 +284,22 @@ void showSchedulingMenu() {
     }
 }
 
-// Ticket Sales Tracking Menu
+// Ticket Sales Menu
 void showTicketSalesMenu() {
     int choice = 0;
-    const char* options[] = { "View Sales Data", "Generate Reports", "Back to Main Menu" };
+    const char* options[] = { "View Sales Data", "Generate Sales Report", "Back to Main Menu" };
     int n_options = sizeof(options) / sizeof(options[0]);
 
     while (1) {
         system("cls");
-        centerText("=== Ticket Sales Tracking ===\n");
+        centerText("=== Ticket Sales ===\n");
 
-        // Display each option in the menu, highlighting the selected one
         for (int i = 0; i < n_options; ++i) {
             centerMenuOption(options[i], i == choice);
         }
 
         int ch = _getch();
-
-        if (ch == 224) { // Handle arrow key inputs
+        if (ch == 224) {
             ch = _getch();
             switch (ch) {
             case 72: // Up arrow
@@ -263,12 +310,14 @@ void showTicketSalesMenu() {
                 break;
             }
         }
-        else if (ch == 13) { // Enter key to select an option
+        else if (ch == 13) { // Enter key
             switch (choice) {
             case 0: // View Sales Data
+                loadSalesDatabase(); // Veritabanını yükle
                 viewSalesData();
                 break;
-            case 1: // Generate Reports
+            case 1: // Generate Sales Report
+                loadSalesDatabase(); // Veritabanını yükle
                 generateSalesReport();
                 break;
             case 2: // Back to Main Menu
@@ -279,24 +328,22 @@ void showTicketSalesMenu() {
     }
 }
 
-// Vendor and Sponsor Coordination Menu
-void showVendorSponsorMenu() {
+// Data Management Menüsü
+void showDataManagementMenu() {
     int choice = 0;
-    const char* options[] = { "Manage Vendors", "Track Sponsors", "Back to Main Menu" };
+    const char* options[] = { "Add Vendor", "Add Sponsor", "Manage Vendors", "Track Sponsors", "Back to Main Menu" };
     int n_options = sizeof(options) / sizeof(options[0]);
 
     while (1) {
         system("cls");
-        centerText("=== Vendor and Sponsor Coordination ===\n");
+        centerText("=== Data Management ===\n");
 
-        // Display each option in the menu, highlighting the selected one
         for (int i = 0; i < n_options; ++i) {
             centerMenuOption(options[i], i == choice);
         }
 
         int ch = _getch();
-
-        if (ch == 224) { // Handle arrow key inputs
+        if (ch == 224) {
             ch = _getch();
             switch (ch) {
             case 72: // Up arrow
@@ -307,31 +354,36 @@ void showVendorSponsorMenu() {
                 break;
             }
         }
-        else if (ch == 13) { // Enter key to select an option
+        else if (ch == 13) { // Enter key
             switch (choice) {
-            case 0: // Manage Vendors
+            case 0:
+                addVendorMenu();
+                break;
+            case 1:
+                addSponsorMenu();
+                break;
+            case 2:
                 manageVendors();
                 break;
-            case 1: // Track Sponsors
+            case 3:
                 trackSponsors();
                 break;
-            case 2: // Back to Main Menu
-                return;
+            case 4:
+                return; // Back to Main Menu
             }
             system("pause");
         }
     }
 }
-
 // Main Menu Function
 void showMainMenu() {
     int choice = 0;
     const char* options[] = {
         "User Authentication",
-        "Band and Artist Management",
-        "Scheduling Performances",
-        "Ticket Sales Tracking",
-        "Vendor and Sponsor Coordination",
+        "Route Management",
+        "Scheduling",
+        "Ticket Sales",
+        "Data Management",
         "Exit"
     };
     size_t n_options = sizeof(options) / sizeof(options[0]);
@@ -342,14 +394,12 @@ void showMainMenu() {
         centerText("   Public Transportation Scheduler   ");
         centerText("=================================\n");
 
-        // Display each option in the menu, highlighting the selected one
         for (size_t i = 0; i < n_options; ++i) {
             centerMenuOption(options[i], i == choice);
         }
 
         int ch = _getch();
-
-        if (ch == 224) { // Handle arrow key inputs
+        if (ch == 224) {
             ch = _getch();
             switch (ch) {
             case 72: // Up arrow
@@ -360,13 +410,13 @@ void showMainMenu() {
                 break;
             }
         }
-        else if (ch == 13) { // Enter key to select an option
+        else if (ch == 13) { // Enter key
             switch (choice) {
             case 0:
                 showUserAuthenticationMenu();
                 break;
             case 1:
-                showBandManagementMenu();
+                showRouteManagementMenu();
                 break;
             case 2:
                 showSchedulingMenu();
@@ -375,7 +425,7 @@ void showMainMenu() {
                 showTicketSalesMenu();
                 break;
             case 4:
-                showVendorSponsorMenu();
+                showDataManagementMenu();
                 break;
             case 5:
                 return;
@@ -385,8 +435,8 @@ void showMainMenu() {
     }
 }
 
-// Main function to run the program
 int main() {
+    initializeHashTable();  // Initialize hash table at start
     showMainMenu();
     return 0;
 }
