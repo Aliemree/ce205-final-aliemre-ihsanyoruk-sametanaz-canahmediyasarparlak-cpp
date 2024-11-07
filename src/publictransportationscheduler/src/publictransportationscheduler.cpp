@@ -22,7 +22,6 @@ Sponsor sponsorDatabase[100];
 int sponsorCount = 0;
 DoubleNode* routeListHead = NULL;
 
-
 // Hash Table Definitions
 #define TABLE_SIZE 100
 User* hashTable[TABLE_SIZE];
@@ -32,19 +31,31 @@ typedef struct {
     char routeName[50];
 } Route;
 
-// Hash Table Functions
+/**
+ * @brief Calculates the hash for a given key.
+ * @param key The key to hash.
+ * @return The hash index for the given key.
+ */
 int hashFunction(const char* key) {
     int hash = 0;
     while (*key) hash += *key++;
     return hash % TABLE_SIZE;
 }
 
+/**
+ * @brief Initializes the hash table.
+ */
 void initializeHashTable() {
     for (int i = 0; i < TABLE_SIZE; ++i) {
         hashTable[i] = NULL;
     }
 }
 
+/**
+ * @brief Adds a user to the hash table.
+ * @param username The username to add.
+ * @param password The password for the user.
+ */
 void addUserToHashTable(const char* username, const char* password) {
     int index = hashFunction(username);
     if (hashTable[index] == NULL) {
@@ -54,6 +65,12 @@ void addUserToHashTable(const char* username, const char* password) {
     }
 }
 
+/**
+ * @brief Verifies a user in the hash table.
+ * @param username The username to verify.
+ * @param password The password to verify.
+ * @return 1 if the user is found and password matches, 0 otherwise.
+ */
 int verifyUserInHashTable(const char* username, const char* password) {
     int index = hashFunction(username);
     if (hashTable[index] != NULL && strcmp(hashTable[index]->username, username) == 0 &&
@@ -64,6 +81,14 @@ int verifyUserInHashTable(const char* username, const char* password) {
 }
 
 // Double Linked List Functions
+
+/**
+ * @brief Adds a route to the double linked list.
+ * @param routeID The route ID.
+ * @param routeName The name of the route.
+ * @param startPoint The starting point of the route.
+ * @param endPoint The ending point of the route.
+ */
 void addRoute(int routeID, const char* routeName, const char* startPoint, const char* endPoint) {
     DoubleNode* newNode = (DoubleNode*)malloc(sizeof(DoubleNode));
     newNode->data = routeID;
@@ -79,6 +104,11 @@ void addRoute(int routeID, const char* routeName, const char* startPoint, const 
     routeListHead = newNode;
 }
 
+/**
+ * @brief Inserts a node into the double linked list.
+ * @param head Pointer to the head of the list.
+ * @param data The data to insert.
+ */
 void insertDoubleNode(DoubleNode** head, int data) {
     DoubleNode* newNode = (DoubleNode*)malloc(sizeof(DoubleNode));
     newNode->data = data;
@@ -89,7 +119,13 @@ void insertDoubleNode(DoubleNode** head, int data) {
     }
     *head = newNode;
 }
-// Route bulma
+
+/**
+ * @brief Finds a route node by route ID in the double linked list.
+ * @param head The head of the list.
+ * @param data The route ID to search for.
+ * @return Pointer to the node if found, NULL otherwise.
+ */
 DoubleNode* findDoubleNode(DoubleNode* head, int data) {
     DoubleNode* current = head;
     while (current != NULL) {
@@ -98,10 +134,15 @@ DoubleNode* findDoubleNode(DoubleNode* head, int data) {
         }
         current = current->next;
     }
-    return NULL;  // Bulunamadı
+    return NULL;  // Not found
 }
 
-// Route silme
+/**
+ * @brief Deletes a node by route ID from the double linked list.
+ * @param head Pointer to the head of the list.
+ * @param data The route ID to delete.
+ * @return 1 if the node is deleted, 0 if not found.
+ */
 int deleteDoubleNode(DoubleNode** head, int data) {
     DoubleNode* current = *head;
 
@@ -111,18 +152,26 @@ int deleteDoubleNode(DoubleNode** head, int data) {
                 current->prev->next = current->next;
             }
             else {
-                *head = current->next;  // Baş düğüm siliniyor
+                *head = current->next;  // Head node is deleted
             }
             if (current->next) {
                 current->next->prev = current->prev;
             }
             free(current);
-            return 1;  // Silme başarılı
+            return 1;  // Deletion successful
         }
         current = current->next;
     }
-    return 0;  // Route bulunamadı
+    return 0;  // Route not found
 }
+
+/**
+ * @brief Edits a route node with new details.
+ * @param routeNode The node to edit.
+ * @param routeName The new route name.
+ * @param startPoint The new starting point.
+ * @param endPoint The new ending point.
+ */
 void editRoute(DoubleNode* routeNode, const char* routeName, const char* startPoint, const char* endPoint) {
     if (routeNode != NULL) {
         strcpy(routeNode->routeName, routeName);
@@ -130,6 +179,11 @@ void editRoute(DoubleNode* routeNode, const char* routeName, const char* startPo
         strcpy(routeNode->endPoint, endPoint);
     }
 }
+
+/**
+ * @brief Prints a detailed list of all routes.
+ * @param head The head of the route list.
+ */
 void printDetailedRouteList(DoubleNode* head) {
     DoubleNode* current = head;
     printf("Current Routes:\n");
@@ -143,6 +197,10 @@ void printDetailedRouteList(DoubleNode* head) {
     }
 }
 
+/**
+ * @brief Prints a list of all routes by ID.
+ * @param head The head of the route list.
+ */
 void printDoubleList(DoubleNode* head) {
     DoubleNode* current = head;
     printf("Current Routes:\n");
@@ -155,10 +213,22 @@ void printDoubleList(DoubleNode* head) {
     }
 }
 // XOR Linked List Functions
+
+/**
+ * @brief Computes the XOR of two pointers for XOR linked list.
+ * @param a Pointer to the first XORNode.
+ * @param b Pointer to the second XORNode.
+ * @return XOR of the two pointers.
+ */
 XORNode* XOR(XORNode* a, XORNode* b) {
     return (XORNode*)((uintptr_t)(a) ^ (uintptr_t)(b));
 }
 
+/**
+ * @brief Inserts a new node into the XOR linked list.
+ * @param head Pointer to the head of the XOR linked list.
+ * @param data Data to store in the new node.
+ */
 void insertXORNode(XORNode** head, int data) {
     XORNode* newNode = (XORNode*)malloc(sizeof(XORNode));
     newNode->data = data;
@@ -168,6 +238,14 @@ void insertXORNode(XORNode** head, int data) {
 }
 
 // Sparse Matrix Functions
+
+/**
+ * @brief Inserts a node into a sparse matrix linked list.
+ * @param head Pointer to the head of the sparse matrix linked list.
+ * @param row Row index of the value.
+ * @param col Column index of the value.
+ * @param value The value to insert.
+ */
 void insertSparseNode(SparseMatrixNode** head, int row, int col, int value) {
     SparseMatrixNode* newNode = (SparseMatrixNode*)malloc(sizeof(SparseMatrixNode));
     newNode->row = row;
@@ -177,9 +255,15 @@ void insertSparseNode(SparseMatrixNode** head, int row, int col, int value) {
     *head = newNode;
 }
 
+// Stack and Queue Implementations
+
 Node* stack = NULL;
 Node* queueFront = NULL, * queueRear = NULL;
 
+/**
+ * @brief Pushes a data element onto the stack.
+ * @param data The data to push onto the stack.
+ */
 void push(int data) {
     Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->data = data;
@@ -187,6 +271,10 @@ void push(int data) {
     stack = newNode;
 }
 
+/**
+ * @brief Pops a data element from the stack.
+ * @return The popped data from the stack, or -1 if stack is empty.
+ */
 int pop() {
     if (!stack) return -1;
     int data = stack->data;
@@ -196,6 +284,10 @@ int pop() {
     return data;
 }
 
+/**
+ * @brief Enqueues a data element into the queue.
+ * @param data The data to enqueue.
+ */
 void enqueue(int data) {
     Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->data = data;
@@ -205,6 +297,10 @@ void enqueue(int data) {
     if (!queueFront) queueFront = newNode;
 }
 
+/**
+ * @brief Dequeues a data element from the queue.
+ * @return The dequeued data from the queue, or -1 if queue is empty.
+ */
 int dequeue() {
     if (!queueFront) return -1;
     int data = queueFront->data;
@@ -215,10 +311,15 @@ int dequeue() {
     return data;
 }
 
-// Priority Queue (Heap)
+// Priority Queue (Heap) Implementation
+
 int heap[100];
 int heapSize = 0;
 
+/**
+ * @brief Inserts data into a min-heap.
+ * @param data The data to insert into the heap.
+ */
 void insertHeap(int data) {
     int i = heapSize++;
     while (i && data < heap[(i - 1) / 2]) {
@@ -228,6 +329,10 @@ void insertHeap(int data) {
     heap[i] = data;
 }
 
+/**
+ * @brief Extracts the minimum element from the min-heap.
+ * @return The minimum element from the heap, or -1 if heap is empty.
+ */
 int extractMin() {
     if (!heapSize) return -1;
     int root = heap[0];
@@ -235,7 +340,7 @@ int extractMin() {
     int i = 0;
     while (2 * i + 1 < heapSize) {
         int left = 2 * i + 1, right = 2 * i + 2;
-        int smallest = (right < heapSize&& heap[right] < heap[left]) ? right : left;
+        int smallest = (right < heapSize && heap[right] < heap[left]) ? right : left;
         if (heap[i] <= heap[smallest]) break;
         int temp = heap[i];
         heap[i] = heap[smallest];
@@ -246,6 +351,11 @@ int extractMin() {
 }
 
 // BFS and DFS Functions
+
+/**
+ * @brief Performs Breadth-First Search (BFS) starting from a given node.
+ * @param startNode The starting node for BFS.
+ */
 void bfs(int startNode) {
     enqueue(startNode);
     printf("BFS starting from node %d:\n", startNode);
@@ -253,11 +363,15 @@ void bfs(int startNode) {
     while (queueFront) {
         int currentNode = dequeue();
         printf("%d ", currentNode);
-        // Bu noktada komşu düğümleri kuyruk yapısına ekleyebilirsiniz
+        // Komşu düğümleri kuyruk yapısına ekleyebilirsiniz
     }
     printf("\n");
 }
 
+/**
+ * @brief Performs Depth-First Search (DFS) starting from a given node.
+ * @param startNode The starting node for DFS.
+ */
 void dfs(int startNode) {
     push(startNode);
     printf("DFS starting from node %d:\n", startNode);
@@ -265,30 +379,43 @@ void dfs(int startNode) {
     while (stack) {
         int currentNode = pop();
         printf("%d ", currentNode);
-        // Bu noktada komşu düğümleri yığına ekleyebilirsiniz
+        // Komşu düğümleri yığına ekleyebilirsiniz
     }
     printf("\n");
 }
-
 // Huffman Coding Functions
+
+/**
+ * @brief Compresses the given data using Huffman coding.
+ * @param data The data to compress.
+ */
 void compressDataHuffman(const char* data) {
     printf("Data compressed using Huffman coding.\n");
-    // Huffman kodlama algoritması burada uygulanabilir
+    // Huffman encoding algorithm implementation can be added here.
 }
 
+/**
+ * @brief Decompresses data using Huffman coding.
+ */
 void decompressDataHuffman() {
     printf("Data decompressed using Huffman coding.\n");
-    // Huffman kodlama çözme algoritması burada uygulanabilir
+    // Huffman decoding algorithm implementation can be added here.
 }
 
 // KMP Algorithm for text search
+
+/**
+ * @brief Searches for a pattern within a text using the KMP algorithm.
+ * @param pattern The pattern to search for.
+ * @param text The text to search within.
+ */
 void KMPSearch(const char* pattern, const char* text) {
     int m = strlen(pattern);
     int n = strlen(text);
-    int* lps = (int*)malloc(m * sizeof(int));  // Dinamik bellek tahsisi
+    int* lps = (int*)malloc(m * sizeof(int));  // Allocate memory for LPS array
     int j = 0;
 
-    // LPS dizisini oluşturma
+    // Compute LPS array for the pattern
     lps[0] = 0;
     for (int i = 1; i < m;) {
         if (pattern[i] == pattern[j]) {
@@ -302,7 +429,7 @@ void KMPSearch(const char* pattern, const char* text) {
         }
     }
 
-    // Metin arama
+    // Search for the pattern in the text
     for (int i = 0; i < n;) {
         if (pattern[j] == text[i]) {
             ++j; ++i;
@@ -316,10 +443,14 @@ void KMPSearch(const char* pattern, const char* text) {
         }
     }
 
-    free(lps);  // Dinamik olarak tahsis edilen belleği serbest bırak
+    free(lps);  // Free the dynamically allocated memory
 }
 
 // User Authentication Functions
+
+/**
+ * @brief Loads the user database from a binary file.
+ */
 void loadUserDatabase() {
     FILE* file;
     fopen_s(&file, "userDatabase.bin", "rb");
@@ -331,6 +462,9 @@ void loadUserDatabase() {
     }
 }
 
+/**
+ * @brief Saves the user database to a binary file.
+ */
 void saveUserDatabase() {
     FILE* file;
     fopen_s(&file, "userDatabase.bin", "wb");
@@ -339,6 +473,12 @@ void saveUserDatabase() {
     fclose(file);
 }
 
+/**
+ * @brief Authenticates a user by verifying their username and password.
+ * @param username The username to authenticate.
+ * @param password The password associated with the username.
+ * @return Returns 1 if login is successful, 0 otherwise.
+ */
 int login(const char* username, const char* password) {
     loadUserDatabase();
 
@@ -346,7 +486,6 @@ int login(const char* username, const char* password) {
         if (strcmp(userDatabase[i].username, username) == 0 &&
             strcmp(userDatabase[i].password, password) == 0) {
             printf("Login successful. Redirecting to main menu...\n");
-
             return 1;
         }
     }
@@ -355,6 +494,11 @@ int login(const char* username, const char* password) {
     return 0;
 }
 
+/**
+ * @brief Registers a new user with a username and password.
+ * @param username The new user's username.
+ * @param password The new user's password.
+ */
 void registerUser(const char* username, const char* password) {
     loadUserDatabase();
 
@@ -371,7 +515,7 @@ void registerUser(const char* username, const char* password) {
     saveUserDatabase();
     printf("User registered successfully.\n");
 
-    // Kayıt işleminden sonra otomatik olarak login fonksiyonunu çağır
+    // Automatically log in after successful registration
     if (login(username, password)) {
         printf("Login successful. Redirecting to main menu...\n");
     }
@@ -380,8 +524,11 @@ void registerUser(const char* username, const char* password) {
     }
 }
 
-
 // Band and Artist Management Functions
+
+/**
+ * @brief Loads the band database from a binary file.
+ */
 void loadBandDatabase() {
     FILE* file;
     fopen_s(&file, "bandDatabase.bin", "rb");
@@ -393,6 +540,9 @@ void loadBandDatabase() {
     }
 }
 
+/**
+ * @brief Saves the band database to a binary file.
+ */
 void saveBandDatabase() {
     FILE* file;
     fopen_s(&file, "bandDatabase.bin", "wb");
@@ -401,6 +551,10 @@ void saveBandDatabase() {
     fclose(file);
 }
 
+/**
+ * @brief Adds a new band or artist to the band database.
+ * @param name The name of the band or artist to add.
+ */
 void addBand(const char* name) {
     loadBandDatabase();
     strcpy_s(bandDatabase[bandCount].name, sizeof(bandDatabase[bandCount].name), name);
@@ -409,6 +563,11 @@ void addBand(const char* name) {
     printf("Band/Artist %s added.\n", name);
 }
 
+/**
+ * @brief Edits the name of an existing band or artist.
+ * @param oldName The current name of the band or artist.
+ * @param newName The new name for the band or artist.
+ */
 void editBand(const char* oldName, const char* newName) {
     loadBandDatabase();
 
@@ -424,6 +583,9 @@ void editBand(const char* oldName, const char* newName) {
     printf("Band/Artist %s not found.\n", oldName);
 }
 
+/**
+ * @brief Displays the list of all bands and artists.
+ */
 void viewBands() {
     loadBandDatabase();
     printf("Band and Artist List:\n");
@@ -433,10 +595,15 @@ void viewBands() {
     }
 }
 
+
 // Schedule Management Functions
 
-
-
+/**
+ * @brief Edits an existing schedule with a new band and date.
+ * @param scheduleID The ID of the schedule to edit.
+ * @param newBandName The new band name.
+ * @param newDate The new date for the schedule.
+ */
 void editSchedule(int scheduleID, const char* newBandName, const char* newDate) {
     ScheduleNode* current = scheduleHead;
     while (current != NULL) {
@@ -450,6 +617,10 @@ void editSchedule(int scheduleID, const char* newBandName, const char* newDate) 
     }
     printf("Schedule ID %d not found.\n", scheduleID);
 }
+
+/**
+ * @brief Views all available schedules.
+ */
 void viewSchedules() {
     ScheduleNode* current = scheduleHead;
     printf("Festival Lineup:\n");
@@ -461,47 +632,51 @@ void viewSchedules() {
         printf("No schedules available.\n");
     }
 }
+
+/**
+ * @brief Deletes a schedule by its ID.
+ * @param scheduleID The ID of the schedule to delete.
+ * @return 1 if deletion is successful, 0 otherwise.
+ */
 int deleteSchedule(int scheduleID) {
     ScheduleNode* current = scheduleHead;
-
     while (current != NULL) {
         if (current->scheduleID == scheduleID) {
             if (current->prev) {
                 current->prev->next = current->next;
             }
             else {
-                scheduleHead = current->next; // Baş düğüm siliniyor
+                scheduleHead = current->next; // Deleting the head node
             }
             if (current->next) {
                 current->next->prev = current->prev;
             }
             free(current);
             printf("Schedule with ID %d deleted.\n", scheduleID);
-            return 1;  // Silme başarılı
+            return 1;
         }
         current = current->next;
     }
     printf("Schedule ID %d not found.\n", scheduleID);
-    return 0;  // Program bulunamadı
+    return 0;
 }
 
+/**
+ * @brief Loads schedules from a binary file.
+ */
 void loadScheduleDatabase() {
     FILE* file;
     fopen_s(&file, "scheduleDatabase.bin", "rb");
     if (file) {
         int count;
         fread(&count, sizeof(int), 1, file);
-
         for (int i = 0; i < count; ++i) {
             int scheduleID;
             char bandName[50];
             char date[20];
-
             fread(&scheduleID, sizeof(int), 1, file);
             fread(bandName, sizeof(bandName), 1, file);
             fread(date, sizeof(date), 1, file);
-
-            // Yeni programı listeye ekle
             createSchedule(scheduleID, bandName, date);
         }
         fclose(file);
@@ -511,6 +686,12 @@ void loadScheduleDatabase() {
     }
 }
 
+/**
+ * @brief Creates a new schedule entry.
+ * @param scheduleID The schedule ID.
+ * @param bandName The band name.
+ * @param date The scheduled date.
+ */
 void createSchedule(int scheduleID, const char* bandName, const char* date) {
     ScheduleNode* newNode = (ScheduleNode*)malloc(sizeof(ScheduleNode));
     newNode->scheduleID = scheduleID;
@@ -526,6 +707,9 @@ void createSchedule(int scheduleID, const char* bandName, const char* date) {
     printf("Schedule created for %s on %s.\n", bandName, date);
 }
 
+/**
+ * @brief Saves the schedule database to a binary file.
+ */
 void saveScheduleDatabase() {
     FILE* file;
     fopen_s(&file, "scheduleDatabase.bin", "wb");
@@ -533,16 +717,16 @@ void saveScheduleDatabase() {
         ScheduleNode* current = scheduleHead;
         int count = 0;
 
-        // Düğümleri sayma
+        // Count nodes
         while (current != NULL) {
             count++;
             current = current->next;
         }
 
-        // Düğüm sayısını yazma
+        // Write node count
         fwrite(&count, sizeof(int), 1, file);
 
-        // Program verilerini yazma
+        // Write schedule data
         current = scheduleHead;
         while (current != NULL) {
             fwrite(&(current->scheduleID), sizeof(int), 1, file);
@@ -557,9 +741,13 @@ void saveScheduleDatabase() {
     }
 }
 
-
 // Ticket Sales Tracking Functions
-// Yeni bir B+ düğüm oluşturma
+
+/**
+ * @brief Creates a new B+ tree node.
+ * @param isLeaf Indicates if the node is a leaf node.
+ * @return Pointer to the newly created B+ tree node.
+ */
 BPlusTreeNode* createNode(bool isLeaf) {
     BPlusTreeNode* newNode = (BPlusTreeNode*)malloc(sizeof(BPlusTreeNode));
     newNode->isLeaf = isLeaf;
@@ -571,7 +759,11 @@ BPlusTreeNode* createNode(bool isLeaf) {
     return newNode;
 }
 
-// B+ ağacında arama yapma
+/**
+ * @brief Searches the B+ tree for a specific key.
+ * @param key The key to search for.
+ * @return Pointer to the ticket sale if found, NULL otherwise.
+ */
 TicketSale* searchBPlusTree(int key) {
     BPlusTreeNode* current = root;
     while (current != NULL) {
@@ -590,7 +782,11 @@ TicketSale* searchBPlusTree(int key) {
     return NULL;
 }
 
-// B+ ağacına yeni bir anahtar ve satış ekleme
+/**
+ * @brief Inserts a new key and ticket sale into the B+ tree.
+ * @param key The key to insert.
+ * @param sale The associated ticket sale data.
+ */
 void insertBPlusNode(int key, TicketSale* sale) {
     if (root == NULL) {
         root = createNode(true);
@@ -624,8 +820,10 @@ void insertBPlusNode(int key, TicketSale* sale) {
     }
 }
 
-
-// B+ ağacını görüntüleme
+/**
+ * @brief Displays the B+ tree contents.
+ * @param node The root node of the B+ tree.
+ */
 void displayBPlusTree(BPlusTreeNode* node) {
     if (node == NULL) return;
     for (int i = 0; i < node->numKeys; i++) {
@@ -639,11 +837,16 @@ void displayBPlusTree(BPlusTreeNode* node) {
     }
 }
 
+/**
+ * @brief Initializes the B+ tree.
+ */
 void initializeBPlusTree() {
     root = NULL;
 }
 
-// Satış veritabanını yükle ve B+ ağacını doldur
+/**
+ * @brief Loads sales data from the binary file and inserts it into the B+ tree.
+ */
 void loadSalesDatabase() {
     FILE* file = fopen("salesDatabase.bin", "rb");
     if (file == NULL) {
@@ -665,9 +868,9 @@ void loadSalesDatabase() {
     printf("Sales data loaded from salesDatabase.bin successfully.\n");
 }
 
-
-
-// B+ ağacını kullanarak tüm satış verilerini görüntüleme
+/**
+ * @brief Displays all ticket sales data in the B+ tree.
+ */
 void viewSalesData() {
     printf("Ticket Sales Data:\n");
 
@@ -677,12 +880,12 @@ void viewSalesData() {
         return;
     }
 
-    // En sol yaprağa git
+    // Move to the leftmost leaf
     while (!current->isLeaf) {
         current = current->children[0];
     }
 
-    // Tüm yaprak düğümleri sırayla yazdır
+    // Print all leaf nodes
     while (current != NULL) {
         for (int i = 0; i < current->numKeys; i++) {
             TicketSale* sale = current->sales[i];
@@ -693,6 +896,9 @@ void viewSalesData() {
     }
 }
 
+/**
+ * @brief Saves a sample sales dataset to the binary file.
+ */
 void saveSampleSalesData() {
     FILE* file = fopen("salesDatabase.bin", "wb");
 
@@ -718,7 +924,9 @@ void saveSampleSalesData() {
     printf("Sample sales data saved to salesDatabase.bin successfully.\n");
 }
 
-// B+ ağacını kullanarak satış raporu oluşturma
+/**
+ * @brief Generates a sales report summarizing ticket sales data.
+ */
 void generateSalesReport() {
     double totalAmount = 0.0;
     int normalCount = 0, studentCount = 0;
@@ -748,8 +956,14 @@ void generateSalesReport() {
     printf("Total Sales Count: %d\n", salesCount);
 }
 
+// Vendor Management Functions
 
-// Vendor ekleme fonksiyonu
+/**
+ * @brief Adds a new vendor to the vendor list.
+ * @param id The ID of the vendor.
+ * @param name The name of the vendor.
+ * @param serviceType The type of service provided by the vendor.
+ */
 void addVendor(int id, const char* name, const char* serviceType) {
     Vendor* newVendor = (Vendor*)malloc(sizeof(Vendor));
     newVendor->id = id;
@@ -759,7 +973,12 @@ void addVendor(int id, const char* name, const char* serviceType) {
     vendorListHead = newVendor;
 }
 
-// Sponsor ekleme fonksiyonu
+/**
+ * @brief Adds a new sponsor to the sponsor list.
+ * @param id The ID of the sponsor.
+ * @param name The name of the sponsor.
+ * @param contributionAmount The amount contributed by the sponsor.
+ */
 void addSponsor(int id, const char* name, double contributionAmount) {
     Sponsor* newSponsor = (Sponsor*)malloc(sizeof(Sponsor));
     newSponsor->id = id;
@@ -769,7 +988,9 @@ void addSponsor(int id, const char* name, double contributionAmount) {
     sponsorListHead = newSponsor;
 }
 
-// Vendor veritabanını kaydetme fonksiyonu
+/**
+ * @brief Saves the vendor database to a binary file.
+ */
 void saveVendorDatabase() {
     FILE* file;
     fopen_s(&file, "vendorDatabase.bin", "wb");
@@ -781,7 +1002,9 @@ void saveVendorDatabase() {
     fclose(file);
 }
 
-// Sponsor veritabanını kaydetme fonksiyonu
+/**
+ * @brief Saves the sponsor database to a binary file.
+ */
 void saveSponsorDatabase() {
     FILE* file;
     fopen_s(&file, "sponsorDatabase.bin", "wb");
@@ -793,7 +1016,9 @@ void saveSponsorDatabase() {
     fclose(file);
 }
 
-// Vendor veritabanını yükleme fonksiyonu
+/**
+ * @brief Loads the vendor database from a binary file and adds vendors to the list.
+ */
 void loadVendorDatabase() {
     FILE* file;
     fopen_s(&file, "vendorDatabase.bin", "rb");
@@ -806,7 +1031,9 @@ void loadVendorDatabase() {
     }
 }
 
-// Sponsor veritabanını yükleme fonksiyonu
+/**
+ * @brief Loads the sponsor database from a binary file and adds sponsors to the list.
+ */
 void loadSponsorDatabase() {
     FILE* file;
     fopen_s(&file, "sponsorDatabase.bin", "rb");
@@ -819,7 +1046,9 @@ void loadSponsorDatabase() {
     }
 }
 
-// Vendor ekleme işlemi
+/**
+ * @brief Displays a menu for adding a new vendor and saves the vendor data.
+ */
 void addVendorMenu() {
     int id;
     char name[50];
@@ -835,7 +1064,9 @@ void addVendorMenu() {
     printf("Vendor added and saved successfully.\n");
 }
 
-// Sponsor ekleme işlemi
+/**
+ * @brief Displays a menu for adding a new sponsor and saves the sponsor data.
+ */
 void addSponsorMenu() {
     int id;
     char name[50];
@@ -851,9 +1082,11 @@ void addSponsorMenu() {
     printf("Sponsor added and saved successfully.\n");
 }
 
-// Vendor listeleme
+/**
+ * @brief Loads and displays the list of all vendors.
+ */
 void manageVendors() {
-    loadVendorDatabase();  // Güncel veriyi yükle
+    loadVendorDatabase();  // Load the latest data
     Vendor* current = vendorListHead;
     printf("Vendors List:\n");
     while (current != NULL) {
@@ -862,9 +1095,11 @@ void manageVendors() {
     }
 }
 
-// Sponsor listeleme
+/**
+ * @brief Loads and displays the list of all sponsors.
+ */
 void trackSponsors() {
-    loadSponsorDatabase();  // Güncel veriyi yükle
+    loadSponsorDatabase();  // Load the latest data
     Sponsor* current = sponsorListHead;
     printf("Sponsors List:\n");
     while (current != NULL) {

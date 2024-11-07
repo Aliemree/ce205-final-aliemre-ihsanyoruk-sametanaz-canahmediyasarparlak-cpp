@@ -7,7 +7,10 @@
 #include "publictransportationschedulerapp.h"
 #include "../../publictransportationscheduler/src/publictransportationscheduler.cpp"
 
-// Get console width for centering text
+/**
+ * @brief Gets the width of the console for centering text.
+ * @return Width of the console.
+ */
 int getConsoleWidth() {
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     int columns;
@@ -16,7 +19,10 @@ int getConsoleWidth() {
     return columns;
 }
 
-// Center text in the console
+/**
+ * @brief Centers the given text in the console.
+ * @param text The text to center in the console.
+ */
 void centerText(const char* text) {
     int screenWidth = getConsoleWidth();
     int padding = (screenWidth - strlen(text)) / 2;
@@ -28,7 +34,11 @@ void centerText(const char* text) {
     }
 }
 
-// Center menu options with selection
+/**
+ * @brief Centers the menu option text and highlights if selected.
+ * @param text The menu option text.
+ * @param isSelected Flag indicating if the option is selected.
+ */
 void centerMenuOption(const char* text, int isSelected) {
     int screenWidth = getConsoleWidth();
     int padding = (screenWidth - strlen(text) - 2) / 2;
@@ -50,6 +60,9 @@ void centerMenuOption(const char* text, int isSelected) {
     }
 }
 
+/**
+ * @brief Displays the user authentication menu with options to login, register, or access as guest.
+ */
 void showUserAuthenticationMenu() {
     int choice = 0;
     const char* options[] = { "Login", "Register", "Guest Mode", "Back to Main Menu" };
@@ -85,7 +98,6 @@ void showUserAuthenticationMenu() {
                 scanf("%s", password);
                 if (verifyUserInHashTable(username, password)) {
                     printf("Login successful. Redirecting to main menu...\n");
-
                     return;
                 }
                 else {
@@ -106,7 +118,6 @@ void showUserAuthenticationMenu() {
                 break;
             case 2:
                 printf("Guest Mode activated. Limited access granted.\n");
-
                 return;
             case 3:
                 return;
@@ -115,11 +126,19 @@ void showUserAuthenticationMenu() {
         }
     }
 }
-// Route Management Menu
+
+/**
+ * @brief Displays the route management menu with options to add, edit, view, delete, and search routes.
+ */
 void showRouteManagementMenu() {
     int choice = 0;
     const char* options[] = { "Add Route", "Edit Route", "View Routes", "Delete Route", "Search Route", "Back to Main Menu" };
     int n_options = sizeof(options) / sizeof(options[0]);
+    int routeID;
+    char routeName[50];
+    char startPoint[50];
+    char endPoint[50];
+    DoubleNode* routeNode = NULL; // routeNode'u burada tanımlayın
 
     while (1) {
         system("cls");
@@ -133,22 +152,17 @@ void showRouteManagementMenu() {
         if (ch == 224) {
             ch = _getch();
             switch (ch) {
-            case 72: // Up arrow
+            case 72:
                 choice = (choice - 1 + n_options) % n_options;
                 break;
-            case 80: // Down arrow
+            case 80:
                 choice = (choice + 1) % n_options;
                 break;
             }
         }
-        else if (ch == 13) { // Enter key
-            int routeID;
-            char routeName[50];
-            char startPoint[50];
-            char endPoint[50];
-
+        else if (ch == 13) {
             switch (choice) {
-            case 0: { // Add Route
+            case 0:
                 printf("Enter route ID: ");
                 scanf("%d", &routeID);
                 printf("Enter route name: ");
@@ -160,11 +174,10 @@ void showRouteManagementMenu() {
                 addRoute(routeID, routeName, startPoint, endPoint);
                 printf("Route added.\n");
                 break;
-            }
-            case 1: { // Edit Route
+            case 1:
                 printf("Enter route ID to edit: ");
                 scanf("%d", &routeID);
-                DoubleNode* routeNode = findDoubleNode(routeListHead, routeID);
+                routeNode = findDoubleNode(routeListHead, routeID);
                 if (routeNode) {
                     printf("Enter new route name: ");
                     scanf("%s", routeName);
@@ -179,12 +192,10 @@ void showRouteManagementMenu() {
                     printf("Route not found.\n");
                 }
                 break;
-            }
-            case 2: { // View Routes
+            case 2:
                 printDetailedRouteList(routeListHead);
                 break;
-            }
-            case 3: { // Delete Route
+            case 3:
                 printf("Enter route ID to delete: ");
                 scanf("%d", &routeID);
                 if (deleteDoubleNode(&routeListHead, routeID)) {
@@ -194,33 +205,29 @@ void showRouteManagementMenu() {
                     printf("Route not found.\n");
                 }
                 break;
-            }
-            case 4: { // Search Route
+            case 4:
                 printf("Enter route ID to search: ");
                 scanf("%d", &routeID);
-                DoubleNode* routeNode = findDoubleNode(routeListHead, routeID);
+                routeNode = findDoubleNode(routeListHead, routeID);
                 if (routeNode) {
                     printf("Route found:\n");
-                    printf("ID: %d | Name: %s | Start: %s | End: %s\n",
-                        routeNode->data, routeNode->routeName, routeNode->startPoint, routeNode->endPoint);
+                    printf("ID: %d | Name: %s | Start: %s | End: %s\n", routeNode->data, routeNode->routeName, routeNode->startPoint, routeNode->endPoint);
                 }
                 else {
                     printf("Route not found.\n");
                 }
                 break;
-            }
-            case 5: { // Back to Main Menu
+            case 5:
                 return;
-            }
             }
             system("pause");
         }
     }
 }
 
-
-
-// Scheduling Menu
+/**
+ * @brief Displays the scheduling menu with options to create, edit, view, and delete schedules.
+ */
 void showSchedulingMenu() {
     int choice = 0;
     const char* options[] = { "Create Schedule", "Edit Schedule", "View Schedules", "Delete Schedule", "Back to Main Menu" };
@@ -238,19 +245,19 @@ void showSchedulingMenu() {
         if (ch == 224) {
             ch = _getch();
             switch (ch) {
-            case 72: // Up arrow
+            case 72:
                 choice = (choice - 1 + n_options) % n_options;
                 break;
-            case 80: // Down arrow
+            case 80:
                 choice = (choice + 1) % n_options;
                 break;
             }
         }
-        else if (ch == 13) { // Enter key
+        else if (ch == 13) {
             int scheduleID;
             char bandName[50], date[20];
             switch (choice) {
-            case 0: // Create Schedule
+            case 0:
                 printf("Enter Schedule ID: ");
                 scanf("%d", &scheduleID);
                 printf("Enter Band/Artist Name: ");
@@ -259,7 +266,7 @@ void showSchedulingMenu() {
                 scanf("%s", date);
                 createSchedule(scheduleID, bandName, date);
                 break;
-            case 1: // Edit Schedule
+            case 1:
                 printf("Enter Schedule ID to edit: ");
                 scanf("%d", &scheduleID);
                 printf("Enter new Band/Artist Name: ");
@@ -268,15 +275,15 @@ void showSchedulingMenu() {
                 scanf("%s", date);
                 editSchedule(scheduleID, bandName, date);
                 break;
-            case 2: // View Schedules
+            case 2:
                 viewSchedules();
                 break;
-            case 3: // Delete Schedule
+            case 3:
                 printf("Enter Schedule ID to delete: ");
                 scanf("%d", &scheduleID);
                 deleteSchedule(scheduleID);
                 break;
-            case 4: // Back to Main Menu
+            case 4:
                 return;
             }
             system("pause");
@@ -284,6 +291,9 @@ void showSchedulingMenu() {
     }
 }
 
+/**
+ * @brief Displays the ticket sales menu with options to view, search, report, and manage B+ tree data.
+ */
 void showTicketSalesMenu() {
     int choice = 0;
     const char* options[] = { "View Sales Data", "Generate Sales Report", "Search Sale by ID", "Display B+ Tree", "Back to Main Menu" };
@@ -311,21 +321,16 @@ void showTicketSalesMenu() {
         }
         else if (ch == 13) {
             switch (choice) {
-            case 0: // View Sales Data
-                // Örnek verileri kaydet
+            case 0:
                 saveSampleSalesData();
-
-                // Kaydedilen verileri yükleyip B+ ağacına ekle
                 loadSalesDatabase();
-
-                // Ekranda satış verilerini görüntüle
                 viewSalesData();
                 break;
-            case 1: // Generate Sales Report
+            case 1:
                 loadSalesDatabase();
                 generateSalesReport();
                 break;
-            case 2: { // Search Sale by ID, burada {} ekliyoruz
+            case 2: {
                 int saleID;
                 printf("Enter Sale ID to search: ");
                 scanf("%d", &saleID);
@@ -338,10 +343,10 @@ void showTicketSalesMenu() {
                 }
                 break;
             }
-            case 3: // Display B+ Tree
+            case 3:
                 displayBPlusTree(root);
                 break;
-            case 4: // Back to Main Menu
+            case 4:
                 return;
             }
             system("pause");
@@ -349,7 +354,9 @@ void showTicketSalesMenu() {
     }
 }
 
-// Data Management Menüsü
+/**
+ * @brief Displays the data management menu with options to add and manage vendors and sponsors.
+ */
 void showDataManagementMenu() {
     int choice = 0;
     const char* options[] = { "Add Vendor", "Add Sponsor", "Manage Vendors", "Track Sponsors", "Back to Main Menu" };
@@ -367,15 +374,15 @@ void showDataManagementMenu() {
         if (ch == 224) {
             ch = _getch();
             switch (ch) {
-            case 72: // Up arrow
+            case 72:
                 choice = (choice - 1 + n_options) % n_options;
                 break;
-            case 80: // Down arrow
+            case 80:
                 choice = (choice + 1) % n_options;
                 break;
             }
         }
-        else if (ch == 13) { // Enter key
+        else if (ch == 13) {
             switch (choice) {
             case 0:
                 addVendorMenu();
@@ -390,13 +397,16 @@ void showDataManagementMenu() {
                 trackSponsors();
                 break;
             case 4:
-                return; // Back to Main Menu
+                return;
             }
             system("pause");
         }
     }
 }
-// Main Menu Function
+
+/**
+ * @brief Displays the main menu with options to access different parts of the system.
+ */
 void showMainMenu() {
     int choice = 0;
     const char* options[] = {
@@ -423,15 +433,15 @@ void showMainMenu() {
         if (ch == 224) {
             ch = _getch();
             switch (ch) {
-            case 72: // Up arrow
+            case 72:
                 choice = (choice - 1 + (int)n_options) % (int)n_options;
                 break;
-            case 80: // Down arrow
+            case 80:
                 choice = (choice + 1) % (int)n_options;
                 break;
             }
         }
-        else if (ch == 13) { // Enter key
+        else if (ch == 13) {
             switch (choice) {
             case 0:
                 showUserAuthenticationMenu();
@@ -456,8 +466,12 @@ void showMainMenu() {
     }
 }
 
+/**
+ * @brief The main function to initialize and show the main menu.
+ * @return Program exit status.
+ */
 int main() {
-    initializeHashTable();  // Initialize hash table at start
+    initializeHashTable();
     showMainMenu();
     return 0;
 }
