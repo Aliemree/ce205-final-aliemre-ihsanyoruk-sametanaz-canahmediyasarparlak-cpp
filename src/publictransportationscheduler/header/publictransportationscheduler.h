@@ -2,6 +2,7 @@
 #define PUBLICTRANSPORTATIONSCHEDULER_H
 
 #include <stdint.h>
+#include <stdbool.h>  // B+ ağacı için gerekli olabilir
 
 // User structure
 typedef struct {
@@ -25,15 +26,13 @@ typedef struct ScheduleNode {
 
 ScheduleNode* scheduleHead = NULL;
 
-// Ticket Sale structure
+// Ticket Sale structure (Tek tanımlama)
 typedef struct {
     int saleID;
-    char ticketType[20]; 
-    double amount;
+    char ticketType[20];
+    float amount;
     char date[20];
 } TicketSale;
-
-
 
 typedef struct Vendor {
     int id;
@@ -48,10 +47,10 @@ typedef struct Sponsor {
     double contributionAmount;
     struct Sponsor* next;
 } Sponsor;
+
 // Global vendor ve sponsor listeleri
 Vendor* vendorListHead = NULL;
 Sponsor* sponsorListHead = NULL;
-
 
 // Double Linked List Node
 typedef struct DoubleNode {
@@ -82,6 +81,20 @@ typedef struct Node {
     int data;
     struct Node* next;
 } Node;
+
+// B+ Ağacı düğüm yapısı
+#define MAX_KEYS 4
+
+typedef struct BPlusTreeNode {
+    int keys[MAX_KEYS];
+    TicketSale* sales[MAX_KEYS];
+    struct BPlusTreeNode* children[MAX_KEYS + 1];
+    int numKeys;
+    bool isLeaf;
+    struct BPlusTreeNode* next;  // Yaprak düğümler için bağlantı
+} BPlusTreeNode;
+
+BPlusTreeNode* root = NULL;  // B+ Ağacının kök düğümü
 
 // Function prototypes
 void initializeHashTable();
@@ -133,6 +146,12 @@ void loadSalesDatabase();
 void saveSalesDatabase();
 void viewSalesData();
 void generateSalesReport();
+
+// B+ ağacı fonksiyon prototipleri
+void insertBPlusNode(int key, TicketSale* sale);
+void displayBPlusTree(BPlusTreeNode* node);
+TicketSale* searchBPlusTree(int key);
+void initializeBPlusTree();
 
 void loadVendorDatabase();
 void saveVendorDatabase();

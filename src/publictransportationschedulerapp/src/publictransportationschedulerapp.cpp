@@ -85,7 +85,7 @@ void showUserAuthenticationMenu() {
                 scanf("%s", password);
                 if (verifyUserInHashTable(username, password)) {
                     printf("Login successful. Redirecting to main menu...\n");
-                    
+
                     return;
                 }
                 else {
@@ -106,7 +106,7 @@ void showUserAuthenticationMenu() {
                 break;
             case 2:
                 printf("Guest Mode activated. Limited access granted.\n");
-                
+
                 return;
             case 3:
                 return;
@@ -284,10 +284,9 @@ void showSchedulingMenu() {
     }
 }
 
-// Ticket Sales Menu
 void showTicketSalesMenu() {
     int choice = 0;
-    const char* options[] = { "View Sales Data", "Generate Sales Report", "Back to Main Menu" };
+    const char* options[] = { "View Sales Data", "Generate Sales Report", "Search Sale by ID", "Display B+ Tree", "Back to Main Menu" };
     int n_options = sizeof(options) / sizeof(options[0]);
 
     while (1) {
@@ -302,25 +301,47 @@ void showTicketSalesMenu() {
         if (ch == 224) {
             ch = _getch();
             switch (ch) {
-            case 72: // Up arrow
+            case 72:
                 choice = (choice - 1 + n_options) % n_options;
                 break;
-            case 80: // Down arrow
+            case 80:
                 choice = (choice + 1) % n_options;
                 break;
             }
         }
-        else if (ch == 13) { // Enter key
+        else if (ch == 13) {
             switch (choice) {
             case 0: // View Sales Data
-                loadSalesDatabase(); // Veritabanını yükle
+                // Örnek verileri kaydet
+                saveSampleSalesData();
+
+                // Kaydedilen verileri yükleyip B+ ağacına ekle
+                loadSalesDatabase();
+
+                // Ekranda satış verilerini görüntüle
                 viewSalesData();
                 break;
             case 1: // Generate Sales Report
-                loadSalesDatabase(); // Veritabanını yükle
+                loadSalesDatabase();
                 generateSalesReport();
                 break;
-            case 2: // Back to Main Menu
+            case 2: { // Search Sale by ID, burada {} ekliyoruz
+                int saleID;
+                printf("Enter Sale ID to search: ");
+                scanf("%d", &saleID);
+                TicketSale* sale = searchBPlusTree(saleID);
+                if (sale) {
+                    printf("Sale ID: %d, Type: %s, Amount: %.2f, Date: %s\n", sale->saleID, sale->ticketType, sale->amount, sale->date);
+                }
+                else {
+                    printf("Sale not found.\n");
+                }
+                break;
+            }
+            case 3: // Display B+ Tree
+                displayBPlusTree(root);
+                break;
+            case 4: // Back to Main Menu
                 return;
             }
             system("pause");

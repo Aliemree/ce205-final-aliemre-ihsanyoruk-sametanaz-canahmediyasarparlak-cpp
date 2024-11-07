@@ -235,7 +235,7 @@ int extractMin() {
     int i = 0;
     while (2 * i + 1 < heapSize) {
         int left = 2 * i + 1, right = 2 * i + 2;
-        int smallest = (right < heapSize && heap[right] < heap[left]) ? right : left;
+        int smallest = (right < heapSize&& heap[right] < heap[left]) ? right : left;
         if (heap[i] <= heap[smallest]) break;
         int temp = heap[i];
         heap[i] = heap[smallest];
@@ -346,7 +346,7 @@ int login(const char* username, const char* password) {
         if (strcmp(userDatabase[i].username, username) == 0 &&
             strcmp(userDatabase[i].password, password) == 0) {
             printf("Login successful. Redirecting to main menu...\n");
-            
+
             return 1;
         }
     }
@@ -505,7 +505,8 @@ void loadScheduleDatabase() {
             createSchedule(scheduleID, bandName, date);
         }
         fclose(file);
-    } else {
+    }
+    else {
         printf("Error: Could not open file for reading.\n");
     }
 }
@@ -558,60 +559,186 @@ void saveScheduleDatabase() {
 
 
 // Ticket Sales Tracking Functions
+// Yeni bir B+ düğüm oluşturma
+BPlusTreeNode* createNode(bool isLeaf) {
+    BPlusTreeNode* newNode = (BPlusTreeNode*)malloc(sizeof(BPlusTreeNode));
+    newNode->isLeaf = isLeaf;
+    newNode->numKeys = 0;
+    newNode->next = NULL;
+    for (int i = 0; i <= MAX_KEYS; i++) {
+        newNode->children[i] = NULL;
+    }
+    return newNode;
+}
+
+// B+ ağacında arama yapma
+TicketSale* searchBPlusTree(int key) {
+    BPlusTreeNode* current = root;
+    while (current != NULL) {
+        int i = 0;
+        while (i < current->numKeys && key > current->keys[i]) {
+            i++;
+        }
+        if (i < current->numKeys && key == current->keys[i]) {
+            return current->sales[i];
+        }
+        if (current->isLeaf) {
+            return NULL;
+        }
+        current = current->children[i];
+    }
+    return NULL;
+}
+
+// B+ ağacına yeni bir anahtar ve satış ekleme
+void insertBPlusNode(int key, TicketSale* sale) {
+    if (root == NULL) {
+        root = createNode(true);
+        root->keys[0] = key;
+        root->sales[0] = sale;
+        root->numKeys = 1;
+        return;
+    }
+
+    BPlusTreeNode* current = root;
+    BPlusTreeNode* parent = NULL;
+    while (!current->isLeaf) {
+        parent = current;
+        int i = 0;
+        while (i < current->numKeys && key > current->keys[i]) {
+            i++;
+        }
+        current = current->children[i];
+    }
+
+    if (current->numKeys < MAX_KEYS) {
+        int i = current->numKeys - 1;
+        while (i >= 0 && current->keys[i] > key) {
+            current->keys[i + 1] = current->keys[i];
+            current->sales[i + 1] = current->sales[i];
+            i--;
+        }
+        current->keys[i + 1] = key;
+        current->sales[i + 1] = sale;
+        current->numKeys++;
+    }
+}
+
+
+// B+ ağacını görüntüleme
+void displayBPlusTree(BPlusTreeNode* node) {
+    if (node == NULL) return;
+    for (int i = 0; i < node->numKeys; i++) {
+        printf("%d ", node->keys[i]);
+    }
+    printf("\n");
+    if (!node->isLeaf) {
+        for (int i = 0; i <= node->numKeys; i++) {
+            displayBPlusTree(node->children[i]);
+        }
+    }
+}
+
+void initializeBPlusTree() {
+    root = NULL;
+}
+
+// Satış veritabanını yükle ve B+ ağacını doldur
 void loadSalesDatabase() {
-    FILE* file;
-    fopen_s(&file, "salesDatabase.bin", "rb");
-    if (file) {
-        fread(&salesCount, sizeof(int), 1, file);
-        fread(salesDatabase, sizeof(TicketSale), salesCount, file);
-        fclose(file);
-        printf("Sales database loaded successfully.\n");
+    FILE* file = fopen("salesDatabase.bin", "rb");
+    if (file == NULL) {
+        printf("Failed to open salesDatabase.bin for reading.\n");
+        return;
     }
-    else {
-        printf("No existing sales database found.\n");
+
+    int sampleCount;
+    fread(&sampleCount, sizeof(int), 1, file);
+
+    TicketSale* sales = (TicketSale*)malloc(sampleCount * sizeof(TicketSale));
+    fread(sales, sizeof(TicketSale), sampleCount, file);
+
+    for (int i = 0; i < sampleCount; i++) {
+        insertBPlusNode(sales[i].saleID, &sales[i]);
     }
+
+    fclose(file);
+    printf("Sales data loaded from salesDatabase.bin successfully.\n");
 }
 
-void saveSalesDatabase() {
-    FILE* file;
-    fopen_s(&file, "salesDatabase.bin", "wb");
-    if (file) {
-        fwrite(&salesCount, sizeof(int), 1, file);
-        fwrite(salesDatabase, sizeof(TicketSale), salesCount, file);
-        fclose(file);
-        printf("Sales database saved successfully.\n");
-    }
-    else {
-        printf("Failed to save sales database.\n");
-    }
-}
 
+
+// B+ ağacını kullanarak tüm satış verilerini görüntüleme
 void viewSalesData() {
     printf("Ticket Sales Data:\n");
-    for (int i = 0; i < salesCount; i++) {
-        printf("Sale ID: %d, Type: %s, Amount: %.2f, Date: %s\n",
-            salesDatabase[i].saleID,
-            salesDatabase[i].ticketType,
-            salesDatabase[i].amount,
-            salesDatabase[i].date);
-    }
-    if (salesCount == 0) {
+
+    BPlusTreeNode* current = root;
+    if (current == NULL) {
         printf("No sales data available.\n");
+        return;
+    }
+
+    // En sol yaprağa git
+    while (!current->isLeaf) {
+        current = current->children[0];
+    }
+
+    // Tüm yaprak düğümleri sırayla yazdır
+    while (current != NULL) {
+        for (int i = 0; i < current->numKeys; i++) {
+            TicketSale* sale = current->sales[i];
+            printf("Sale ID: %d, Type: %s, Amount: %.2f, Date: %s\n",
+                sale->saleID, sale->ticketType, sale->amount, sale->date);
+        }
+        current = current->next;
     }
 }
 
+void saveSampleSalesData() {
+    FILE* file = fopen("salesDatabase.bin", "wb");
+
+    if (file == NULL) {
+        printf("Failed to open file for writing.\n");
+        return;
+    }
+
+    TicketSale sampleSales[] = {
+        {1, "Normal", 50.0, "2024-11-01"},
+        {2, "Student", 30.0, "2024-11-02"},
+        {3, "Normal", 45.0, "2024-11-03"},
+        {4, "Student", 25.0, "2024-11-04"},
+        {5, "Normal", 60.0, "2024-11-05"}
+    };
+
+    int sampleCount = sizeof(sampleSales) / sizeof(sampleSales[0]);
+
+    fwrite(&sampleCount, sizeof(int), 1, file);
+    fwrite(sampleSales, sizeof(TicketSale), sampleCount, file);
+
+    fclose(file);
+    printf("Sample sales data saved to salesDatabase.bin successfully.\n");
+}
+
+// B+ ağacını kullanarak satış raporu oluşturma
 void generateSalesReport() {
     double totalAmount = 0.0;
     int normalCount = 0, studentCount = 0;
 
-    for (int i = 0; i < salesCount; i++) {
-        totalAmount += salesDatabase[i].amount;
-        if (strcmp(salesDatabase[i].ticketType, "Normal") == 0) {
-            normalCount++;
+    BPlusTreeNode* current = root;
+    while (current && !current->isLeaf) {
+        current = current->children[0];
+    }
+
+    while (current) {
+        for (int i = 0; i < current->numKeys; i++) {
+            totalAmount += current->sales[i]->amount;
+            if (strcmp(current->sales[i]->ticketType, "Normal") == 0) {
+                normalCount++;
+            }
+            else if (strcmp(current->sales[i]->ticketType, "Student") == 0) {
+                studentCount++;
+            }
         }
-        else if (strcmp(salesDatabase[i].ticketType, "Student") == 0) {
-            studentCount++;
-        }
+        current = current->next;
     }
 
     printf("Sales Report:\n");
@@ -620,6 +747,7 @@ void generateSalesReport() {
     printf("Total 'Student' Tickets Sold: %d\n", studentCount);
     printf("Total Sales Count: %d\n", salesCount);
 }
+
 
 // Vendor ekleme fonksiyonu
 void addVendor(int id, const char* name, const char* serviceType) {
