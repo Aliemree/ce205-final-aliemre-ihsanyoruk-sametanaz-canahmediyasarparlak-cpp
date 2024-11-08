@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="struct_vendor" kind="struct" language="C++" prot="public">
+    <compoundname>Vendor</compoundname>
+    <includes refid="publictransportationscheduler_8h" local="no">publictransportationscheduler.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_vendor_1a429ffb2ff9afc4df184d5028302ded3d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Vendor::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <qualifiedname>Vendor::id</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="40" column="7" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_vendor_1a0e7d6abb02e20258baf69d63666d1793" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char Vendor::name[50]</definition>
+        <argsstring>[50]</argsstring>
+        <name>name</name>
+        <qualifiedname>Vendor::name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="41" column="8" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_vendor_1a072cfa231994ea8f28b2b1f189001596" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char Vendor::serviceType[50]</definition>
+        <argsstring>[50]</argsstring>
+        <name>serviceType</name>
+        <qualifiedname>Vendor::serviceType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="42" column="8" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_vendor_1af23998ef753c4ab0b2d8f4d781bf1540" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_vendor" kindref="compound">Vendor</ref> *</type>
+        <definition>struct Vendor* Vendor::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <qualifiedname>Vendor::next</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="43" column="15" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Vendor</label>
+        <link refid="struct_vendor"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>+next</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="39" column="1" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="39" bodyend="44"/>
+    <listofallmembers>
+      <member refid="struct_vendor_1a429ffb2ff9afc4df184d5028302ded3d" prot="public" virt="non-virtual"><scope>Vendor</scope><name>id</name></member>
+      <member refid="struct_vendor_1a0e7d6abb02e20258baf69d63666d1793" prot="public" virt="non-virtual"><scope>Vendor</scope><name>name</name></member>
+      <member refid="struct_vendor_1af23998ef753c4ab0b2d8f4d781bf1540" prot="public" virt="non-virtual"><scope>Vendor</scope><name>next</name></member>
+      <member refid="struct_vendor_1a072cfa231994ea8f28b2b1f189001596" prot="public" virt="non-virtual"><scope>Vendor</scope><name>serviceType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="publictransportationschedulerapp_8h" kind="file" language="C++">
+    <compoundname>publictransportationschedulerapp.h</compoundname>
+    <includes refid="publictransportationscheduler_8h" local="yes">publictransportationscheduler.h</includes>
+    <includedby refid="publictransportationscheduler_8cpp" local="yes">src/publictransportationscheduler/src/publictransportationscheduler.cpp</includedby>
+    <includedby refid="publictransportationschedulerapp_8cpp" local="yes">src/publictransportationschedulerapp/src/publictransportationschedulerapp.cpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>publictransportationscheduler.h</label>
+        <link refid="publictransportationscheduler_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>src/publictransportationschedulerapp/header/publictransportationschedulerapp.h</label>
+        <link refid="publictransportationschedulerapp_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>src/publictransportationscheduler/src/publictransportationscheduler.cpp</label>
+        <link refid="publictransportationscheduler_8cpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>src/publictransportationschedulerapp/header/publictransportationschedulerapp.h</label>
+        <link refid="publictransportationschedulerapp_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>src/publictransportationschedulerapp/src/publictransportationschedulerapp.cpp</label>
+        <link refid="publictransportationschedulerapp_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="publictransportationschedulerapp_8h_1a547646815560a705ed2ab461dbf46d04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void showMainMenu</definition>
+        <argsstring>()</argsstring>
+        <name>showMainMenu</name>
+        <briefdescription>
+<para>Displays the main menu with options to access different parts of the system. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" line="7" column="6" bodyfile="src/publictransportationschedulerapp/src/publictransportationschedulerapp.cpp" bodystart="454" bodyend="519" declfile="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" declline="7" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="publictransportationschedulerapp_8h_1a558445f67c7e8b6a8e18f669d772d2fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void showUserAuthenticationMenu</definition>
+        <argsstring>()</argsstring>
+        <name>showUserAuthenticationMenu</name>
+        <briefdescription>
+<para>Displays the user authentication menu with options to login, register, or access as guest. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" line="8" column="6" bodyfile="src/publictransportationschedulerapp/src/publictransportationschedulerapp.cpp" bodystart="66" bodyend="138" declfile="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" declline="8" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="publictransportationschedulerapp_8h_1a7c6698549c47c6a1f9529c29bef42861" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void showRouteManagementMenu</definition>
+        <argsstring>()</argsstring>
+        <name>showRouteManagementMenu</name>
+        <briefdescription>
+<para>Displays the route management menu with options to add, edit, view, delete, and search routes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" line="9" column="6" bodyfile="src/publictransportationschedulerapp/src/publictransportationschedulerapp.cpp" bodystart="143" bodyend="247" declfile="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" declline="9" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="publictransportationschedulerapp_8h_1a1eb3989fca560389bbf126f8561d228d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void showSchedulingMenu</definition>
+        <argsstring>()</argsstring>
+        <name>showSchedulingMenu</name>
+        <briefdescription>
+<para>Displays the scheduling menu with options to create, edit, view, and delete schedules. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" line="10" column="6" bodyfile="src/publictransportationschedulerapp/src/publictransportationschedulerapp.cpp" bodystart="252" bodyend="321" declfile="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" declline="10" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="publictransportationschedulerapp_8h_1a17dc8dc8513b1d0a621937dc509c6bed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void showTicketSalesMenu</definition>
+        <argsstring>()</argsstring>
+        <name>showTicketSalesMenu</name>
+        <briefdescription>
+<para>Displays the ticket sales menu with options to view, search, report, and manage B+ tree data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" line="11" column="6" bodyfile="src/publictransportationschedulerapp/src/publictransportationschedulerapp.cpp" bodystart="326" bodyend="392" declfile="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" declline="11" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="publictransportationschedulerapp_8h_1a462cd1864e424777ea42928f1d548e18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void showDataManagementMenu</definition>
+        <argsstring>()</argsstring>
+        <name>showDataManagementMenu</name>
+        <briefdescription>
+<para>Displays the data management menu with options to add and manage vendors and sponsors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" line="12" column="6" bodyfile="src/publictransportationschedulerapp/src/publictransportationschedulerapp.cpp" bodystart="397" bodyend="449" declfile="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" declline="12" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="publictransportationschedulerapp_8h_1a28a294766d7cb154142ed9e1bbada49d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int getConsoleWidth</definition>
+        <argsstring>()</argsstring>
+        <name>getConsoleWidth</name>
+        <briefdescription>
+<para>Gets the width of the console for centering text. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Width of the console. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" line="16" column="5" bodyfile="src/publictransportationschedulerapp/src/publictransportationschedulerapp.cpp" bodystart="16" bodyend="22" declfile="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" declline="16" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="publictransportationschedulerapp_8h_1a21b48e770e137f1f2dca193a3817d30f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void centerText</definition>
+        <argsstring>(const char *text)</argsstring>
+        <name>centerText</name>
+        <param>
+          <type>const char *</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Centers the given text in the console. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text to center in the console. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" line="17" column="6" bodyfile="src/publictransportationschedulerapp/src/publictransportationschedulerapp.cpp" bodystart="28" bodyend="37" declfile="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" declline="17" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="publictransportationschedulerapp_8h_1a18ce0d8402dc018a669615b1d7a06977" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void centerMenuOption</definition>
+        <argsstring>(const char *text, int isSelected)</argsstring>
+        <name>centerMenuOption</name>
+        <param>
+          <type>const char *</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>isSelected</declname>
+        </param>
+        <briefdescription>
+<para>Centers the menu option text and highlights if selected. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The menu option text. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>isSelected</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating if the option is selected. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" line="18" column="6" bodyfile="src/publictransportationschedulerapp/src/publictransportationschedulerapp.cpp" bodystart="44" bodyend="61" declfile="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h" declline="18" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>PUBLICTRANSPORTATIONSCHEDULERAPP_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PUBLICTRANSPORTATIONSCHEDULERAPP_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="publictransportationscheduler_8h" kindref="compound">publictransportationscheduler.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Fonksiyon<sp/>prototipleri</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="publictransportationschedulerapp_8h_1a547646815560a705ed2ab461dbf46d04" kindref="member">showMainMenu</ref>();</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="publictransportationschedulerapp_8h_1a558445f67c7e8b6a8e18f669d772d2fa" kindref="member">showUserAuthenticationMenu</ref>();</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="publictransportationschedulerapp_8h_1a7c6698549c47c6a1f9529c29bef42861" kindref="member">showRouteManagementMenu</ref>();</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="publictransportationschedulerapp_8h_1a1eb3989fca560389bbf126f8561d228d" kindref="member">showSchedulingMenu</ref>();</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="publictransportationschedulerapp_8h_1a17dc8dc8513b1d0a621937dc509c6bed" kindref="member">showTicketSalesMenu</ref>();</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="publictransportationschedulerapp_8h_1a462cd1864e424777ea42928f1d548e18" kindref="member">showDataManagementMenu</ref>();</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Utility<sp/>fonksiyonlar</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="publictransportationschedulerapp_8h_1a28a294766d7cb154142ed9e1bbada49d" kindref="member">getConsoleWidth</ref>();</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="publictransportationschedulerapp_8h_1a21b48e770e137f1f2dca193a3817d30f" kindref="member">centerText</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*text);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="publictransportationschedulerapp_8h_1a18ce0d8402dc018a669615b1d7a06977" kindref="member">centerMenuOption</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*text,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>isSelected);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>PUBLICTRANSPORTATIONSCHEDULERAPP_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="src/publictransportationschedulerapp/header/publictransportationschedulerapp.h"/>
+  </compounddef>
+</doxygen>

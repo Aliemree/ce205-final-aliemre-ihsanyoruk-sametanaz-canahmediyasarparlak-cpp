@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="dir_c2af1bd1b57b4b8e433540804a059b62" kind="dir">
+    <compoundname>src/publictransportationscheduler/header</compoundname>
+    <innerfile refid="publictransportationscheduler_8h">publictransportationscheduler.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/publictransportationscheduler/header/"/>
+  </compounddef>
+</doxygen>

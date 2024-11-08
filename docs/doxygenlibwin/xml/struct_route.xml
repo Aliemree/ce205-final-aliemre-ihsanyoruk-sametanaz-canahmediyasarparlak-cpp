@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="struct_route" kind="struct" language="C++" prot="public">
+    <compoundname>Route</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_route_1a611552188bde3ae872f85bc41eb1f4ce" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Route::routeID</definition>
+        <argsstring></argsstring>
+        <name>routeID</name>
+        <qualifiedname>Route::routeID</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/src/publictransportationscheduler.cpp" line="33" column="7" bodyfile="src/publictransportationscheduler/src/publictransportationscheduler.cpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_route_1ab0e60460f842a53603320f9a81052ed1" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char Route::routeName[50]</definition>
+        <argsstring>[50]</argsstring>
+        <name>routeName</name>
+        <qualifiedname>Route::routeName</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/src/publictransportationscheduler.cpp" line="34" column="8" bodyfile="src/publictransportationscheduler/src/publictransportationscheduler.cpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Route</label>
+        <link refid="struct_route"/>
+      </node>
+    </collaborationgraph>
+    <location file="src/publictransportationscheduler/src/publictransportationscheduler.cpp" line="32" column="1" bodyfile="src/publictransportationscheduler/src/publictransportationscheduler.cpp" bodystart="32" bodyend="35"/>
+    <listofallmembers>
+      <member refid="struct_route_1a611552188bde3ae872f85bc41eb1f4ce" prot="public" virt="non-virtual"><scope>Route</scope><name>routeID</name></member>
+      <member refid="struct_route_1ab0e60460f842a53603320f9a81052ed1" prot="public" virt="non-virtual"><scope>Route</scope><name>routeName</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

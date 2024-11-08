@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="struct_band" kind="struct" language="C++" prot="public">
+    <compoundname>Band</compoundname>
+    <includes refid="publictransportationscheduler_8h" local="no">publictransportationscheduler.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_band_1a82a3028892cacbb4f61b90237823bc49" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char Band::name[50]</definition>
+        <argsstring>[50]</argsstring>
+        <name>name</name>
+        <qualifiedname>Band::name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="17" column="8" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Band</label>
+        <link refid="struct_band"/>
+      </node>
+    </collaborationgraph>
+    <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="16" column="1" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="16" bodyend="18"/>
+    <listofallmembers>
+      <member refid="struct_band_1a82a3028892cacbb4f61b90237823bc49" prot="public" virt="non-virtual"><scope>Band</scope><name>name</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

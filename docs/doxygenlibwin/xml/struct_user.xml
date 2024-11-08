@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="struct_user" kind="struct" language="C++" prot="public">
+    <compoundname>User</compoundname>
+    <includes refid="publictransportationscheduler_8h" local="no">publictransportationscheduler.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_user_1af62c586dc88c8434d35e01db81c0087b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char User::username[50]</definition>
+        <argsstring>[50]</argsstring>
+        <name>username</name>
+        <qualifiedname>User::username</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="11" column="8" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_user_1ae547b53c7ae0dee7ba2fc00bf315fa24" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char User::password[50]</definition>
+        <argsstring>[50]</argsstring>
+        <name>password</name>
+        <qualifiedname>User::password</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="12" column="8" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>User</label>
+        <link refid="struct_user"/>
+      </node>
+    </collaborationgraph>
+    <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="10" column="1" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="10" bodyend="13"/>
+    <listofallmembers>
+      <member refid="struct_user_1ae547b53c7ae0dee7ba2fc00bf315fa24" prot="public" virt="non-virtual"><scope>User</scope><name>password</name></member>
+      <member refid="struct_user_1af62c586dc88c8434d35e01db81c0087b" prot="public" virt="non-virtual"><scope>User</scope><name>username</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

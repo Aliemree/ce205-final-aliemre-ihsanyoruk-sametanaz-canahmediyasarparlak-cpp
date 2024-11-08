@@ -1,0 +1,1172 @@
+\doxysection{src/publictransportationscheduler/src/publictransportationscheduler.cpp File Reference}
+\hypertarget{publictransportationscheduler_8cpp}{}\label{publictransportationscheduler_8cpp}\index{src/publictransportationscheduler/src/publictransportationscheduler.cpp@{src/publictransportationscheduler/src/publictransportationscheduler.cpp}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include "{}../../publictransportationschedulerapp/header/publictransportationschedulerapp.\+h"{}}\newline
+Include dependency graph for publictransportationscheduler.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{publictransportationscheduler_8cpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{publictransportationscheduler_8cpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_route}{Route}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{publictransportationscheduler_8cpp_a032503e76d6f69bc67e99e909c8125da}{TABLE\+\_\+\+SIZE}}~100
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_aae50276d118e9723f33a385fc7aeb899}{hash\+Function}} (const char \texorpdfstring{$\ast$}{*}key)
+\begin{DoxyCompactList}\small\item\em Calculates the hash for a given key. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a08256d4367e9d0de8e45fcbd61e04fd9}{initialize\+Hash\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the hash table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_aa4a39a100849a286c2c4c5e0e28d273e}{add\+User\+To\+Hash\+Table}} (const char \texorpdfstring{$\ast$}{*}username, const char \texorpdfstring{$\ast$}{*}password)
+\begin{DoxyCompactList}\small\item\em Adds a user to the hash table. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_ad3299a040b8eebab6b1275eae5821d8c}{verify\+User\+In\+Hash\+Table}} (const char \texorpdfstring{$\ast$}{*}username, const char \texorpdfstring{$\ast$}{*}password)
+\begin{DoxyCompactList}\small\item\em Verifies a user in the hash table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_aa0547cb40e88545452eeac4c997171d0}{add\+Route}} (int route\+ID, const char \texorpdfstring{$\ast$}{*}route\+Name, const char \texorpdfstring{$\ast$}{*}start\+Point, const char \texorpdfstring{$\ast$}{*}end\+Point)
+\begin{DoxyCompactList}\small\item\em Adds a route to the double linked list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_ab289a4be500c44391d41c26dc04573ec}{insert\+Double\+Node}} (\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}head, int data)
+\begin{DoxyCompactList}\small\item\em Inserts a node into the double linked list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{publictransportationscheduler_8cpp_af243334b827491156582ba5af5ca47d3}{find\+Double\+Node}} (\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*}head, int data)
+\begin{DoxyCompactList}\small\item\em Finds a route node by route ID in the double linked list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_a15f4f5e94a4ac3685082b8448aaba05d}{delete\+Double\+Node}} (\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}head, int data)
+\begin{DoxyCompactList}\small\item\em Deletes a node by route ID from the double linked list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_afad9893748f5ea3ff48a1e40abd9b6b0}{edit\+Route}} (\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*}route\+Node, const char \texorpdfstring{$\ast$}{*}route\+Name, const char \texorpdfstring{$\ast$}{*}start\+Point, const char \texorpdfstring{$\ast$}{*}end\+Point)
+\begin{DoxyCompactList}\small\item\em Edits a route node with new details. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a838a8eee88deae1b268325c2c1efdedf}{print\+Detailed\+Route\+List}} (\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*}head)
+\begin{DoxyCompactList}\small\item\em Prints a detailed list of all routes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_ad72c75a43e50e885612cc420ba107b07}{print\+Double\+List}} (\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*}head)
+\begin{DoxyCompactList}\small\item\em Prints a list of all routes by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_x_o_r_node}{XORNode}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{publictransportationscheduler_8cpp_a499c51677d90731938874f947161b61a}{XOR}} (\mbox{\hyperlink{struct_x_o_r_node}{XORNode}} \texorpdfstring{$\ast$}{*}a, \mbox{\hyperlink{struct_x_o_r_node}{XORNode}} \texorpdfstring{$\ast$}{*}b)
+\begin{DoxyCompactList}\small\item\em Computes the XOR of two pointers for XOR linked list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a784daf7f98c539cd69746b8b3db1ecea}{insert\+XORNode}} (\mbox{\hyperlink{struct_x_o_r_node}{XORNode}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}head, int data)
+\begin{DoxyCompactList}\small\item\em Inserts a new node into the XOR linked list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a3dad1d43a47d9db88b8659a4306bb249}{insert\+Sparse\+Node}} (\mbox{\hyperlink{struct_sparse_matrix_node}{Sparse\+Matrix\+Node}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}head, int row, int col, int value)
+\begin{DoxyCompactList}\small\item\em Inserts a node into a sparse matrix linked list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a9235f768e511383f117f41ab92d601f6}{push}} (int data)
+\begin{DoxyCompactList}\small\item\em Pushes a data element onto the stack. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_a163177f1a0b7d847bc3241809dafc097}{pop}} ()
+\begin{DoxyCompactList}\small\item\em Pops a data element from the stack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a011d1d2e69488147446e6abf4df9acb4}{enqueue}} (int data)
+\begin{DoxyCompactList}\small\item\em Enqueues a data element into the queue. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_ad6e0da35e82ee741ee4e9779fdf9e1c9}{dequeue}} ()
+\begin{DoxyCompactList}\small\item\em Dequeues a data element from the queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a3f05f3efe9a5a4aa7daaee5fc4d2ebce}{insert\+Heap}} (int data)
+\begin{DoxyCompactList}\small\item\em Inserts data into a min-\/heap. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_a8641221dc62558605a4b4921ec89a3e6}{extract\+Min}} ()
+\begin{DoxyCompactList}\small\item\em Extracts the minimum element from the min-\/heap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a1f9e130c21127e918f9cd652c28960af}{bfs}} (int start\+Node)
+\begin{DoxyCompactList}\small\item\em Performs Breadth-\/\+First Search (BFS) starting from a given node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a0d63cfae7795f2aeb269ea111bc0c997}{dfs}} (int start\+Node)
+\begin{DoxyCompactList}\small\item\em Performs Depth-\/\+First Search (DFS) starting from a given node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a1501a9df250a3e79e2ec3498c7a65499}{compress\+Data\+Huffman}} (const char \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em Compresses the given data using Huffman coding. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a32369377e1d95d2063b21cde84df5866}{decompress\+Data\+Huffman}} ()
+\begin{DoxyCompactList}\small\item\em Decompresses data using Huffman coding. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_acb3232bc0e9ef9e48324e06e627676c0}{KMPSearch}} (const char \texorpdfstring{$\ast$}{*}pattern, const char \texorpdfstring{$\ast$}{*}text)
+\begin{DoxyCompactList}\small\item\em Searches for a pattern within a text using the KMP algorithm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a7464a341010bc5e28caeda8fbbc74def}{load\+User\+Database}} ()
+\begin{DoxyCompactList}\small\item\em Loads the user database from a binary file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a9c04dff0438032d46ae97d3c76ef88a4}{save\+User\+Database}} ()
+\begin{DoxyCompactList}\small\item\em Saves the user database to a binary file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_a378330dd86baa7420fe4ed0147845c55}{login}} (const char \texorpdfstring{$\ast$}{*}username, const char \texorpdfstring{$\ast$}{*}password)
+\begin{DoxyCompactList}\small\item\em Authenticates a user by verifying their username and password. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a2954b6e11695b7a4b9c9fc2df4ecd21d}{register\+User}} (const char \texorpdfstring{$\ast$}{*}username, const char \texorpdfstring{$\ast$}{*}password)
+\begin{DoxyCompactList}\small\item\em Registers a new user with a username and password. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_afcfbe032666cbafc1c70209d8119d996}{load\+Band\+Database}} ()
+\begin{DoxyCompactList}\small\item\em Loads the band database from a binary file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a92fd4511b9f726d102b69f09c9ee2e2a}{save\+Band\+Database}} ()
+\begin{DoxyCompactList}\small\item\em Saves the band database to a binary file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a6358fabef3ecd2e6c604fb9c839b7f84}{add\+Band}} (const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Adds a new band or artist to the band database. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a60b614018039aa27af5ec0a05f8ff322}{edit\+Band}} (const char \texorpdfstring{$\ast$}{*}old\+Name, const char \texorpdfstring{$\ast$}{*}new\+Name)
+\begin{DoxyCompactList}\small\item\em Edits the name of an existing band or artist. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_aced0e53ac2e52b903d66fdd4549329a9}{view\+Bands}} ()
+\begin{DoxyCompactList}\small\item\em Displays the list of all bands and artists. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a3ec3918c87d436416f26edbb978bb9f0}{edit\+Schedule}} (int schedule\+ID, const char \texorpdfstring{$\ast$}{*}new\+Band\+Name, const char \texorpdfstring{$\ast$}{*}new\+Date)
+\begin{DoxyCompactList}\small\item\em Edits an existing schedule with a new band and date. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a54a7f7463b7df104dc158361dd0aef52}{view\+Schedules}} ()
+\begin{DoxyCompactList}\small\item\em Views all available schedules. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_abfe2afb819030beec59b91b1483a2ac9}{delete\+Schedule}} (int schedule\+ID)
+\begin{DoxyCompactList}\small\item\em Deletes a schedule by its ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a6875d46c583ce6dfdc9dc0da41efa85b}{load\+Schedule\+Database}} ()
+\begin{DoxyCompactList}\small\item\em Loads schedules from a binary file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a9c118366e46568179ae5af5d22abad21}{create\+Schedule}} (int schedule\+ID, const char \texorpdfstring{$\ast$}{*}band\+Name, const char \texorpdfstring{$\ast$}{*}date)
+\begin{DoxyCompactList}\small\item\em Creates a new schedule entry. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_af254c2b4333b9bac57d59b111834014f}{save\+Schedule\+Database}} ()
+\begin{DoxyCompactList}\small\item\em Saves the schedule database to a binary file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_b_plus_tree_node}{BPlus\+Tree\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{publictransportationscheduler_8cpp_aeffc198935d210e3bbaf244809ca992c}{create\+Node}} (bool is\+Leaf)
+\begin{DoxyCompactList}\small\item\em Creates a new B+ tree node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_ticket_sale}{Ticket\+Sale}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{publictransportationscheduler_8cpp_a2f41eed3a6bebcb110434e5874c74fba}{search\+BPlus\+Tree}} (int key)
+\begin{DoxyCompactList}\small\item\em Searches the B+ tree for a specific key. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a34f0d3361e53b7a66d6d3e4806d7c9a8}{insert\+BPlus\+Node}} (int key, \mbox{\hyperlink{struct_ticket_sale}{Ticket\+Sale}} \texorpdfstring{$\ast$}{*}sale)
+\begin{DoxyCompactList}\small\item\em Inserts a new key and ticket sale into the B+ tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a436bc8449c6d9e9b7b0b8a04d5c2bb77}{display\+BPlus\+Tree}} (\mbox{\hyperlink{struct_b_plus_tree_node}{BPlus\+Tree\+Node}} \texorpdfstring{$\ast$}{*}node)
+\begin{DoxyCompactList}\small\item\em Displays the B+ tree contents. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_acad3ee31c17cb0696e8df858ac13465f}{initialize\+BPlus\+Tree}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the B+ tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a7ca5eb618ca02eba384a217adb2e3e70}{load\+Sales\+Database}} ()
+\begin{DoxyCompactList}\small\item\em Loads sales data from the binary file and inserts it into the B+ tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_ae32e1898a3a814a0bb5c26d4fcb68de2}{view\+Sales\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Displays all ticket sales data in the B+ tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_ae6aaf9b1c0a852ddeeed4e6f9dc818f1}{save\+Sample\+Sales\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Saves a sample sales dataset to the binary file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a52c3863e2808e63bc383d10064016abe}{generate\+Sales\+Report}} ()
+\begin{DoxyCompactList}\small\item\em Generates a sales report summarizing ticket sales data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a46d5b27892b1949a92d1b5c3a4a0f490}{add\+Vendor}} (int id, const char \texorpdfstring{$\ast$}{*}name, const char \texorpdfstring{$\ast$}{*}service\+Type)
+\begin{DoxyCompactList}\small\item\em Adds a new vendor to the vendor list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_ac380e4c79f20a62c0bf76f4bd7717784}{add\+Sponsor}} (int id, const char \texorpdfstring{$\ast$}{*}name, double contribution\+Amount)
+\begin{DoxyCompactList}\small\item\em Adds a new sponsor to the sponsor list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a0d6885f3029b75ce370431b95b54bf73}{save\+Vendor\+Database}} ()
+\begin{DoxyCompactList}\small\item\em Saves the vendor database to a binary file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_ab7cac0638d8d265304799360555d9eec}{save\+Sponsor\+Database}} ()
+\begin{DoxyCompactList}\small\item\em Saves the sponsor database to a binary file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a9478ff5b539d7d0ea768b43bb0b2a57b}{load\+Vendor\+Database}} ()
+\begin{DoxyCompactList}\small\item\em Loads the vendor database from a binary file and adds vendors to the list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_afc050fc76e7ac7bca437021f3842254a}{load\+Sponsor\+Database}} ()
+\begin{DoxyCompactList}\small\item\em Loads the sponsor database from a binary file and adds sponsors to the list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a22e477b1167ee3a1a1fb74af23c4a4c1}{add\+Vendor\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays a menu for adding a new vendor and saves the vendor data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a05db9accf57963aae5e0da727b8b21d7}{add\+Sponsor\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays a menu for adding a new sponsor and saves the sponsor data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a707153d90df4a85d7b79bb0e2ac84561}{manage\+Vendors}} ()
+\begin{DoxyCompactList}\small\item\em Loads and displays the list of all vendors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationscheduler_8cpp_a47bb57a4772b96184408e7b601c028dc}{track\+Sponsors}} ()
+\begin{DoxyCompactList}\small\item\em Loads and displays the list of all sponsors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465}{user\+Count}} = 0
+\item 
+\mbox{\hyperlink{struct_user}{User}} \mbox{\hyperlink{publictransportationscheduler_8cpp_a6c68ab7eeb51eacf52b7c4c9475fea02}{user\+Database}} \mbox{[}100\mbox{]}
+\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_a81c5a0e1739c09f5b2a1aa37d16f7361}{band\+Count}} = 0
+\item 
+\mbox{\hyperlink{struct_band}{Band}} \mbox{\hyperlink{publictransportationscheduler_8cpp_a27218c54b53aecae57c119ea795dbd4d}{band\+Database}} \mbox{[}100\mbox{]}
+\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_adcd2ade0c3e74c1ed507ec2a725fb1bb}{schedule\+Count}} = 0
+\item 
+\mbox{\hyperlink{struct_schedule_node}{Schedule\+Node}} \mbox{\hyperlink{publictransportationscheduler_8cpp_a52f16cfef870351b90f1100acf77a397}{schedule\+Database}} \mbox{[}100\mbox{]}
+\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_a92feea896317e1b65a94d3765aa24ada}{sales\+Count}} = 0
+\item 
+\mbox{\hyperlink{struct_ticket_sale}{Ticket\+Sale}} \mbox{\hyperlink{publictransportationscheduler_8cpp_a57634d633a48dc77791e8b628f5e8a82}{sales\+Database}} \mbox{[}100\mbox{]}
+\item 
+\mbox{\hyperlink{struct_vendor}{Vendor}} \mbox{\hyperlink{publictransportationscheduler_8cpp_a37db7cb306b292653d118189f7fce72c}{vendor\+Database}} \mbox{[}100\mbox{]}
+\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_a727dbbf7ce1b688f51a51f447de307c5}{vendor\+Count}} = 0
+\item 
+\mbox{\hyperlink{struct_sponsor}{Sponsor}} \mbox{\hyperlink{publictransportationscheduler_8cpp_af05551cee90a56be96756592122b4eed}{sponsor\+Database}} \mbox{[}100\mbox{]}
+\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_a13ad26b4873cc2da9e096e6de716a16f}{sponsor\+Count}} = 0
+\item 
+\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{publictransportationscheduler_8cpp_adc6ed461fd9b672e2e38183fb94cc486}{route\+List\+Head}} = NULL
+\item 
+\mbox{\hyperlink{struct_user}{User}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{publictransportationscheduler_8cpp_a13b224d16733ccb089ededfa6b883b42}{hash\+Table}} \mbox{[}\mbox{\hyperlink{publictransportationscheduler_8cpp_a032503e76d6f69bc67e99e909c8125da}{TABLE\+\_\+\+SIZE}}\mbox{]}
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{publictransportationscheduler_8cpp_ac232cfd15d91df8dea8435d3522824ca}{stack}} = NULL
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{publictransportationscheduler_8cpp_ab4131c72082d15b4a70c831b67b715ec}{queue\+Front}} = NULL
+\item 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{publictransportationscheduler_8cpp_a62ee68cd3e3392b4bc821385889bede4}{queue\+Rear}} = NULL
+\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}} \mbox{[}100\mbox{]}
+\item 
+int \mbox{\hyperlink{publictransportationscheduler_8cpp_a50a655d085f2d580459b7e05b2774217}{heap\+Size}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{publictransportationscheduler_8cpp_a032503e76d6f69bc67e99e909c8125da}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!TABLE\_SIZE@{TABLE\_SIZE}}
+\index{TABLE\_SIZE@{TABLE\_SIZE}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{TABLE\_SIZE}{TABLE\_SIZE}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a032503e76d6f69bc67e99e909c8125da} 
+\#define TABLE\+\_\+\+SIZE~100}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{publictransportationscheduler_8cpp_a6358fabef3ecd2e6c604fb9c839b7f84}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!addBand@{addBand}}
+\index{addBand@{addBand}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{addBand()}{addBand()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a6358fabef3ecd2e6c604fb9c839b7f84} 
+void add\+Band (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new band or artist to the band database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the band or artist to add. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_aa0547cb40e88545452eeac4c997171d0}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!addRoute@{addRoute}}
+\index{addRoute@{addRoute}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{addRoute()}{addRoute()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_aa0547cb40e88545452eeac4c997171d0} 
+void add\+Route (\begin{DoxyParamCaption}\item[{int}]{route\+ID}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{route\+Name}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{start\+Point}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{end\+Point}{}\end{DoxyParamCaption})}
+
+
+
+Adds a route to the double linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em route\+ID} & The route ID. \\
+\hline
+{\em route\+Name} & The name of the route. \\
+\hline
+{\em start\+Point} & The starting point of the route. \\
+\hline
+{\em end\+Point} & The ending point of the route. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_ac380e4c79f20a62c0bf76f4bd7717784}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!addSponsor@{addSponsor}}
+\index{addSponsor@{addSponsor}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{addSponsor()}{addSponsor()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_ac380e4c79f20a62c0bf76f4bd7717784} 
+void add\+Sponsor (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{double}]{contribution\+Amount}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new sponsor to the sponsor list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the sponsor. \\
+\hline
+{\em name} & The name of the sponsor. \\
+\hline
+{\em contribution\+Amount} & The amount contributed by the sponsor. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a05db9accf57963aae5e0da727b8b21d7}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!addSponsorMenu@{addSponsorMenu}}
+\index{addSponsorMenu@{addSponsorMenu}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{addSponsorMenu()}{addSponsorMenu()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a05db9accf57963aae5e0da727b8b21d7} 
+void add\+Sponsor\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Displays a menu for adding a new sponsor and saves the sponsor data. 
+
+\Hypertarget{publictransportationscheduler_8cpp_aa4a39a100849a286c2c4c5e0e28d273e}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!addUserToHashTable@{addUserToHashTable}}
+\index{addUserToHashTable@{addUserToHashTable}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{addUserToHashTable()}{addUserToHashTable()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_aa4a39a100849a286c2c4c5e0e28d273e} 
+void add\+User\+To\+Hash\+Table (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Adds a user to the hash table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username to add. \\
+\hline
+{\em password} & The password for the user. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a46d5b27892b1949a92d1b5c3a4a0f490}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!addVendor@{addVendor}}
+\index{addVendor@{addVendor}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{addVendor()}{addVendor()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a46d5b27892b1949a92d1b5c3a4a0f490} 
+void add\+Vendor (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{service\+Type}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new vendor to the vendor list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the vendor. \\
+\hline
+{\em name} & The name of the vendor. \\
+\hline
+{\em service\+Type} & The type of service provided by the vendor. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a22e477b1167ee3a1a1fb74af23c4a4c1}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!addVendorMenu@{addVendorMenu}}
+\index{addVendorMenu@{addVendorMenu}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{addVendorMenu()}{addVendorMenu()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a22e477b1167ee3a1a1fb74af23c4a4c1} 
+void add\+Vendor\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Displays a menu for adding a new vendor and saves the vendor data. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a1f9e130c21127e918f9cd652c28960af}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!bfs@{bfs}}
+\index{bfs@{bfs}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{bfs()}{bfs()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a1f9e130c21127e918f9cd652c28960af} 
+void bfs (\begin{DoxyParamCaption}\item[{int}]{start\+Node}{}\end{DoxyParamCaption})}
+
+
+
+Performs Breadth-\/\+First Search (BFS) starting from a given node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Node} & The starting node for BFS. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a1501a9df250a3e79e2ec3498c7a65499}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!compressDataHuffman@{compressDataHuffman}}
+\index{compressDataHuffman@{compressDataHuffman}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{compressDataHuffman()}{compressDataHuffman()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a1501a9df250a3e79e2ec3498c7a65499} 
+void compress\+Data\+Huffman (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Compresses the given data using Huffman coding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to compress. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_aeffc198935d210e3bbaf244809ca992c}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!createNode@{createNode}}
+\index{createNode@{createNode}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{createNode()}{createNode()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_aeffc198935d210e3bbaf244809ca992c} 
+\mbox{\hyperlink{struct_b_plus_tree_node}{BPlus\+Tree\+Node}} \texorpdfstring{$\ast$}{*} create\+Node (\begin{DoxyParamCaption}\item[{bool}]{is\+Leaf}{}\end{DoxyParamCaption})}
+
+
+
+Creates a new B+ tree node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Leaf} & Indicates if the node is a leaf node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the newly created B+ tree node. 
+\end{DoxyReturn}
+\Hypertarget{publictransportationscheduler_8cpp_a9c118366e46568179ae5af5d22abad21}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!createSchedule@{createSchedule}}
+\index{createSchedule@{createSchedule}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{createSchedule()}{createSchedule()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a9c118366e46568179ae5af5d22abad21} 
+void create\+Schedule (\begin{DoxyParamCaption}\item[{int}]{schedule\+ID}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{band\+Name}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{date}{}\end{DoxyParamCaption})}
+
+
+
+Creates a new schedule entry. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em schedule\+ID} & The schedule ID. \\
+\hline
+{\em band\+Name} & The band name. \\
+\hline
+{\em date} & The scheduled date. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a32369377e1d95d2063b21cde84df5866}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!decompressDataHuffman@{decompressDataHuffman}}
+\index{decompressDataHuffman@{decompressDataHuffman}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{decompressDataHuffman()}{decompressDataHuffman()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a32369377e1d95d2063b21cde84df5866} 
+void decompress\+Data\+Huffman (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Decompresses data using Huffman coding. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a15f4f5e94a4ac3685082b8448aaba05d}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!deleteDoubleNode@{deleteDoubleNode}}
+\index{deleteDoubleNode@{deleteDoubleNode}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{deleteDoubleNode()}{deleteDoubleNode()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a15f4f5e94a4ac3685082b8448aaba05d} 
+int delete\+Double\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{head}{, }\item[{int}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Deletes a node by route ID from the double linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & Pointer to the head of the list. \\
+\hline
+{\em data} & The route ID to delete. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the node is deleted, 0 if not found. 
+\end{DoxyReturn}
+\Hypertarget{publictransportationscheduler_8cpp_abfe2afb819030beec59b91b1483a2ac9}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!deleteSchedule@{deleteSchedule}}
+\index{deleteSchedule@{deleteSchedule}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{deleteSchedule()}{deleteSchedule()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_abfe2afb819030beec59b91b1483a2ac9} 
+int delete\+Schedule (\begin{DoxyParamCaption}\item[{int}]{schedule\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Deletes a schedule by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em schedule\+ID} & The ID of the schedule to delete. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if deletion is successful, 0 otherwise. 
+\end{DoxyReturn}
+\Hypertarget{publictransportationscheduler_8cpp_ad6e0da35e82ee741ee4e9779fdf9e1c9}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!dequeue@{dequeue}}
+\index{dequeue@{dequeue}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{dequeue()}{dequeue()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_ad6e0da35e82ee741ee4e9779fdf9e1c9} 
+int dequeue (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Dequeues a data element from the queue. 
+
+\begin{DoxyReturn}{Returns}
+The dequeued data from the queue, or -\/1 if queue is empty. 
+\end{DoxyReturn}
+\Hypertarget{publictransportationscheduler_8cpp_a0d63cfae7795f2aeb269ea111bc0c997}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!dfs@{dfs}}
+\index{dfs@{dfs}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{dfs()}{dfs()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a0d63cfae7795f2aeb269ea111bc0c997} 
+void dfs (\begin{DoxyParamCaption}\item[{int}]{start\+Node}{}\end{DoxyParamCaption})}
+
+
+
+Performs Depth-\/\+First Search (DFS) starting from a given node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Node} & The starting node for DFS. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a436bc8449c6d9e9b7b0b8a04d5c2bb77}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!displayBPlusTree@{displayBPlusTree}}
+\index{displayBPlusTree@{displayBPlusTree}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{displayBPlusTree()}{displayBPlusTree()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a436bc8449c6d9e9b7b0b8a04d5c2bb77} 
+void display\+BPlus\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_b_plus_tree_node}{BPlus\+Tree\+Node}} \texorpdfstring{$\ast$}{*}}]{node}{}\end{DoxyParamCaption})}
+
+
+
+Displays the B+ tree contents. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The root node of the B+ tree. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a60b614018039aa27af5ec0a05f8ff322}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!editBand@{editBand}}
+\index{editBand@{editBand}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{editBand()}{editBand()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a60b614018039aa27af5ec0a05f8ff322} 
+void edit\+Band (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{old\+Name}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{new\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Edits the name of an existing band or artist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em old\+Name} & The current name of the band or artist. \\
+\hline
+{\em new\+Name} & The new name for the band or artist. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_afad9893748f5ea3ff48a1e40abd9b6b0}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!editRoute@{editRoute}}
+\index{editRoute@{editRoute}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{editRoute()}{editRoute()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_afad9893748f5ea3ff48a1e40abd9b6b0} 
+void edit\+Route (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*}}]{route\+Node}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{route\+Name}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{start\+Point}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{end\+Point}{}\end{DoxyParamCaption})}
+
+
+
+Edits a route node with new details. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em route\+Node} & The node to edit. \\
+\hline
+{\em route\+Name} & The new route name. \\
+\hline
+{\em start\+Point} & The new starting point. \\
+\hline
+{\em end\+Point} & The new ending point. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a3ec3918c87d436416f26edbb978bb9f0}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!editSchedule@{editSchedule}}
+\index{editSchedule@{editSchedule}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{editSchedule()}{editSchedule()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a3ec3918c87d436416f26edbb978bb9f0} 
+void edit\+Schedule (\begin{DoxyParamCaption}\item[{int}]{schedule\+ID}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{new\+Band\+Name}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{new\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Edits an existing schedule with a new band and date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em schedule\+ID} & The ID of the schedule to edit. \\
+\hline
+{\em new\+Band\+Name} & The new band name. \\
+\hline
+{\em new\+Date} & The new date for the schedule. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a011d1d2e69488147446e6abf4df9acb4}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!enqueue@{enqueue}}
+\index{enqueue@{enqueue}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{enqueue()}{enqueue()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a011d1d2e69488147446e6abf4df9acb4} 
+void enqueue (\begin{DoxyParamCaption}\item[{int}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Enqueues a data element into the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to enqueue. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a8641221dc62558605a4b4921ec89a3e6}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!extractMin@{extractMin}}
+\index{extractMin@{extractMin}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{extractMin()}{extractMin()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a8641221dc62558605a4b4921ec89a3e6} 
+int extract\+Min (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Extracts the minimum element from the min-\/heap. 
+
+\begin{DoxyReturn}{Returns}
+The minimum element from the heap, or -\/1 if heap is empty. 
+\end{DoxyReturn}
+\Hypertarget{publictransportationscheduler_8cpp_af243334b827491156582ba5af5ca47d3}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!findDoubleNode@{findDoubleNode}}
+\index{findDoubleNode@{findDoubleNode}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{findDoubleNode()}{findDoubleNode()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_af243334b827491156582ba5af5ca47d3} 
+\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*} find\+Double\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*}}]{head}{, }\item[{int}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Finds a route node by route ID in the double linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & The head of the list. \\
+\hline
+{\em data} & The route ID to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the node if found, NULL otherwise. 
+\end{DoxyReturn}
+\Hypertarget{publictransportationscheduler_8cpp_a52c3863e2808e63bc383d10064016abe}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!generateSalesReport@{generateSalesReport}}
+\index{generateSalesReport@{generateSalesReport}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{generateSalesReport()}{generateSalesReport()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a52c3863e2808e63bc383d10064016abe} 
+void generate\+Sales\+Report (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Generates a sales report summarizing ticket sales data. 
+
+\Hypertarget{publictransportationscheduler_8cpp_aae50276d118e9723f33a385fc7aeb899}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!hashFunction@{hashFunction}}
+\index{hashFunction@{hashFunction}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{hashFunction()}{hashFunction()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_aae50276d118e9723f33a385fc7aeb899} 
+int hash\+Function (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Calculates the hash for a given key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to hash. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The hash index for the given key. 
+\end{DoxyReturn}
+\Hypertarget{publictransportationscheduler_8cpp_acad3ee31c17cb0696e8df858ac13465f}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!initializeBPlusTree@{initializeBPlusTree}}
+\index{initializeBPlusTree@{initializeBPlusTree}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{initializeBPlusTree()}{initializeBPlusTree()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_acad3ee31c17cb0696e8df858ac13465f} 
+void initialize\+BPlus\+Tree (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the B+ tree. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a08256d4367e9d0de8e45fcbd61e04fd9}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!initializeHashTable@{initializeHashTable}}
+\index{initializeHashTable@{initializeHashTable}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{initializeHashTable()}{initializeHashTable()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a08256d4367e9d0de8e45fcbd61e04fd9} 
+void initialize\+Hash\+Table (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the hash table. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a34f0d3361e53b7a66d6d3e4806d7c9a8}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!insertBPlusNode@{insertBPlusNode}}
+\index{insertBPlusNode@{insertBPlusNode}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{insertBPlusNode()}{insertBPlusNode()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a34f0d3361e53b7a66d6d3e4806d7c9a8} 
+void insert\+BPlus\+Node (\begin{DoxyParamCaption}\item[{int}]{key}{, }\item[{\mbox{\hyperlink{struct_ticket_sale}{Ticket\+Sale}} \texorpdfstring{$\ast$}{*}}]{sale}{}\end{DoxyParamCaption})}
+
+
+
+Inserts a new key and ticket sale into the B+ tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to insert. \\
+\hline
+{\em sale} & The associated ticket sale data. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_ab289a4be500c44391d41c26dc04573ec}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!insertDoubleNode@{insertDoubleNode}}
+\index{insertDoubleNode@{insertDoubleNode}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{insertDoubleNode()}{insertDoubleNode()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_ab289a4be500c44391d41c26dc04573ec} 
+void insert\+Double\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{head}{, }\item[{int}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Inserts a node into the double linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & Pointer to the head of the list. \\
+\hline
+{\em data} & The data to insert. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a3f05f3efe9a5a4aa7daaee5fc4d2ebce}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!insertHeap@{insertHeap}}
+\index{insertHeap@{insertHeap}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{insertHeap()}{insertHeap()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a3f05f3efe9a5a4aa7daaee5fc4d2ebce} 
+void insert\+Heap (\begin{DoxyParamCaption}\item[{int}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Inserts data into a min-\/heap. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to insert into the heap. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a3dad1d43a47d9db88b8659a4306bb249}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!insertSparseNode@{insertSparseNode}}
+\index{insertSparseNode@{insertSparseNode}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{insertSparseNode()}{insertSparseNode()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a3dad1d43a47d9db88b8659a4306bb249} 
+void insert\+Sparse\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sparse_matrix_node}{Sparse\+Matrix\+Node}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{head}{, }\item[{int}]{row}{, }\item[{int}]{col}{, }\item[{int}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Inserts a node into a sparse matrix linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & Pointer to the head of the sparse matrix linked list. \\
+\hline
+{\em row} & Row index of the value. \\
+\hline
+{\em col} & Column index of the value. \\
+\hline
+{\em value} & The value to insert. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a784daf7f98c539cd69746b8b3db1ecea}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!insertXORNode@{insertXORNode}}
+\index{insertXORNode@{insertXORNode}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{insertXORNode()}{insertXORNode()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a784daf7f98c539cd69746b8b3db1ecea} 
+void insert\+XORNode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_x_o_r_node}{XORNode}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{head}{, }\item[{int}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Inserts a new node into the XOR linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & Pointer to the head of the XOR linked list. \\
+\hline
+{\em data} & Data to store in the new node. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_acb3232bc0e9ef9e48324e06e627676c0}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!KMPSearch@{KMPSearch}}
+\index{KMPSearch@{KMPSearch}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{KMPSearch()}{KMPSearch()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_acb3232bc0e9ef9e48324e06e627676c0} 
+void KMPSearch (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{pattern}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{text}{}\end{DoxyParamCaption})}
+
+
+
+Searches for a pattern within a text using the KMP algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pattern} & The pattern to search for. \\
+\hline
+{\em text} & The text to search within. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_afcfbe032666cbafc1c70209d8119d996}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!loadBandDatabase@{loadBandDatabase}}
+\index{loadBandDatabase@{loadBandDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{loadBandDatabase()}{loadBandDatabase()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_afcfbe032666cbafc1c70209d8119d996} 
+void load\+Band\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Loads the band database from a binary file. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a7ca5eb618ca02eba384a217adb2e3e70}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!loadSalesDatabase@{loadSalesDatabase}}
+\index{loadSalesDatabase@{loadSalesDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{loadSalesDatabase()}{loadSalesDatabase()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a7ca5eb618ca02eba384a217adb2e3e70} 
+void load\+Sales\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Loads sales data from the binary file and inserts it into the B+ tree. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a6875d46c583ce6dfdc9dc0da41efa85b}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!loadScheduleDatabase@{loadScheduleDatabase}}
+\index{loadScheduleDatabase@{loadScheduleDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{loadScheduleDatabase()}{loadScheduleDatabase()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a6875d46c583ce6dfdc9dc0da41efa85b} 
+void load\+Schedule\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Loads schedules from a binary file. 
+
+\Hypertarget{publictransportationscheduler_8cpp_afc050fc76e7ac7bca437021f3842254a}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!loadSponsorDatabase@{loadSponsorDatabase}}
+\index{loadSponsorDatabase@{loadSponsorDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{loadSponsorDatabase()}{loadSponsorDatabase()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_afc050fc76e7ac7bca437021f3842254a} 
+void load\+Sponsor\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Loads the sponsor database from a binary file and adds sponsors to the list. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a7464a341010bc5e28caeda8fbbc74def}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!loadUserDatabase@{loadUserDatabase}}
+\index{loadUserDatabase@{loadUserDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{loadUserDatabase()}{loadUserDatabase()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a7464a341010bc5e28caeda8fbbc74def} 
+void load\+User\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Loads the user database from a binary file. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a9478ff5b539d7d0ea768b43bb0b2a57b}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!loadVendorDatabase@{loadVendorDatabase}}
+\index{loadVendorDatabase@{loadVendorDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{loadVendorDatabase()}{loadVendorDatabase()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a9478ff5b539d7d0ea768b43bb0b2a57b} 
+void load\+Vendor\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Loads the vendor database from a binary file and adds vendors to the list. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a378330dd86baa7420fe4ed0147845c55}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!login@{login}}
+\index{login@{login}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a378330dd86baa7420fe4ed0147845c55} 
+int login (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Authenticates a user by verifying their username and password. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username to authenticate. \\
+\hline
+{\em password} & The password associated with the username. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 1 if login is successful, 0 otherwise. 
+\end{DoxyReturn}
+\Hypertarget{publictransportationscheduler_8cpp_a707153d90df4a85d7b79bb0e2ac84561}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!manageVendors@{manageVendors}}
+\index{manageVendors@{manageVendors}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{manageVendors()}{manageVendors()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a707153d90df4a85d7b79bb0e2ac84561} 
+void manage\+Vendors (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Loads and displays the list of all vendors. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a163177f1a0b7d847bc3241809dafc097}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!pop@{pop}}
+\index{pop@{pop}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{pop()}{pop()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a163177f1a0b7d847bc3241809dafc097} 
+int pop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Pops a data element from the stack. 
+
+\begin{DoxyReturn}{Returns}
+The popped data from the stack, or -\/1 if stack is empty. 
+\end{DoxyReturn}
+\Hypertarget{publictransportationscheduler_8cpp_a838a8eee88deae1b268325c2c1efdedf}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!printDetailedRouteList@{printDetailedRouteList}}
+\index{printDetailedRouteList@{printDetailedRouteList}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{printDetailedRouteList()}{printDetailedRouteList()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a838a8eee88deae1b268325c2c1efdedf} 
+void print\+Detailed\+Route\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*}}]{head}{}\end{DoxyParamCaption})}
+
+
+
+Prints a detailed list of all routes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & The head of the route list. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_ad72c75a43e50e885612cc420ba107b07}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!printDoubleList@{printDoubleList}}
+\index{printDoubleList@{printDoubleList}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{printDoubleList()}{printDoubleList()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_ad72c75a43e50e885612cc420ba107b07} 
+void print\+Double\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_double_node}{Double\+Node}} \texorpdfstring{$\ast$}{*}}]{head}{}\end{DoxyParamCaption})}
+
+
+
+Prints a list of all routes by ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & The head of the route list. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a9235f768e511383f117f41ab92d601f6}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!push@{push}}
+\index{push@{push}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{push()}{push()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a9235f768e511383f117f41ab92d601f6} 
+void push (\begin{DoxyParamCaption}\item[{int}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Pushes a data element onto the stack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to push onto the stack. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a2954b6e11695b7a4b9c9fc2df4ecd21d}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!registerUser@{registerUser}}
+\index{registerUser@{registerUser}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{registerUser()}{registerUser()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a2954b6e11695b7a4b9c9fc2df4ecd21d} 
+void register\+User (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Registers a new user with a username and password. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The new user\textquotesingle{}s username. \\
+\hline
+{\em password} & The new user\textquotesingle{}s password. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationscheduler_8cpp_a92fd4511b9f726d102b69f09c9ee2e2a}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!saveBandDatabase@{saveBandDatabase}}
+\index{saveBandDatabase@{saveBandDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{saveBandDatabase()}{saveBandDatabase()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a92fd4511b9f726d102b69f09c9ee2e2a} 
+void save\+Band\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Saves the band database to a binary file. 
+
+\Hypertarget{publictransportationscheduler_8cpp_ae6aaf9b1c0a852ddeeed4e6f9dc818f1}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!saveSampleSalesData@{saveSampleSalesData}}
+\index{saveSampleSalesData@{saveSampleSalesData}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{saveSampleSalesData()}{saveSampleSalesData()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_ae6aaf9b1c0a852ddeeed4e6f9dc818f1} 
+void save\+Sample\+Sales\+Data (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Saves a sample sales dataset to the binary file. 
+
+\Hypertarget{publictransportationscheduler_8cpp_af254c2b4333b9bac57d59b111834014f}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!saveScheduleDatabase@{saveScheduleDatabase}}
+\index{saveScheduleDatabase@{saveScheduleDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{saveScheduleDatabase()}{saveScheduleDatabase()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_af254c2b4333b9bac57d59b111834014f} 
+void save\+Schedule\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Saves the schedule database to a binary file. 
+
+\Hypertarget{publictransportationscheduler_8cpp_ab7cac0638d8d265304799360555d9eec}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!saveSponsorDatabase@{saveSponsorDatabase}}
+\index{saveSponsorDatabase@{saveSponsorDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{saveSponsorDatabase()}{saveSponsorDatabase()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_ab7cac0638d8d265304799360555d9eec} 
+void save\+Sponsor\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Saves the sponsor database to a binary file. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a9c04dff0438032d46ae97d3c76ef88a4}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!saveUserDatabase@{saveUserDatabase}}
+\index{saveUserDatabase@{saveUserDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{saveUserDatabase()}{saveUserDatabase()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a9c04dff0438032d46ae97d3c76ef88a4} 
+void save\+User\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Saves the user database to a binary file. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a0d6885f3029b75ce370431b95b54bf73}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!saveVendorDatabase@{saveVendorDatabase}}
+\index{saveVendorDatabase@{saveVendorDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{saveVendorDatabase()}{saveVendorDatabase()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a0d6885f3029b75ce370431b95b54bf73} 
+void save\+Vendor\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Saves the vendor database to a binary file. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a2f41eed3a6bebcb110434e5874c74fba}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!searchBPlusTree@{searchBPlusTree}}
+\index{searchBPlusTree@{searchBPlusTree}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{searchBPlusTree()}{searchBPlusTree()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a2f41eed3a6bebcb110434e5874c74fba} 
+\mbox{\hyperlink{struct_ticket_sale}{Ticket\+Sale}} \texorpdfstring{$\ast$}{*} search\+BPlus\+Tree (\begin{DoxyParamCaption}\item[{int}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Searches the B+ tree for a specific key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the ticket sale if found, NULL otherwise. 
+\end{DoxyReturn}
+\Hypertarget{publictransportationscheduler_8cpp_a47bb57a4772b96184408e7b601c028dc}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!trackSponsors@{trackSponsors}}
+\index{trackSponsors@{trackSponsors}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{trackSponsors()}{trackSponsors()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a47bb57a4772b96184408e7b601c028dc} 
+void track\+Sponsors (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Loads and displays the list of all sponsors. 
+
+\Hypertarget{publictransportationscheduler_8cpp_ad3299a040b8eebab6b1275eae5821d8c}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!verifyUserInHashTable@{verifyUserInHashTable}}
+\index{verifyUserInHashTable@{verifyUserInHashTable}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{verifyUserInHashTable()}{verifyUserInHashTable()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_ad3299a040b8eebab6b1275eae5821d8c} 
+int verify\+User\+In\+Hash\+Table (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{username}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Verifies a user in the hash table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username to verify. \\
+\hline
+{\em password} & The password to verify. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the user is found and password matches, 0 otherwise. 
+\end{DoxyReturn}
+\Hypertarget{publictransportationscheduler_8cpp_aced0e53ac2e52b903d66fdd4549329a9}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!viewBands@{viewBands}}
+\index{viewBands@{viewBands}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{viewBands()}{viewBands()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_aced0e53ac2e52b903d66fdd4549329a9} 
+void view\+Bands (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Displays the list of all bands and artists. 
+
+\Hypertarget{publictransportationscheduler_8cpp_ae32e1898a3a814a0bb5c26d4fcb68de2}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!viewSalesData@{viewSalesData}}
+\index{viewSalesData@{viewSalesData}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{viewSalesData()}{viewSalesData()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_ae32e1898a3a814a0bb5c26d4fcb68de2} 
+void view\+Sales\+Data (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Displays all ticket sales data in the B+ tree. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a54a7f7463b7df104dc158361dd0aef52}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!viewSchedules@{viewSchedules}}
+\index{viewSchedules@{viewSchedules}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{viewSchedules()}{viewSchedules()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a54a7f7463b7df104dc158361dd0aef52} 
+void view\+Schedules (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Views all available schedules. 
+
+\Hypertarget{publictransportationscheduler_8cpp_a499c51677d90731938874f947161b61a}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!XOR@{XOR}}
+\index{XOR@{XOR}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{XOR()}{XOR()}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a499c51677d90731938874f947161b61a} 
+\mbox{\hyperlink{struct_x_o_r_node}{XORNode}} \texorpdfstring{$\ast$}{*} XOR (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_x_o_r_node}{XORNode}} \texorpdfstring{$\ast$}{*}}]{a}{, }\item[{\mbox{\hyperlink{struct_x_o_r_node}{XORNode}} \texorpdfstring{$\ast$}{*}}]{b}{}\end{DoxyParamCaption})}
+
+
+
+Computes the XOR of two pointers for XOR linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Pointer to the first \doxylink{struct_x_o_r_node}{XORNode}. \\
+\hline
+{\em b} & Pointer to the second \doxylink{struct_x_o_r_node}{XORNode}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+XOR of the two pointers. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{publictransportationscheduler_8cpp_a81c5a0e1739c09f5b2a1aa37d16f7361}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!bandCount@{bandCount}}
+\index{bandCount@{bandCount}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{bandCount}{bandCount}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a81c5a0e1739c09f5b2a1aa37d16f7361} 
+int band\+Count = 0}
+
+\Hypertarget{publictransportationscheduler_8cpp_a27218c54b53aecae57c119ea795dbd4d}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!bandDatabase@{bandDatabase}}
+\index{bandDatabase@{bandDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{bandDatabase}{bandDatabase}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a27218c54b53aecae57c119ea795dbd4d} 
+\mbox{\hyperlink{struct_band}{Band}} band\+Database\mbox{[}100\mbox{]}}
+
+\Hypertarget{publictransportationscheduler_8cpp_a13b224d16733ccb089ededfa6b883b42}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!hashTable@{hashTable}}
+\index{hashTable@{hashTable}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{hashTable}{hashTable}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a13b224d16733ccb089ededfa6b883b42} 
+\mbox{\hyperlink{struct_user}{User}}\texorpdfstring{$\ast$}{*} hash\+Table\mbox{[}\mbox{\hyperlink{publictransportationscheduler_8cpp_a032503e76d6f69bc67e99e909c8125da}{TABLE\+\_\+\+SIZE}}\mbox{]}}
+
+\Hypertarget{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!heap@{heap}}
+\index{heap@{heap}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{heap}{heap}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04} 
+int heap\mbox{[}100\mbox{]}}
+
+\Hypertarget{publictransportationscheduler_8cpp_a50a655d085f2d580459b7e05b2774217}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!heapSize@{heapSize}}
+\index{heapSize@{heapSize}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{heapSize}{heapSize}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a50a655d085f2d580459b7e05b2774217} 
+int heap\+Size = 0}
+
+\Hypertarget{publictransportationscheduler_8cpp_ab4131c72082d15b4a70c831b67b715ec}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!queueFront@{queueFront}}
+\index{queueFront@{queueFront}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{queueFront}{queueFront}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_ab4131c72082d15b4a70c831b67b715ec} 
+\mbox{\hyperlink{struct_node}{Node}}\texorpdfstring{$\ast$}{*} queue\+Front = NULL}
+
+\Hypertarget{publictransportationscheduler_8cpp_a62ee68cd3e3392b4bc821385889bede4}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!queueRear@{queueRear}}
+\index{queueRear@{queueRear}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{queueRear}{queueRear}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a62ee68cd3e3392b4bc821385889bede4} 
+\mbox{\hyperlink{struct_node}{Node}} \texorpdfstring{$\ast$}{*} queue\+Rear = NULL}
+
+\Hypertarget{publictransportationscheduler_8cpp_adc6ed461fd9b672e2e38183fb94cc486}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!routeListHead@{routeListHead}}
+\index{routeListHead@{routeListHead}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{routeListHead}{routeListHead}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_adc6ed461fd9b672e2e38183fb94cc486} 
+\mbox{\hyperlink{struct_double_node}{Double\+Node}}\texorpdfstring{$\ast$}{*} route\+List\+Head = NULL}
+
+\Hypertarget{publictransportationscheduler_8cpp_a92feea896317e1b65a94d3765aa24ada}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!salesCount@{salesCount}}
+\index{salesCount@{salesCount}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{salesCount}{salesCount}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a92feea896317e1b65a94d3765aa24ada} 
+int sales\+Count = 0}
+
+\Hypertarget{publictransportationscheduler_8cpp_a57634d633a48dc77791e8b628f5e8a82}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!salesDatabase@{salesDatabase}}
+\index{salesDatabase@{salesDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{salesDatabase}{salesDatabase}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a57634d633a48dc77791e8b628f5e8a82} 
+\mbox{\hyperlink{struct_ticket_sale}{Ticket\+Sale}} sales\+Database\mbox{[}100\mbox{]}}
+
+\Hypertarget{publictransportationscheduler_8cpp_adcd2ade0c3e74c1ed507ec2a725fb1bb}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!scheduleCount@{scheduleCount}}
+\index{scheduleCount@{scheduleCount}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{scheduleCount}{scheduleCount}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_adcd2ade0c3e74c1ed507ec2a725fb1bb} 
+int schedule\+Count = 0}
+
+\Hypertarget{publictransportationscheduler_8cpp_a52f16cfef870351b90f1100acf77a397}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!scheduleDatabase@{scheduleDatabase}}
+\index{scheduleDatabase@{scheduleDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{scheduleDatabase}{scheduleDatabase}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a52f16cfef870351b90f1100acf77a397} 
+\mbox{\hyperlink{struct_schedule_node}{Schedule\+Node}} schedule\+Database\mbox{[}100\mbox{]}}
+
+\Hypertarget{publictransportationscheduler_8cpp_a13ad26b4873cc2da9e096e6de716a16f}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!sponsorCount@{sponsorCount}}
+\index{sponsorCount@{sponsorCount}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{sponsorCount}{sponsorCount}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a13ad26b4873cc2da9e096e6de716a16f} 
+int sponsor\+Count = 0}
+
+\Hypertarget{publictransportationscheduler_8cpp_af05551cee90a56be96756592122b4eed}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!sponsorDatabase@{sponsorDatabase}}
+\index{sponsorDatabase@{sponsorDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{sponsorDatabase}{sponsorDatabase}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_af05551cee90a56be96756592122b4eed} 
+\mbox{\hyperlink{struct_sponsor}{Sponsor}} sponsor\+Database\mbox{[}100\mbox{]}}
+
+\Hypertarget{publictransportationscheduler_8cpp_ac232cfd15d91df8dea8435d3522824ca}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!stack@{stack}}
+\index{stack@{stack}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{stack}{stack}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_ac232cfd15d91df8dea8435d3522824ca} 
+\mbox{\hyperlink{struct_node}{Node}}\texorpdfstring{$\ast$}{*} stack = NULL}
+
+\Hypertarget{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!userCount@{userCount}}
+\index{userCount@{userCount}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{userCount}{userCount}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465} 
+int user\+Count = 0}
+
+\Hypertarget{publictransportationscheduler_8cpp_a6c68ab7eeb51eacf52b7c4c9475fea02}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!userDatabase@{userDatabase}}
+\index{userDatabase@{userDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{userDatabase}{userDatabase}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a6c68ab7eeb51eacf52b7c4c9475fea02} 
+\mbox{\hyperlink{struct_user}{User}} user\+Database\mbox{[}100\mbox{]}}
+
+\Hypertarget{publictransportationscheduler_8cpp_a727dbbf7ce1b688f51a51f447de307c5}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!vendorCount@{vendorCount}}
+\index{vendorCount@{vendorCount}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{vendorCount}{vendorCount}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a727dbbf7ce1b688f51a51f447de307c5} 
+int vendor\+Count = 0}
+
+\Hypertarget{publictransportationscheduler_8cpp_a37db7cb306b292653d118189f7fce72c}\index{publictransportationscheduler.cpp@{publictransportationscheduler.cpp}!vendorDatabase@{vendorDatabase}}
+\index{vendorDatabase@{vendorDatabase}!publictransportationscheduler.cpp@{publictransportationscheduler.cpp}}
+\doxysubsubsection{\texorpdfstring{vendorDatabase}{vendorDatabase}}
+{\footnotesize\ttfamily \label{publictransportationscheduler_8cpp_a37db7cb306b292653d118189f7fce72c} 
+\mbox{\hyperlink{struct_vendor}{Vendor}} vendor\+Database\mbox{[}100\mbox{]}}
+

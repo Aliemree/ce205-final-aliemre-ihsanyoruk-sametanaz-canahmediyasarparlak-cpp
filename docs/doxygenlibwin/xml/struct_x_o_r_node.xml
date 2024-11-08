@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="struct_x_o_r_node" kind="struct" language="C++" prot="public">
+    <compoundname>XORNode</compoundname>
+    <includes refid="publictransportationscheduler_8h" local="no">publictransportationscheduler.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_x_o_r_node_1ace398d63223a5a3d25bb625f4bf106e2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int XORNode::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <qualifiedname>XORNode::data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="69" column="7" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_x_o_r_node_1a90966e7d31bcd0c59dddb1788db21389" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_x_o_r_node" kindref="compound">XORNode</ref> *</type>
+        <definition>struct XORNode* XORNode::npx</definition>
+        <argsstring></argsstring>
+        <name>npx</name>
+        <qualifiedname>XORNode::npx</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="70" column="16" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>XORNode</label>
+        <link refid="struct_x_o_r_node"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>+npx</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="68" column="1" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="68" bodyend="71"/>
+    <listofallmembers>
+      <member refid="struct_x_o_r_node_1ace398d63223a5a3d25bb625f4bf106e2" prot="public" virt="non-virtual"><scope>XORNode</scope><name>data</name></member>
+      <member refid="struct_x_o_r_node_1a90966e7d31bcd0c59dddb1788db21389" prot="public" virt="non-virtual"><scope>XORNode</scope><name>npx</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

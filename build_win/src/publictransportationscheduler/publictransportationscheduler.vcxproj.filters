@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\yoruk\Desktop\1\ce205-midterm-\src\publictransportationscheduler\src\publictransportationscheduler.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\yoruk\Desktop\1\ce205-midterm-\src\publictransportationscheduler\header\publictransportationscheduler.h">
+      <Filter>header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\yoruk\Desktop\1\ce205-midterm-\src\publictransportationscheduler\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="header">
+      <UniqueIdentifier>{84F9BA4A-520F-3F03-9599-79AE4DE65D6C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2302A5FE-F494-3B17-A676-B54A077F5EF3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

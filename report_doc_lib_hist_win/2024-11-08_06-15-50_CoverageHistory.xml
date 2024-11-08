@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2024-11-08_06-15-50" tag="">
+  <assembly name="Default">
+    <class name="C:\Users\yoruk\Desktop\1\ce205-midterm-\src\publictransportationscheduler\header\publictransportationscheduler.h" coveredlines="50" coverablelines="116" totallines="174" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+    <class name="C:\Users\yoruk\Desktop\1\ce205-midterm-\src\publictransportationscheduler\src\publictransportationscheduler.cpp" coveredlines="59" coverablelines="82" totallines="1186" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+    <class name="C:\Users\yoruk\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\header\publictransportationschedulerapp.h" coveredlines="9" coverablelines="10" totallines="20" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+    <class name="C:\Users\yoruk\Desktop\1\ce205-midterm-\src\publictransportationschedulerapp\src\publictransportationschedulerapp.cpp" coveredlines="10" coverablelines="11" totallines="529" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+    <class name="C:\Users\yoruk\Desktop\1\ce205-midterm-\src\utility\header\commonTypes.h" coveredlines="1" coverablelines="1" totallines="28" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+    <class name="C:\Users\yoruk\Desktop\1\ce205-midterm-\src\utility\header\mathUtility.h" coveredlines="6" coverablelines="8" totallines="75" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+    <class name="C:\Users\yoruk\Desktop\1\ce205-midterm-\src\utility\src\mathUtility.cpp" coveredlines="1" coverablelines="1" totallines="70" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+  </assembly>
+</coverage>

@@ -1,5 +1,4 @@
-﻿#include "publictransportationscheduler.h"
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>  // for uintptr_t
@@ -108,7 +107,6 @@ void addRoute(int routeID, const char *routeName, const char *startPoint, const 
   newNode->prev = NULL;
 
   if (routeListHead != NULL) {
-    routeListHead->prev = newNode;
   }
 
   routeListHead = newNode;
@@ -145,8 +143,6 @@ DoubleNode *findDoubleNode(DoubleNode *head, int data) {
     if (current->data == data) {
       return current;
     }
-
-    current = current->next;
   }
 
   return NULL;  // Not found
@@ -234,6 +230,7 @@ void printDoubleList(DoubleNode *head) {
     printf("No routes available.\n");
   }
 }
+
 // XOR Linked List Functions
 
 /**
@@ -423,6 +420,7 @@ void dfs(int startNode) {
 
   printf("\n");
 }
+
 // Huffman Coding Functions
 
 /**
@@ -558,7 +556,7 @@ void registerUser(const char *username, const char *password) {
   if (login(username, password)) {
     printf("Login successful. Redirecting to main menu...\n");
   } else {
-    printf("Login failed after registration.\n");
+    printf("Login failed after registration.\n",login);
   }
 }
 
@@ -593,11 +591,14 @@ void saveBandDatabase() {
  * @brief Adds a new band or artist to the band database.
  * @param name The name of the band or artist to add.
  */
-void addBand(const char *name) {
-  loadBandDatabase();
+void addBand(const char* name) {
+  if (name == NULL || strlen(name) == 0) {
+    printf("Band name cannot be empty.\n");
+    return;
+  }
+
   strcpy_s(bandDatabase[bandCount].name, sizeof(bandDatabase[bandCount].name), name);
   bandCount++;
-  saveBandDatabase();
   printf("Band/Artist %s added.\n", name);
 }
 
@@ -618,6 +619,7 @@ void editBand(const char *oldName, const char *newName) {
 
   printf("Band/Artist %s not found.\n", oldName);
 }
+
 /**
  * @brief Displays the list of all bands and artists.
  */

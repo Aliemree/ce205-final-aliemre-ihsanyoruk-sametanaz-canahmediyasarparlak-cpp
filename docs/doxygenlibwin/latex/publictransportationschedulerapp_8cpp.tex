@@ -1,0 +1,161 @@
+\doxysection{src/publictransportationschedulerapp/src/publictransportationschedulerapp.cpp File Reference}
+\hypertarget{publictransportationschedulerapp_8cpp}{}\label{publictransportationschedulerapp_8cpp}\index{src/publictransportationschedulerapp/src/publictransportationschedulerapp.cpp@{src/publictransportationschedulerapp/src/publictransportationschedulerapp.cpp}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$conio.\+h$>$}\newline
+{\ttfamily \#include $<$windows.\+h$>$}\newline
+{\ttfamily \#include "{}publictransportationscheduler.\+h"{}}\newline
+{\ttfamily \#include "{}publictransportationschedulerapp.\+h"{}}\newline
+{\ttfamily \#include "{}../../publictransportationscheduler/src/publictransportationscheduler.\+cpp"{}}\newline
+Include dependency graph for publictransportationschedulerapp.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{publictransportationschedulerapp_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{publictransportationschedulerapp_8cpp_a28a294766d7cb154142ed9e1bbada49d}{get\+Console\+Width}} ()
+\begin{DoxyCompactList}\small\item\em Gets the width of the console for centering text. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationschedulerapp_8cpp_a21b48e770e137f1f2dca193a3817d30f}{center\+Text}} (const char \texorpdfstring{$\ast$}{*}text)
+\begin{DoxyCompactList}\small\item\em Centers the given text in the console. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationschedulerapp_8cpp_a18ce0d8402dc018a669615b1d7a06977}{center\+Menu\+Option}} (const char \texorpdfstring{$\ast$}{*}text, int is\+Selected)
+\begin{DoxyCompactList}\small\item\em Centers the menu option text and highlights if selected. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationschedulerapp_8cpp_a558445f67c7e8b6a8e18f669d772d2fa}{show\+User\+Authentication\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the user authentication menu with options to login, register, or access as guest. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationschedulerapp_8cpp_a7c6698549c47c6a1f9529c29bef42861}{show\+Route\+Management\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the route management menu with options to add, edit, view, delete, and search routes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationschedulerapp_8cpp_a1eb3989fca560389bbf126f8561d228d}{show\+Scheduling\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the scheduling menu with options to create, edit, view, and delete schedules. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationschedulerapp_8cpp_a17dc8dc8513b1d0a621937dc509c6bed}{show\+Ticket\+Sales\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the ticket sales menu with options to view, search, report, and manage B+ tree data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationschedulerapp_8cpp_a462cd1864e424777ea42928f1d548e18}{show\+Data\+Management\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the data management menu with options to add and manage vendors and sponsors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{publictransportationschedulerapp_8cpp_a547646815560a705ed2ab461dbf46d04}{show\+Main\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the main menu with options to access different parts of the system. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{publictransportationschedulerapp_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em The main function to initialize and show the main menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{publictransportationschedulerapp_8cpp_a18ce0d8402dc018a669615b1d7a06977}\index{publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}!centerMenuOption@{centerMenuOption}}
+\index{centerMenuOption@{centerMenuOption}!publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}}
+\doxysubsubsection{\texorpdfstring{centerMenuOption()}{centerMenuOption()}}
+{\footnotesize\ttfamily \label{publictransportationschedulerapp_8cpp_a18ce0d8402dc018a669615b1d7a06977} 
+void center\+Menu\+Option (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{text}{, }\item[{int}]{is\+Selected}{}\end{DoxyParamCaption})}
+
+
+
+Centers the menu option text and highlights if selected. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The menu option text. \\
+\hline
+{\em is\+Selected} & Flag indicating if the option is selected. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationschedulerapp_8cpp_a21b48e770e137f1f2dca193a3817d30f}\index{publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}!centerText@{centerText}}
+\index{centerText@{centerText}!publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}}
+\doxysubsubsection{\texorpdfstring{centerText()}{centerText()}}
+{\footnotesize\ttfamily \label{publictransportationschedulerapp_8cpp_a21b48e770e137f1f2dca193a3817d30f} 
+void center\+Text (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{text}{}\end{DoxyParamCaption})}
+
+
+
+Centers the given text in the console. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The text to center in the console. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{publictransportationschedulerapp_8cpp_a28a294766d7cb154142ed9e1bbada49d}\index{publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}!getConsoleWidth@{getConsoleWidth}}
+\index{getConsoleWidth@{getConsoleWidth}!publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}}
+\doxysubsubsection{\texorpdfstring{getConsoleWidth()}{getConsoleWidth()}}
+{\footnotesize\ttfamily \label{publictransportationschedulerapp_8cpp_a28a294766d7cb154142ed9e1bbada49d} 
+int get\+Console\+Width (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the width of the console for centering text. 
+
+\begin{DoxyReturn}{Returns}
+Width of the console. 
+\end{DoxyReturn}
+\Hypertarget{publictransportationschedulerapp_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}!main@{main}}
+\index{main@{main}!publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{publictransportationschedulerapp_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+The main function to initialize and show the main menu. 
+
+\begin{DoxyReturn}{Returns}
+Program exit status. 
+\end{DoxyReturn}
+\Hypertarget{publictransportationschedulerapp_8cpp_a462cd1864e424777ea42928f1d548e18}\index{publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}!showDataManagementMenu@{showDataManagementMenu}}
+\index{showDataManagementMenu@{showDataManagementMenu}!publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}}
+\doxysubsubsection{\texorpdfstring{showDataManagementMenu()}{showDataManagementMenu()}}
+{\footnotesize\ttfamily \label{publictransportationschedulerapp_8cpp_a462cd1864e424777ea42928f1d548e18} 
+void show\+Data\+Management\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Displays the data management menu with options to add and manage vendors and sponsors. 
+
+\Hypertarget{publictransportationschedulerapp_8cpp_a547646815560a705ed2ab461dbf46d04}\index{publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}!showMainMenu@{showMainMenu}}
+\index{showMainMenu@{showMainMenu}!publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}}
+\doxysubsubsection{\texorpdfstring{showMainMenu()}{showMainMenu()}}
+{\footnotesize\ttfamily \label{publictransportationschedulerapp_8cpp_a547646815560a705ed2ab461dbf46d04} 
+void show\+Main\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Displays the main menu with options to access different parts of the system. 
+
+\Hypertarget{publictransportationschedulerapp_8cpp_a7c6698549c47c6a1f9529c29bef42861}\index{publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}!showRouteManagementMenu@{showRouteManagementMenu}}
+\index{showRouteManagementMenu@{showRouteManagementMenu}!publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}}
+\doxysubsubsection{\texorpdfstring{showRouteManagementMenu()}{showRouteManagementMenu()}}
+{\footnotesize\ttfamily \label{publictransportationschedulerapp_8cpp_a7c6698549c47c6a1f9529c29bef42861} 
+void show\+Route\+Management\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Displays the route management menu with options to add, edit, view, delete, and search routes. 
+
+\Hypertarget{publictransportationschedulerapp_8cpp_a1eb3989fca560389bbf126f8561d228d}\index{publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}!showSchedulingMenu@{showSchedulingMenu}}
+\index{showSchedulingMenu@{showSchedulingMenu}!publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}}
+\doxysubsubsection{\texorpdfstring{showSchedulingMenu()}{showSchedulingMenu()}}
+{\footnotesize\ttfamily \label{publictransportationschedulerapp_8cpp_a1eb3989fca560389bbf126f8561d228d} 
+void show\+Scheduling\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Displays the scheduling menu with options to create, edit, view, and delete schedules. 
+
+\Hypertarget{publictransportationschedulerapp_8cpp_a17dc8dc8513b1d0a621937dc509c6bed}\index{publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}!showTicketSalesMenu@{showTicketSalesMenu}}
+\index{showTicketSalesMenu@{showTicketSalesMenu}!publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}}
+\doxysubsubsection{\texorpdfstring{showTicketSalesMenu()}{showTicketSalesMenu()}}
+{\footnotesize\ttfamily \label{publictransportationschedulerapp_8cpp_a17dc8dc8513b1d0a621937dc509c6bed} 
+void show\+Ticket\+Sales\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Displays the ticket sales menu with options to view, search, report, and manage B+ tree data. 
+
+\Hypertarget{publictransportationschedulerapp_8cpp_a558445f67c7e8b6a8e18f669d772d2fa}\index{publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}!showUserAuthenticationMenu@{showUserAuthenticationMenu}}
+\index{showUserAuthenticationMenu@{showUserAuthenticationMenu}!publictransportationschedulerapp.cpp@{publictransportationschedulerapp.cpp}}
+\doxysubsubsection{\texorpdfstring{showUserAuthenticationMenu()}{showUserAuthenticationMenu()}}
+{\footnotesize\ttfamily \label{publictransportationschedulerapp_8cpp_a558445f67c7e8b6a8e18f669d772d2fa} 
+void show\+User\+Authentication\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Displays the user authentication menu with options to login, register, or access as guest. 
+

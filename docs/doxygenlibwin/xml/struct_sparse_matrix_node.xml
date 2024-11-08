@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="struct_sparse_matrix_node" kind="struct" language="C++" prot="public">
+    <compoundname>SparseMatrixNode</compoundname>
+    <includes refid="publictransportationscheduler_8h" local="no">publictransportationscheduler.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_sparse_matrix_node_1a8ce2dd51e0bbd9c85a7321a8f27cd41a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SparseMatrixNode::row</definition>
+        <argsstring></argsstring>
+        <name>row</name>
+        <qualifiedname>SparseMatrixNode::row</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="75" column="7" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_sparse_matrix_node_1aa07ce50534b765e8bbba0ea5063acb67" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SparseMatrixNode::col</definition>
+        <argsstring></argsstring>
+        <name>col</name>
+        <qualifiedname>SparseMatrixNode::col</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="76" column="7" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_sparse_matrix_node_1a641c08437403335c5a32408ef2c7099e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SparseMatrixNode::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <qualifiedname>SparseMatrixNode::value</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="77" column="7" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_sparse_matrix_node_1a02643a9df51e133bbb4f8ddcc02fd04a" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_sparse_matrix_node" kindref="compound">SparseMatrixNode</ref> *</type>
+        <definition>struct SparseMatrixNode* SparseMatrixNode::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <qualifiedname>SparseMatrixNode::next</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="78" column="25" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>SparseMatrixNode</label>
+        <link refid="struct_sparse_matrix_node"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>+next</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="74" column="1" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="74" bodyend="79"/>
+    <listofallmembers>
+      <member refid="struct_sparse_matrix_node_1aa07ce50534b765e8bbba0ea5063acb67" prot="public" virt="non-virtual"><scope>SparseMatrixNode</scope><name>col</name></member>
+      <member refid="struct_sparse_matrix_node_1a02643a9df51e133bbb4f8ddcc02fd04a" prot="public" virt="non-virtual"><scope>SparseMatrixNode</scope><name>next</name></member>
+      <member refid="struct_sparse_matrix_node_1a8ce2dd51e0bbd9c85a7321a8f27cd41a" prot="public" virt="non-virtual"><scope>SparseMatrixNode</scope><name>row</name></member>
+      <member refid="struct_sparse_matrix_node_1a641c08437403335c5a32408ef2c7099e" prot="public" virt="non-virtual"><scope>SparseMatrixNode</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

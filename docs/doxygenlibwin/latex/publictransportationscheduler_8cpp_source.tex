@@ -1,0 +1,941 @@
+\doxysection{publictransportationscheduler.\+cpp}
+\hypertarget{publictransportationscheduler_8cpp_source}{}\label{publictransportationscheduler_8cpp_source}\index{src/publictransportationscheduler/src/publictransportationscheduler.cpp@{src/publictransportationscheduler/src/publictransportationscheduler.cpp}}
+\mbox{\hyperlink{publictransportationscheduler_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdint.h>}\ \ \textcolor{comment}{//\ for\ uintptr\_t}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{publictransportationschedulerapp_8h}{../../publictransportationschedulerapp/header/publictransportationschedulerapp.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Global\ Definitions}}
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465}{userCount}}\ =\ 0;}
+\DoxyCodeLine{00013\ \mbox{\hyperlink{struct_user}{User}}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a6c68ab7eeb51eacf52b7c4c9475fea02}{userDatabase}}[100];}
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a81c5a0e1739c09f5b2a1aa37d16f7361}{bandCount}}\ =\ 0;}
+\DoxyCodeLine{00015\ \mbox{\hyperlink{struct_band}{Band}}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a27218c54b53aecae57c119ea795dbd4d}{bandDatabase}}[100];}
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_adcd2ade0c3e74c1ed507ec2a725fb1bb}{scheduleCount}}\ =\ 0;}
+\DoxyCodeLine{00017\ \mbox{\hyperlink{struct_schedule_node}{ScheduleNode}}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a52f16cfef870351b90f1100acf77a397}{scheduleDatabase}}[100];}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a92feea896317e1b65a94d3765aa24ada}{salesCount}}\ =\ 0;}
+\DoxyCodeLine{00019\ \mbox{\hyperlink{struct_ticket_sale}{TicketSale}}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a57634d633a48dc77791e8b628f5e8a82}{salesDatabase}}[100];}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \mbox{\hyperlink{struct_vendor}{Vendor}}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a37db7cb306b292653d118189f7fce72c}{vendorDatabase}}[100];}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a727dbbf7ce1b688f51a51f447de307c5}{vendorCount}}\ =\ 0;}
+\DoxyCodeLine{00023\ \mbox{\hyperlink{struct_sponsor}{Sponsor}}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_af05551cee90a56be96756592122b4eed}{sponsorDatabase}}[100];}
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a13ad26b4873cc2da9e096e6de716a16f}{sponsorCount}}\ =\ 0;}
+\DoxyCodeLine{00025\ \mbox{\hyperlink{struct_double_node}{DoubleNode}}\ *\mbox{\hyperlink{publictransportationscheduler_8cpp_adc6ed461fd9b672e2e38183fb94cc486}{routeListHead}}\ =\ NULL;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ Hash\ Table\ Definitions}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ TABLE\_SIZE\ 100}}
+\DoxyCodeLine{00030\ \mbox{\hyperlink{struct_user}{User}}\ *\mbox{\hyperlink{publictransportationscheduler_8cpp_a13b224d16733ccb089ededfa6b883b42}{hashTable}}[\mbox{\hyperlink{publictransportationscheduler_8cpp_a032503e76d6f69bc67e99e909c8125da}{TABLE\_SIZE}}];}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_route_a611552188bde3ae872f85bc41eb1f4ce}{routeID}};}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{char}\ routeName[50];}
+\DoxyCodeLine{00035\ \}\ \mbox{\hyperlink{struct_route}{Route}};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00042\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_aae50276d118e9723f33a385fc7aeb899}{hashFunction}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *key)\ \{}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{int}\ hash\ =\ 0;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordflow}{while}\ (*key)\ hash\ +=\ *key++;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordflow}{return}\ hash\ \%\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a032503e76d6f69bc67e99e909c8125da}{TABLE\_SIZE}};}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a08256d4367e9d0de8e45fcbd61e04fd9}{initializeHashTable}}()\ \{}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a032503e76d6f69bc67e99e909c8125da}{TABLE\_SIZE}};\ ++i)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a13b224d16733ccb089ededfa6b883b42}{hashTable}}[i]\ =\ NULL;}
+\DoxyCodeLine{00056\ \ \ \}}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00064\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_aa4a39a100849a286c2c4c5e0e28d273e}{addUserToHashTable}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *username,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *password)\ \{}
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordtype}{int}\ index\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_aae50276d118e9723f33a385fc7aeb899}{hashFunction}}(username);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{publictransportationscheduler_8cpp_a13b224d16733ccb089ededfa6b883b42}{hashTable}}[index]\ ==\ NULL)\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a13b224d16733ccb089ededfa6b883b42}{hashTable}}[index]\ =\ (\mbox{\hyperlink{struct_user}{User}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_user}{User}}));}
+\DoxyCodeLine{00069\ \ \ \ \ strcpy(\mbox{\hyperlink{publictransportationscheduler_8cpp_a13b224d16733ccb089ededfa6b883b42}{hashTable}}[index]-\/>username,\ username);}
+\DoxyCodeLine{00070\ \ \ \ \ strcpy(\mbox{\hyperlink{publictransportationscheduler_8cpp_a13b224d16733ccb089ededfa6b883b42}{hashTable}}[index]-\/>password,\ password);}
+\DoxyCodeLine{00071\ \ \ \}}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00080\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ad3299a040b8eebab6b1275eae5821d8c}{verifyUserInHashTable}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *username,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *password)\ \{}
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordtype}{int}\ index\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_aae50276d118e9723f33a385fc7aeb899}{hashFunction}}(username);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{publictransportationscheduler_8cpp_a13b224d16733ccb089ededfa6b883b42}{hashTable}}[index]\ !=\ NULL\ \&\&\ strcmp(\mbox{\hyperlink{publictransportationscheduler_8cpp_a13b224d16733ccb089ededfa6b883b42}{hashTable}}[index]-\/>username,\ username)\ ==\ 0\ \&\&}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ strcmp(\mbox{\hyperlink{publictransportationscheduler_8cpp_a13b224d16733ccb089ededfa6b883b42}{hashTable}}[index]-\/>password,\ password)\ ==\ 0)\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00086\ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ Double\ Linked\ List\ Functions}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00100\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_aa0547cb40e88545452eeac4c997171d0}{addRoute}}(\textcolor{keywordtype}{int}\ routeID,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *routeName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *startPoint,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *endPoint)\ \{}
+\DoxyCodeLine{00101\ \ \ \mbox{\hyperlink{struct_double_node}{DoubleNode}}\ *newNode\ =\ (\mbox{\hyperlink{struct_double_node}{DoubleNode}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_double_node}{DoubleNode}}));}
+\DoxyCodeLine{00102\ \ \ newNode-\/>\mbox{\hyperlink{struct_double_node_ace4d84500ef6d0dc3dcf88f0d12e002c}{data}}\ =\ routeID;}
+\DoxyCodeLine{00103\ \ \ strcpy(newNode-\/>\mbox{\hyperlink{struct_double_node_a9cf812c3258fd9670f7bafd856ab9cf4}{routeName}},\ routeName);}
+\DoxyCodeLine{00104\ \ \ strcpy(newNode-\/>\mbox{\hyperlink{struct_double_node_aeb28d101b1871961c75fa86a0145320a}{startPoint}},\ startPoint);}
+\DoxyCodeLine{00105\ \ \ strcpy(newNode-\/>\mbox{\hyperlink{struct_double_node_a86d86f690c62d74749076efb1d0542e9}{endPoint}},\ endPoint);}
+\DoxyCodeLine{00106\ \ \ newNode-\/>\mbox{\hyperlink{struct_double_node_a5eb6461fb0145cc9247d8bf9d02e8089}{next}}\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_adc6ed461fd9b672e2e38183fb94cc486}{routeListHead}};}
+\DoxyCodeLine{00107\ \ \ newNode-\/>\mbox{\hyperlink{struct_double_node_abb9ca166e5960d5def98c7014a572397}{prev}}\ =\ NULL;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{publictransportationscheduler_8cpp_adc6ed461fd9b672e2e38183fb94cc486}{routeListHead}}\ !=\ NULL)\ \{}
+\DoxyCodeLine{00110\ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_adc6ed461fd9b672e2e38183fb94cc486}{routeListHead}}\ =\ newNode;}
+\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00120\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ab289a4be500c44391d41c26dc04573ec}{insertDoubleNode}}(\mbox{\hyperlink{struct_double_node}{DoubleNode}}\ **head,\ \textcolor{keywordtype}{int}\ data)\ \{}
+\DoxyCodeLine{00121\ \ \ \mbox{\hyperlink{struct_double_node}{DoubleNode}}\ *newNode\ =\ (\mbox{\hyperlink{struct_double_node}{DoubleNode}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_double_node}{DoubleNode}}));}
+\DoxyCodeLine{00122\ \ \ newNode-\/>\mbox{\hyperlink{struct_double_node_ace4d84500ef6d0dc3dcf88f0d12e002c}{data}}\ =\ data;}
+\DoxyCodeLine{00123\ \ \ newNode-\/>\mbox{\hyperlink{struct_double_node_a5eb6461fb0145cc9247d8bf9d02e8089}{next}}\ =\ *head;}
+\DoxyCodeLine{00124\ \ \ newNode-\/>\mbox{\hyperlink{struct_double_node_abb9ca166e5960d5def98c7014a572397}{prev}}\ =\ NULL;}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \textcolor{keywordflow}{if}\ (*head\ !=\ NULL)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ (*head)-\/>prev\ =\ newNode;}
+\DoxyCodeLine{00128\ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ *head\ =\ newNode;}
+\DoxyCodeLine{00131\ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00139\ \mbox{\hyperlink{struct_double_node}{DoubleNode}}\ *\mbox{\hyperlink{publictransportationscheduler_8cpp_af243334b827491156582ba5af5ca47d3}{findDoubleNode}}(\mbox{\hyperlink{struct_double_node}{DoubleNode}}\ *head,\ \textcolor{keywordtype}{int}\ data)\ \{}
+\DoxyCodeLine{00140\ \ \ \mbox{\hyperlink{struct_double_node}{DoubleNode}}\ *current\ =\ head;}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{struct_double_node_ace4d84500ef6d0dc3dcf88f0d12e002c}{data}}\ ==\ data)\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ current;}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \textcolor{keywordflow}{return}\ NULL;\ \ \textcolor{comment}{//\ Not\ found}}
+\DoxyCodeLine{00149\ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00157\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a15f4f5e94a4ac3685082b8448aaba05d}{deleteDoubleNode}}(\mbox{\hyperlink{struct_double_node}{DoubleNode}}\ **head,\ \textcolor{keywordtype}{int}\ data)\ \{}
+\DoxyCodeLine{00158\ \ \ \mbox{\hyperlink{struct_double_node}{DoubleNode}}\ *current\ =\ *head;}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{struct_double_node_ace4d84500ef6d0dc3dcf88f0d12e002c}{data}}\ ==\ data)\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{struct_double_node_abb9ca166e5960d5def98c7014a572397}{prev}})\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ current-\/>\mbox{\hyperlink{struct_double_node_abb9ca166e5960d5def98c7014a572397}{prev}}-\/>\mbox{\hyperlink{struct_double_node_a5eb6461fb0145cc9247d8bf9d02e8089}{next}}\ =\ current-\/>\mbox{\hyperlink{struct_double_node_a5eb6461fb0145cc9247d8bf9d02e8089}{next}};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ *head\ =\ current-\/>\mbox{\hyperlink{struct_double_node_a5eb6461fb0145cc9247d8bf9d02e8089}{next}};\ \ \textcolor{comment}{//\ Head\ node\ is\ deleted}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{struct_double_node_a5eb6461fb0145cc9247d8bf9d02e8089}{next}})\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ current-\/>\mbox{\hyperlink{struct_double_node_a5eb6461fb0145cc9247d8bf9d02e8089}{next}}-\/>\mbox{\hyperlink{struct_double_node_abb9ca166e5960d5def98c7014a572397}{prev}}\ =\ current-\/>\mbox{\hyperlink{struct_double_node_abb9ca166e5960d5def98c7014a572397}{prev}};}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ free(current);}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;\ \ \textcolor{comment}{//\ Deletion\ successful}}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_double_node_a5eb6461fb0145cc9247d8bf9d02e8089}{next}};}
+\DoxyCodeLine{00177\ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \textcolor{keywordflow}{return}\ 0;\ \ \textcolor{comment}{//\ Route\ not\ found}}
+\DoxyCodeLine{00180\ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00189\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_afad9893748f5ea3ff48a1e40abd9b6b0}{editRoute}}(\mbox{\hyperlink{struct_double_node}{DoubleNode}}\ *routeNode,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *routeName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *startPoint,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *endPoint)\ \{}
+\DoxyCodeLine{00190\ \ \ \textcolor{keywordflow}{if}\ (routeNode\ !=\ NULL)\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ strcpy(routeNode-\/>\mbox{\hyperlink{struct_double_node_a9cf812c3258fd9670f7bafd856ab9cf4}{routeName}},\ routeName);}
+\DoxyCodeLine{00192\ \ \ \ \ strcpy(routeNode-\/>\mbox{\hyperlink{struct_double_node_aeb28d101b1871961c75fa86a0145320a}{startPoint}},\ startPoint);}
+\DoxyCodeLine{00193\ \ \ \ \ strcpy(routeNode-\/>\mbox{\hyperlink{struct_double_node_a86d86f690c62d74749076efb1d0542e9}{endPoint}},\ endPoint);}
+\DoxyCodeLine{00194\ \ \ \}}
+\DoxyCodeLine{00195\ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00201\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a838a8eee88deae1b268325c2c1efdedf}{printDetailedRouteList}}(\mbox{\hyperlink{struct_double_node}{DoubleNode}}\ *head)\ \{}
+\DoxyCodeLine{00202\ \ \ \mbox{\hyperlink{struct_double_node}{DoubleNode}}\ *current\ =\ head;}
+\DoxyCodeLine{00203\ \ \ printf(\textcolor{stringliteral}{"{}Current\ Routes:\(\backslash\)n"{}});}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Route\ ID:\ \%d\ |\ Name:\ \%s\ |\ Start:\ \%s\ |\ End:\ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ current-\/>\mbox{\hyperlink{struct_double_node_ace4d84500ef6d0dc3dcf88f0d12e002c}{data}},\ current-\/>\mbox{\hyperlink{struct_double_node_a9cf812c3258fd9670f7bafd856ab9cf4}{routeName}},\ current-\/>\mbox{\hyperlink{struct_double_node_aeb28d101b1871961c75fa86a0145320a}{startPoint}},\ current-\/>\mbox{\hyperlink{struct_double_node_a86d86f690c62d74749076efb1d0542e9}{endPoint}});}
+\DoxyCodeLine{00208\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_double_node_a5eb6461fb0145cc9247d8bf9d02e8089}{next}};}
+\DoxyCodeLine{00209\ \ \ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \textcolor{keywordflow}{if}\ (head\ ==\ NULL)\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ printf(\textcolor{stringliteral}{"{}No\ routes\ available.\(\backslash\)n"{}});}
+\DoxyCodeLine{00213\ \ \ \}}
+\DoxyCodeLine{00214\ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00220\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ad72c75a43e50e885612cc420ba107b07}{printDoubleList}}(\mbox{\hyperlink{struct_double_node}{DoubleNode}}\ *head)\ \{}
+\DoxyCodeLine{00221\ \ \ \mbox{\hyperlink{struct_double_node}{DoubleNode}}\ *current\ =\ head;}
+\DoxyCodeLine{00222\ \ \ printf(\textcolor{stringliteral}{"{}Current\ Routes:\(\backslash\)n"{}});}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Route\ ID:\ \%d\(\backslash\)n"{}},\ current-\/>\mbox{\hyperlink{struct_double_node_ace4d84500ef6d0dc3dcf88f0d12e002c}{data}});}
+\DoxyCodeLine{00226\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_double_node_a5eb6461fb0145cc9247d8bf9d02e8089}{next}};}
+\DoxyCodeLine{00227\ \ \ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \textcolor{keywordflow}{if}\ (head\ ==\ NULL)\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ printf(\textcolor{stringliteral}{"{}No\ routes\ available.\(\backslash\)n"{}});}
+\DoxyCodeLine{00231\ \ \ \}}
+\DoxyCodeLine{00232\ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \textcolor{comment}{//\ XOR\ Linked\ List\ Functions}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00242\ \mbox{\hyperlink{struct_x_o_r_node}{XORNode}}\ *\mbox{\hyperlink{publictransportationscheduler_8cpp_a499c51677d90731938874f947161b61a}{XOR}}(\mbox{\hyperlink{struct_x_o_r_node}{XORNode}}\ *a,\ \mbox{\hyperlink{struct_x_o_r_node}{XORNode}}\ *b)\ \{}
+\DoxyCodeLine{00243\ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{struct_x_o_r_node}{XORNode}}\ *)((uintptr\_t)(a)\ \string^\ (uintptr\_t)(b));}
+\DoxyCodeLine{00244\ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00251\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a784daf7f98c539cd69746b8b3db1ecea}{insertXORNode}}(\mbox{\hyperlink{struct_x_o_r_node}{XORNode}}\ **head,\ \textcolor{keywordtype}{int}\ data)\ \{}
+\DoxyCodeLine{00252\ \ \ \mbox{\hyperlink{struct_x_o_r_node}{XORNode}}\ *newNode\ =\ (\mbox{\hyperlink{struct_x_o_r_node}{XORNode}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_x_o_r_node}{XORNode}}));}
+\DoxyCodeLine{00253\ \ \ newNode-\/>\mbox{\hyperlink{struct_x_o_r_node_ace398d63223a5a3d25bb625f4bf106e2}{data}}\ =\ data;}
+\DoxyCodeLine{00254\ \ \ newNode-\/>\mbox{\hyperlink{struct_x_o_r_node_a90966e7d31bcd0c59dddb1788db21389}{npx}}\ =\ *head;}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \textcolor{keywordflow}{if}\ (*head\ !=\ NULL)\ (*head)-\/>\mbox{\hyperlink{struct_x_o_r_node_a90966e7d31bcd0c59dddb1788db21389}{npx}}\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a499c51677d90731938874f947161b61a}{XOR}}(newNode,\ (*head)-\/>\mbox{\hyperlink{struct_x_o_r_node_a90966e7d31bcd0c59dddb1788db21389}{npx}});}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ *head\ =\ newNode;}
+\DoxyCodeLine{00259\ \}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \textcolor{comment}{//\ Sparse\ Matrix\ Functions}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00270\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a3dad1d43a47d9db88b8659a4306bb249}{insertSparseNode}}(\mbox{\hyperlink{struct_sparse_matrix_node}{SparseMatrixNode}}\ **head,\ \textcolor{keywordtype}{int}\ row,\ \textcolor{keywordtype}{int}\ col,\ \textcolor{keywordtype}{int}\ value)\ \{}
+\DoxyCodeLine{00271\ \ \ \mbox{\hyperlink{struct_sparse_matrix_node}{SparseMatrixNode}}\ *newNode\ =\ (\mbox{\hyperlink{struct_sparse_matrix_node}{SparseMatrixNode}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_sparse_matrix_node}{SparseMatrixNode}}));}
+\DoxyCodeLine{00272\ \ \ newNode-\/>\mbox{\hyperlink{struct_sparse_matrix_node_a8ce2dd51e0bbd9c85a7321a8f27cd41a}{row}}\ =\ row;}
+\DoxyCodeLine{00273\ \ \ newNode-\/>\mbox{\hyperlink{struct_sparse_matrix_node_aa07ce50534b765e8bbba0ea5063acb67}{col}}\ =\ col;}
+\DoxyCodeLine{00274\ \ \ newNode-\/>\mbox{\hyperlink{struct_sparse_matrix_node_a641c08437403335c5a32408ef2c7099e}{value}}\ =\ value;}
+\DoxyCodeLine{00275\ \ \ newNode-\/>\mbox{\hyperlink{struct_sparse_matrix_node_a02643a9df51e133bbb4f8ddcc02fd04a}{next}}\ =\ *head;}
+\DoxyCodeLine{00276\ \ \ *head\ =\ newNode;}
+\DoxyCodeLine{00277\ \}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \textcolor{comment}{//\ Stack\ and\ Queue\ Implementations}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \mbox{\hyperlink{struct_node}{Node}}\ *\mbox{\hyperlink{publictransportationscheduler_8cpp_ac232cfd15d91df8dea8435d3522824ca}{stack}}\ =\ NULL;}
+\DoxyCodeLine{00282\ \mbox{\hyperlink{struct_node}{Node}}\ *\mbox{\hyperlink{publictransportationscheduler_8cpp_ab4131c72082d15b4a70c831b67b715ec}{queueFront}}\ =\ NULL,\ *\mbox{\hyperlink{publictransportationscheduler_8cpp_a62ee68cd3e3392b4bc821385889bede4}{queueRear}}\ =\ NULL;}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00288\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a9235f768e511383f117f41ab92d601f6}{push}}(\textcolor{keywordtype}{int}\ data)\ \{}
+\DoxyCodeLine{00289\ \ \ \mbox{\hyperlink{struct_node}{Node}}\ *newNode\ =\ (\mbox{\hyperlink{struct_node}{Node}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_node}{Node}}));}
+\DoxyCodeLine{00290\ \ \ newNode-\/>\mbox{\hyperlink{struct_node_a87c003c9f600e3fc58e6e90835f0b605}{data}}\ =\ data;}
+\DoxyCodeLine{00291\ \ \ newNode-\/>\mbox{\hyperlink{struct_node_af67b110ca1a258b793bf69d306929b22}{next}}\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ac232cfd15d91df8dea8435d3522824ca}{stack}};}
+\DoxyCodeLine{00292\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_ac232cfd15d91df8dea8435d3522824ca}{stack}}\ =\ newNode;}
+\DoxyCodeLine{00293\ \}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00299\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a163177f1a0b7d847bc3241809dafc097}{pop}}()\ \{}
+\DoxyCodeLine{00300\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{publictransportationscheduler_8cpp_ac232cfd15d91df8dea8435d3522824ca}{stack}})\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \textcolor{keywordtype}{int}\ data\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ac232cfd15d91df8dea8435d3522824ca}{stack}}-\/>\mbox{\hyperlink{struct_node_a87c003c9f600e3fc58e6e90835f0b605}{data}};}
+\DoxyCodeLine{00303\ \ \ \mbox{\hyperlink{struct_node}{Node}}\ *temp\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ac232cfd15d91df8dea8435d3522824ca}{stack}};}
+\DoxyCodeLine{00304\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_ac232cfd15d91df8dea8435d3522824ca}{stack}}\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ac232cfd15d91df8dea8435d3522824ca}{stack}}-\/>\mbox{\hyperlink{struct_node_af67b110ca1a258b793bf69d306929b22}{next}};}
+\DoxyCodeLine{00305\ \ \ free(temp);}
+\DoxyCodeLine{00306\ \ \ \textcolor{keywordflow}{return}\ data;}
+\DoxyCodeLine{00307\ \}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00313\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a011d1d2e69488147446e6abf4df9acb4}{enqueue}}(\textcolor{keywordtype}{int}\ data)\ \{}
+\DoxyCodeLine{00314\ \ \ \mbox{\hyperlink{struct_node}{Node}}\ *newNode\ =\ (\mbox{\hyperlink{struct_node}{Node}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_node}{Node}}));}
+\DoxyCodeLine{00315\ \ \ newNode-\/>\mbox{\hyperlink{struct_node_a87c003c9f600e3fc58e6e90835f0b605}{data}}\ =\ data;}
+\DoxyCodeLine{00316\ \ \ newNode-\/>\mbox{\hyperlink{struct_node_af67b110ca1a258b793bf69d306929b22}{next}}\ =\ NULL;}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{publictransportationscheduler_8cpp_a62ee68cd3e3392b4bc821385889bede4}{queueRear}})\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a62ee68cd3e3392b4bc821385889bede4}{queueRear}}-\/>\mbox{\hyperlink{struct_node_af67b110ca1a258b793bf69d306929b22}{next}}\ =\ newNode;}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a62ee68cd3e3392b4bc821385889bede4}{queueRear}}\ =\ newNode;}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{publictransportationscheduler_8cpp_ab4131c72082d15b4a70c831b67b715ec}{queueFront}})\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ab4131c72082d15b4a70c831b67b715ec}{queueFront}}\ =\ newNode;}
+\DoxyCodeLine{00323\ \}}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00329\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ad6e0da35e82ee741ee4e9779fdf9e1c9}{dequeue}}()\ \{}
+\DoxyCodeLine{00330\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{publictransportationscheduler_8cpp_ab4131c72082d15b4a70c831b67b715ec}{queueFront}})\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \ \ \textcolor{keywordtype}{int}\ data\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ab4131c72082d15b4a70c831b67b715ec}{queueFront}}-\/>\mbox{\hyperlink{struct_node_a87c003c9f600e3fc58e6e90835f0b605}{data}};}
+\DoxyCodeLine{00333\ \ \ \mbox{\hyperlink{struct_node}{Node}}\ *temp\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ab4131c72082d15b4a70c831b67b715ec}{queueFront}};}
+\DoxyCodeLine{00334\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_ab4131c72082d15b4a70c831b67b715ec}{queueFront}}\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ab4131c72082d15b4a70c831b67b715ec}{queueFront}}-\/>\mbox{\hyperlink{struct_node_af67b110ca1a258b793bf69d306929b22}{next}};}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{publictransportationscheduler_8cpp_ab4131c72082d15b4a70c831b67b715ec}{queueFront}})\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a62ee68cd3e3392b4bc821385889bede4}{queueRear}}\ =\ NULL;}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ free(temp);}
+\DoxyCodeLine{00339\ \ \ \textcolor{keywordflow}{return}\ data;}
+\DoxyCodeLine{00340\ \}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \textcolor{comment}{//\ Priority\ Queue\ (Heap)\ Implementation}}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[100];}
+\DoxyCodeLine{00345\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a50a655d085f2d580459b7e05b2774217}{heapSize}}\ =\ 0;}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00351\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a3f05f3efe9a5a4aa7daaee5fc4d2ebce}{insertHeap}}(\textcolor{keywordtype}{int}\ data)\ \{}
+\DoxyCodeLine{00352\ \ \ \textcolor{keywordtype}{int}\ i\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a50a655d085f2d580459b7e05b2774217}{heapSize}}++;}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \textcolor{keywordflow}{while}\ (i\ \&\&\ data\ <\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[(i\ -\/\ 1)\ /\ 2])\ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[i]\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[(i\ -\/\ 1)\ /\ 2];}
+\DoxyCodeLine{00356\ \ \ \ \ i\ =\ (i\ -\/\ 1)\ /\ 2;}
+\DoxyCodeLine{00357\ \ \ \}}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[i]\ =\ data;}
+\DoxyCodeLine{00360\ \}}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00366\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a8641221dc62558605a4b4921ec89a3e6}{extractMin}}()\ \{}
+\DoxyCodeLine{00367\ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{publictransportationscheduler_8cpp_a50a655d085f2d580459b7e05b2774217}{heapSize}})\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8h_a7e939d63c30c0a3095e349d7a88240ab}{root}}\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[0];}
+\DoxyCodeLine{00370\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[0]\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[-\/-\/\mbox{\hyperlink{publictransportationscheduler_8cpp_a50a655d085f2d580459b7e05b2774217}{heapSize}}];}
+\DoxyCodeLine{00371\ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \textcolor{keywordflow}{while}\ (2\ *\ i\ +\ 1\ <\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a50a655d085f2d580459b7e05b2774217}{heapSize}})\ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keywordtype}{int}\ left\ =\ 2\ *\ i\ +\ 1,\ right\ =\ 2\ *\ i\ +\ 2;}
+\DoxyCodeLine{00375\ \ \ \ \ \textcolor{keywordtype}{int}\ smallest\ =\ (right\ <\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a50a655d085f2d580459b7e05b2774217}{heapSize}}\ \&\&\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[right]\ <\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[left])\ ?\ right\ :\ left;}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[i]\ <=\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[smallest])\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \ \ \textcolor{keywordtype}{int}\ temp\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[i];}
+\DoxyCodeLine{00380\ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[i]\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[smallest];}
+\DoxyCodeLine{00381\ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a11dd6f6b2588b3ddc417348e6a7f0f04}{heap}}[smallest]\ =\ temp;}
+\DoxyCodeLine{00382\ \ \ \ \ i\ =\ smallest;}
+\DoxyCodeLine{00383\ \ \ \}}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{publictransportationscheduler_8h_a7e939d63c30c0a3095e349d7a88240ab}{root}};}
+\DoxyCodeLine{00386\ \}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \textcolor{comment}{//\ BFS\ and\ DFS\ Functions}}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00394\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a1f9e130c21127e918f9cd652c28960af}{bfs}}(\textcolor{keywordtype}{int}\ startNode)\ \{}
+\DoxyCodeLine{00395\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a011d1d2e69488147446e6abf4df9acb4}{enqueue}}(startNode);}
+\DoxyCodeLine{00396\ \ \ printf(\textcolor{stringliteral}{"{}BFS\ starting\ from\ node\ \%d:\(\backslash\)n"{}},\ startNode);}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{publictransportationscheduler_8cpp_ab4131c72082d15b4a70c831b67b715ec}{queueFront}})\ \{}
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keywordtype}{int}\ currentNode\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ad6e0da35e82ee741ee4e9779fdf9e1c9}{dequeue}}();}
+\DoxyCodeLine{00400\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%d\ "{}},\ currentNode);}
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{comment}{//\ Komşu\ düğümleri\ kuyruk\ yapısına\ ekleyebilirsiniz}}
+\DoxyCodeLine{00402\ \ \ \}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00405\ \}}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00411\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a0d63cfae7795f2aeb269ea111bc0c997}{dfs}}(\textcolor{keywordtype}{int}\ startNode)\ \{}
+\DoxyCodeLine{00412\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a9235f768e511383f117f41ab92d601f6}{push}}(startNode);}
+\DoxyCodeLine{00413\ \ \ printf(\textcolor{stringliteral}{"{}DFS\ starting\ from\ node\ \%d:\(\backslash\)n"{}},\ startNode);}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{publictransportationscheduler_8cpp_ac232cfd15d91df8dea8435d3522824ca}{stack}})\ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keywordtype}{int}\ currentNode\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a163177f1a0b7d847bc3241809dafc097}{pop}}();}
+\DoxyCodeLine{00417\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%d\ "{}},\ currentNode);}
+\DoxyCodeLine{00418\ \ \ \ \ \textcolor{comment}{//\ Komşu\ düğümleri\ yığına\ ekleyebilirsiniz}}
+\DoxyCodeLine{00419\ \ \ \}}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00422\ \}}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \textcolor{comment}{//\ Huffman\ Coding\ Functions}}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00430\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a1501a9df250a3e79e2ec3498c7a65499}{compressDataHuffman}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *data)\ \{}
+\DoxyCodeLine{00431\ \ \ printf(\textcolor{stringliteral}{"{}Data\ compressed\ using\ Huffman\ coding.\(\backslash\)n"{}});}
+\DoxyCodeLine{00432\ \ \ \textcolor{comment}{//\ Huffman\ encoding\ algorithm\ implementation\ can\ be\ added\ here.}}
+\DoxyCodeLine{00433\ \}}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00438\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a32369377e1d95d2063b21cde84df5866}{decompressDataHuffman}}()\ \{}
+\DoxyCodeLine{00439\ \ \ printf(\textcolor{stringliteral}{"{}Data\ decompressed\ using\ Huffman\ coding.\(\backslash\)n"{}});}
+\DoxyCodeLine{00440\ \ \ \textcolor{comment}{//\ Huffman\ decoding\ algorithm\ implementation\ can\ be\ added\ here.}}
+\DoxyCodeLine{00441\ \}}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \textcolor{comment}{//\ KMP\ Algorithm\ for\ text\ search}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00450\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_acb3232bc0e9ef9e48324e06e627676c0}{KMPSearch}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *pattern,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *text)\ \{}
+\DoxyCodeLine{00451\ \ \ \textcolor{keywordtype}{int}\ m\ =\ strlen(pattern);}
+\DoxyCodeLine{00452\ \ \ \textcolor{keywordtype}{int}\ n\ =\ strlen(text);}
+\DoxyCodeLine{00453\ \ \ \textcolor{keywordtype}{int}\ *lps\ =\ (\textcolor{keywordtype}{int}\ *)malloc(m\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));\ \textcolor{comment}{//\ Allocate\ memory\ for\ LPS\ array}}
+\DoxyCodeLine{00454\ \ \ \textcolor{keywordtype}{int}\ j\ =\ 0;}
+\DoxyCodeLine{00455\ \ \ \textcolor{comment}{//\ Compute\ LPS\ array\ for\ the\ pattern}}
+\DoxyCodeLine{00456\ \ \ lps[0]\ =\ 0;}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ m;)\ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keywordflow}{if}\ (pattern[i]\ ==\ pattern[j])\ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ lps[i++]\ =\ ++j;}
+\DoxyCodeLine{00461\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (j)\ \{}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ j\ =\ lps[j\ -\/\ 1];}
+\DoxyCodeLine{00463\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ lps[i++]\ =\ 0;}
+\DoxyCodeLine{00465\ \ \ \ \ \}}
+\DoxyCodeLine{00466\ \ \ \}}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \ \ \textcolor{comment}{//\ Search\ for\ the\ pattern\ in\ the\ text}}
+\DoxyCodeLine{00469\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;)\ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \textcolor{keywordflow}{if}\ (pattern[j]\ ==\ text[i])\ \{}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ ++j;}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ ++i;}
+\DoxyCodeLine{00473\ \ \ \ \ \}}
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00475\ \ \ \ \ \textcolor{keywordflow}{if}\ (j\ ==\ m)\ \{}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Pattern\ found\ at\ index\ \%d\(\backslash\)n"{}},\ i\ -\/\ j);}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ j\ =\ lps[j\ -\/\ 1];}
+\DoxyCodeLine{00478\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (i\ <\ n\ \&\&\ pattern[j]\ !=\ text[i])\ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ j\ =\ j\ ?\ lps[j\ -\/\ 1]\ :\ 0;}
+\DoxyCodeLine{00480\ \ \ \ \ \}}
+\DoxyCodeLine{00481\ \ \ \}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \ \ free(lps);\ \ \textcolor{comment}{//\ Free\ the\ dynamically\ allocated\ memory}}
+\DoxyCodeLine{00484\ \}}
+\DoxyCodeLine{00485\ }
+\DoxyCodeLine{00486\ \textcolor{comment}{//\ User\ Authentication\ Functions}}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00491\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a7464a341010bc5e28caeda8fbbc74def}{loadUserDatabase}}()\ \{}
+\DoxyCodeLine{00492\ \ \ FILE\ *file;}
+\DoxyCodeLine{00493\ \ \ fopen\_s(\&file,\ \textcolor{stringliteral}{"{}userDatabase.bin"{}},\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00495\ \ \ \textcolor{keywordflow}{if}\ (file)\ \{}
+\DoxyCodeLine{00496\ \ \ \ \ fread(\&\mbox{\hyperlink{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465}{userCount}},\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}),\ 1,\ file);}
+\DoxyCodeLine{00497\ \ \ \ \ fread(\mbox{\hyperlink{publictransportationscheduler_8cpp_a6c68ab7eeb51eacf52b7c4c9475fea02}{userDatabase}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_user}{User}}),\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465}{userCount}},\ file);}
+\DoxyCodeLine{00498\ \ \ \ \ fclose(file);}
+\DoxyCodeLine{00499\ \ \ \}}
+\DoxyCodeLine{00500\ \}}
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00505\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a9c04dff0438032d46ae97d3c76ef88a4}{saveUserDatabase}}()\ \{}
+\DoxyCodeLine{00506\ \ \ FILE\ *file;}
+\DoxyCodeLine{00507\ \ \ fopen\_s(\&file,\ \textcolor{stringliteral}{"{}userDatabase.bin"{}},\ \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{00508\ \ \ fwrite(\&\mbox{\hyperlink{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465}{userCount}},\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}),\ 1,\ file);}
+\DoxyCodeLine{00509\ \ \ fwrite(\mbox{\hyperlink{publictransportationscheduler_8cpp_a6c68ab7eeb51eacf52b7c4c9475fea02}{userDatabase}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_user}{User}}),\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465}{userCount}},\ file);}
+\DoxyCodeLine{00510\ \ \ fclose(file);}
+\DoxyCodeLine{00511\ \}}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00519\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a378330dd86baa7420fe4ed0147845c55}{login}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *username,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *password)\ \{}
+\DoxyCodeLine{00520\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a7464a341010bc5e28caeda8fbbc74def}{loadUserDatabase}}();}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465}{userCount}};\ i++)\ \{}
+\DoxyCodeLine{00523\ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(\mbox{\hyperlink{publictransportationscheduler_8cpp_a6c68ab7eeb51eacf52b7c4c9475fea02}{userDatabase}}[i].username,\ username)\ ==\ 0\ \&\&}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ strcmp(\mbox{\hyperlink{publictransportationscheduler_8cpp_a6c68ab7eeb51eacf52b7c4c9475fea02}{userDatabase}}[i].password,\ password)\ ==\ 0)\ \{}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Login\ successful.\ Redirecting\ to\ main\ menu...\(\backslash\)n"{}});}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00527\ \ \ \ \ \}}
+\DoxyCodeLine{00528\ \ \ \}}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ username\ or\ password.\(\backslash\)n"{}});}
+\DoxyCodeLine{00531\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00532\ \}}
+\DoxyCodeLine{00533\ }
+\DoxyCodeLine{00539\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a2954b6e11695b7a4b9c9fc2df4ecd21d}{registerUser}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *username,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *password)\ \{}
+\DoxyCodeLine{00540\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a7464a341010bc5e28caeda8fbbc74def}{loadUserDatabase}}();}
+\DoxyCodeLine{00541\ }
+\DoxyCodeLine{00542\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465}{userCount}};\ i++)\ \{}
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(\mbox{\hyperlink{publictransportationscheduler_8cpp_a6c68ab7eeb51eacf52b7c4c9475fea02}{userDatabase}}[i].username,\ username)\ ==\ 0)\ \{}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Username\ already\ exists.\(\backslash\)n"{}});}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00546\ \ \ \ \ \}}
+\DoxyCodeLine{00547\ \ \ \}}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \ \ strcpy\_s(\mbox{\hyperlink{publictransportationscheduler_8cpp_a6c68ab7eeb51eacf52b7c4c9475fea02}{userDatabase}}[\mbox{\hyperlink{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465}{userCount}}].username,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{publictransportationscheduler_8cpp_a6c68ab7eeb51eacf52b7c4c9475fea02}{userDatabase}}[\mbox{\hyperlink{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465}{userCount}}].username),\ username);}
+\DoxyCodeLine{00550\ \ \ strcpy\_s(\mbox{\hyperlink{publictransportationscheduler_8cpp_a6c68ab7eeb51eacf52b7c4c9475fea02}{userDatabase}}[\mbox{\hyperlink{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465}{userCount}}].password,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{publictransportationscheduler_8cpp_a6c68ab7eeb51eacf52b7c4c9475fea02}{userDatabase}}[\mbox{\hyperlink{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465}{userCount}}].password),\ password);}
+\DoxyCodeLine{00551\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a23424c8ba4bf5c99fbb09f4d86787465}{userCount}}++;}
+\DoxyCodeLine{00552\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a9c04dff0438032d46ae97d3c76ef88a4}{saveUserDatabase}}();}
+\DoxyCodeLine{00553\ \ \ printf(\textcolor{stringliteral}{"{}User\ registered\ successfully.\(\backslash\)n"{}});}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ \ \ \textcolor{comment}{//\ Automatically\ log\ in\ after\ successful\ registration}}
+\DoxyCodeLine{00556\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{publictransportationscheduler_8cpp_a378330dd86baa7420fe4ed0147845c55}{login}}(username,\ password))\ \{}
+\DoxyCodeLine{00557\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Login\ successful.\ Redirecting\ to\ main\ menu...\(\backslash\)n"{}});}
+\DoxyCodeLine{00558\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00559\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Login\ failed\ after\ registration.\(\backslash\)n"{}},\mbox{\hyperlink{publictransportationscheduler_8cpp_a378330dd86baa7420fe4ed0147845c55}{login}});}
+\DoxyCodeLine{00560\ \ \ \}}
+\DoxyCodeLine{00561\ \}}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00563\ \textcolor{comment}{//\ Band\ and\ Artist\ Management\ Functions}}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00568\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_afcfbe032666cbafc1c70209d8119d996}{loadBandDatabase}}()\ \{}
+\DoxyCodeLine{00569\ \ \ FILE\ *file;}
+\DoxyCodeLine{00570\ \ \ fopen\_s(\&file,\ \textcolor{stringliteral}{"{}bandDatabase.bin"{}},\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00572\ \ \ \textcolor{keywordflow}{if}\ (file)\ \{}
+\DoxyCodeLine{00573\ \ \ \ \ fread(\&\mbox{\hyperlink{publictransportationscheduler_8cpp_a81c5a0e1739c09f5b2a1aa37d16f7361}{bandCount}},\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}),\ 1,\ file);}
+\DoxyCodeLine{00574\ \ \ \ \ fread(\mbox{\hyperlink{publictransportationscheduler_8cpp_a27218c54b53aecae57c119ea795dbd4d}{bandDatabase}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_band}{Band}}),\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a81c5a0e1739c09f5b2a1aa37d16f7361}{bandCount}},\ file);}
+\DoxyCodeLine{00575\ \ \ \ \ fclose(file);}
+\DoxyCodeLine{00576\ \ \ \}}
+\DoxyCodeLine{00577\ \}}
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00582\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a92fd4511b9f726d102b69f09c9ee2e2a}{saveBandDatabase}}()\ \{}
+\DoxyCodeLine{00583\ \ \ FILE\ *file;}
+\DoxyCodeLine{00584\ \ \ fopen\_s(\&file,\ \textcolor{stringliteral}{"{}bandDatabase.bin"{}},\ \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{00585\ \ \ fwrite(\&\mbox{\hyperlink{publictransportationscheduler_8cpp_a81c5a0e1739c09f5b2a1aa37d16f7361}{bandCount}},\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}),\ 1,\ file);}
+\DoxyCodeLine{00586\ \ \ fwrite(\mbox{\hyperlink{publictransportationscheduler_8cpp_a27218c54b53aecae57c119ea795dbd4d}{bandDatabase}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_band}{Band}}),\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a81c5a0e1739c09f5b2a1aa37d16f7361}{bandCount}},\ file);}
+\DoxyCodeLine{00587\ \ \ fclose(file);}
+\DoxyCodeLine{00588\ \}}
+\DoxyCodeLine{00589\ }
+\DoxyCodeLine{00594\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a6358fabef3ecd2e6c604fb9c839b7f84}{addBand}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name)\ \{}
+\DoxyCodeLine{00595\ \ \ \textcolor{keywordflow}{if}\ (name\ ==\ NULL\ ||\ strlen(name)\ ==\ 0)\ \{}
+\DoxyCodeLine{00596\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Band\ name\ cannot\ be\ empty.\(\backslash\)n"{}});}
+\DoxyCodeLine{00597\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00598\ \ \ \}}
+\DoxyCodeLine{00599\ }
+\DoxyCodeLine{00600\ \ \ strcpy\_s(\mbox{\hyperlink{publictransportationscheduler_8cpp_a27218c54b53aecae57c119ea795dbd4d}{bandDatabase}}[\mbox{\hyperlink{publictransportationscheduler_8cpp_a81c5a0e1739c09f5b2a1aa37d16f7361}{bandCount}}].name,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{publictransportationscheduler_8cpp_a27218c54b53aecae57c119ea795dbd4d}{bandDatabase}}[\mbox{\hyperlink{publictransportationscheduler_8cpp_a81c5a0e1739c09f5b2a1aa37d16f7361}{bandCount}}].name),\ name);}
+\DoxyCodeLine{00601\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a81c5a0e1739c09f5b2a1aa37d16f7361}{bandCount}}++;}
+\DoxyCodeLine{00602\ \ \ printf(\textcolor{stringliteral}{"{}Band/Artist\ \%s\ added.\(\backslash\)n"{}},\ name);}
+\DoxyCodeLine{00603\ \}}
+\DoxyCodeLine{00604\ }
+\DoxyCodeLine{00610\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a60b614018039aa27af5ec0a05f8ff322}{editBand}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *oldName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *newName)\ \{}
+\DoxyCodeLine{00611\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a81c5a0e1739c09f5b2a1aa37d16f7361}{bandCount}};\ i++)\ \{}
+\DoxyCodeLine{00612\ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(\mbox{\hyperlink{publictransportationscheduler_8cpp_a27218c54b53aecae57c119ea795dbd4d}{bandDatabase}}[i].name,\ oldName)\ ==\ 0)\ \{}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \textcolor{comment}{//\ Güncellenen\ adı\ bandDatabase\ dizisine\ kaydet}}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ strcpy(\mbox{\hyperlink{publictransportationscheduler_8cpp_a27218c54b53aecae57c119ea795dbd4d}{bandDatabase}}[i].name,\ newName);}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Band/Artist\ \%s\ updated\ to\ \%s.\(\backslash\)n"{}},\ oldName,\ newName);}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00617\ \ \ \ \ \}}
+\DoxyCodeLine{00618\ \ \ \}}
+\DoxyCodeLine{00619\ }
+\DoxyCodeLine{00620\ \ \ printf(\textcolor{stringliteral}{"{}Band/Artist\ \%s\ not\ found.\(\backslash\)n"{}},\ oldName);}
+\DoxyCodeLine{00621\ \}}
+\DoxyCodeLine{00622\ }
+\DoxyCodeLine{00626\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_aced0e53ac2e52b903d66fdd4549329a9}{viewBands}}()\ \{}
+\DoxyCodeLine{00627\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_afcfbe032666cbafc1c70209d8119d996}{loadBandDatabase}}();}
+\DoxyCodeLine{00628\ \ \ printf(\textcolor{stringliteral}{"{}Band\ and\ Artist\ List:\(\backslash\)n"{}});}
+\DoxyCodeLine{00629\ }
+\DoxyCodeLine{00630\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a81c5a0e1739c09f5b2a1aa37d16f7361}{bandCount}};\ i++)\ \{}
+\DoxyCodeLine{00631\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a27218c54b53aecae57c119ea795dbd4d}{bandDatabase}}[i].name);}
+\DoxyCodeLine{00632\ \ \ \}}
+\DoxyCodeLine{00633\ \}}
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00635\ }
+\DoxyCodeLine{00636\ \textcolor{comment}{//\ Schedule\ Management\ Functions}}
+\DoxyCodeLine{00637\ }
+\DoxyCodeLine{00644\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a3ec3918c87d436416f26edbb978bb9f0}{editSchedule}}(\textcolor{keywordtype}{int}\ scheduleID,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *newBandName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *newDate)\ \{}
+\DoxyCodeLine{00645\ \ \ \mbox{\hyperlink{struct_schedule_node}{ScheduleNode}}\ *current\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_aeee5407776b4bdb0bf6db5bcd7387737}{scheduleHead}};}
+\DoxyCodeLine{00646\ }
+\DoxyCodeLine{00647\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{00648\ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{struct_schedule_node_a6e532fc45a4a05e79ea39ba6a370f43e}{scheduleID}}\ ==\ scheduleID)\ \{}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ strcpy(current-\/>\mbox{\hyperlink{struct_schedule_node_ae1c0a80f6177207a72d7752d4dd6f111}{bandName}},\ newBandName);}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ strcpy(current-\/>\mbox{\hyperlink{struct_schedule_node_ab34965d2efa8e734256641f4730bf598}{date}},\ newDate);}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Schedule\ \%d\ updated\ to\ band\ \%s\ on\ \%s.\(\backslash\)n"{}},\ scheduleID,\ newBandName,\ newDate);}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00653\ \ \ \ \ \}}
+\DoxyCodeLine{00654\ }
+\DoxyCodeLine{00655\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_schedule_node_aad56d1759a9eab88b3b3973851f59259}{next}};}
+\DoxyCodeLine{00656\ \ \ \}}
+\DoxyCodeLine{00657\ }
+\DoxyCodeLine{00658\ \ \ printf(\textcolor{stringliteral}{"{}Schedule\ ID\ \%d\ not\ found.\(\backslash\)n"{}},\ scheduleID);}
+\DoxyCodeLine{00659\ \}}
+\DoxyCodeLine{00660\ }
+\DoxyCodeLine{00664\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a54a7f7463b7df104dc158361dd0aef52}{viewSchedules}}()\ \{}
+\DoxyCodeLine{00665\ \ \ \mbox{\hyperlink{struct_schedule_node}{ScheduleNode}}\ *current\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_aeee5407776b4bdb0bf6db5bcd7387737}{scheduleHead}};}
+\DoxyCodeLine{00666\ \ \ printf(\textcolor{stringliteral}{"{}Festival\ Lineup:\(\backslash\)n"{}});}
+\DoxyCodeLine{00667\ }
+\DoxyCodeLine{00668\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{00669\ \ \ \ \ printf(\textcolor{stringliteral}{"{}ID:\ \%d\ |\ Band:\ \%s\ |\ Date:\ \%s\(\backslash\)n"{}},\ current-\/>\mbox{\hyperlink{struct_schedule_node_a6e532fc45a4a05e79ea39ba6a370f43e}{scheduleID}},\ current-\/>\mbox{\hyperlink{struct_schedule_node_ae1c0a80f6177207a72d7752d4dd6f111}{bandName}},\ current-\/>\mbox{\hyperlink{struct_schedule_node_ab34965d2efa8e734256641f4730bf598}{date}});}
+\DoxyCodeLine{00670\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_schedule_node_aad56d1759a9eab88b3b3973851f59259}{next}};}
+\DoxyCodeLine{00671\ \ \ \}}
+\DoxyCodeLine{00672\ }
+\DoxyCodeLine{00673\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{publictransportationscheduler_8h_aeee5407776b4bdb0bf6db5bcd7387737}{scheduleHead}}\ ==\ NULL)\ \{}
+\DoxyCodeLine{00674\ \ \ \ \ printf(\textcolor{stringliteral}{"{}No\ schedules\ available.\(\backslash\)n"{}});}
+\DoxyCodeLine{00675\ \ \ \}}
+\DoxyCodeLine{00676\ \}}
+\DoxyCodeLine{00677\ }
+\DoxyCodeLine{00683\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_abfe2afb819030beec59b91b1483a2ac9}{deleteSchedule}}(\textcolor{keywordtype}{int}\ scheduleID)\ \{}
+\DoxyCodeLine{00684\ \ \ \mbox{\hyperlink{struct_schedule_node}{ScheduleNode}}\ *current\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_aeee5407776b4bdb0bf6db5bcd7387737}{scheduleHead}};}
+\DoxyCodeLine{00685\ }
+\DoxyCodeLine{00686\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{00687\ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{struct_schedule_node_a6e532fc45a4a05e79ea39ba6a370f43e}{scheduleID}}\ ==\ scheduleID)\ \{}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{struct_schedule_node_af15a1f81bcfea7395104937d412bc4e6}{prev}})\ \{}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ current-\/>\mbox{\hyperlink{struct_schedule_node_af15a1f81bcfea7395104937d412bc4e6}{prev}}-\/>\mbox{\hyperlink{struct_schedule_node_aad56d1759a9eab88b3b3973851f59259}{next}}\ =\ current-\/>\mbox{\hyperlink{struct_schedule_node_aad56d1759a9eab88b3b3973851f59259}{next}};}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8h_aeee5407776b4bdb0bf6db5bcd7387737}{scheduleHead}}\ =\ current-\/>\mbox{\hyperlink{struct_schedule_node_aad56d1759a9eab88b3b3973851f59259}{next}};\ \textcolor{comment}{//\ Deleting\ the\ head\ node}}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00693\ }
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{struct_schedule_node_aad56d1759a9eab88b3b3973851f59259}{next}})\ \{}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ current-\/>\mbox{\hyperlink{struct_schedule_node_aad56d1759a9eab88b3b3973851f59259}{next}}-\/>\mbox{\hyperlink{struct_schedule_node_af15a1f81bcfea7395104937d412bc4e6}{prev}}\ =\ current-\/>\mbox{\hyperlink{struct_schedule_node_af15a1f81bcfea7395104937d412bc4e6}{prev}};}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00697\ }
+\DoxyCodeLine{00698\ \ \ \ \ \ \ free(current);}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Schedule\ with\ ID\ \%d\ deleted.\(\backslash\)n"{}},\ scheduleID);}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00701\ \ \ \ \ \}}
+\DoxyCodeLine{00702\ }
+\DoxyCodeLine{00703\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_schedule_node_aad56d1759a9eab88b3b3973851f59259}{next}};}
+\DoxyCodeLine{00704\ \ \ \}}
+\DoxyCodeLine{00705\ }
+\DoxyCodeLine{00706\ \ \ printf(\textcolor{stringliteral}{"{}Schedule\ ID\ \%d\ not\ found.\(\backslash\)n"{}},\ scheduleID);}
+\DoxyCodeLine{00707\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00708\ \}}
+\DoxyCodeLine{00709\ }
+\DoxyCodeLine{00713\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a6875d46c583ce6dfdc9dc0da41efa85b}{loadScheduleDatabase}}()\ \{}
+\DoxyCodeLine{00714\ \ \ FILE\ *file;}
+\DoxyCodeLine{00715\ \ \ fopen\_s(\&file,\ \textcolor{stringliteral}{"{}scheduleDatabase.bin"{}},\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{00716\ }
+\DoxyCodeLine{00717\ \ \ \textcolor{keywordflow}{if}\ (file)\ \{}
+\DoxyCodeLine{00718\ \ \ \ \ \textcolor{keywordtype}{int}\ count;}
+\DoxyCodeLine{00719\ \ \ \ \ fread(\&count,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}),\ 1,\ file);}
+\DoxyCodeLine{00720\ }
+\DoxyCodeLine{00721\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ ++i)\ \{}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ scheduleID;}
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ bandName[50];}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ date[20];}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ fread(\&scheduleID,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}),\ 1,\ file);}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ fread(bandName,\ \textcolor{keyword}{sizeof}(bandName),\ 1,\ file);}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ fread(date,\ \textcolor{keyword}{sizeof}(date),\ 1,\ file);}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a9c118366e46568179ae5af5d22abad21}{createSchedule}}(scheduleID,\ bandName,\ date);}
+\DoxyCodeLine{00729\ \ \ \ \ \}}
+\DoxyCodeLine{00730\ }
+\DoxyCodeLine{00731\ \ \ \ \ fclose(file);}
+\DoxyCodeLine{00732\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00733\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Error:\ Could\ not\ open\ file\ for\ reading.\(\backslash\)n"{}});}
+\DoxyCodeLine{00734\ \ \ \}}
+\DoxyCodeLine{00735\ \}}
+\DoxyCodeLine{00736\ }
+\DoxyCodeLine{00743\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a9c118366e46568179ae5af5d22abad21}{createSchedule}}(\textcolor{keywordtype}{int}\ scheduleID,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *bandName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *date)\ \{}
+\DoxyCodeLine{00744\ \ \ \mbox{\hyperlink{struct_schedule_node}{ScheduleNode}}\ *newNode\ =\ (\mbox{\hyperlink{struct_schedule_node}{ScheduleNode}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_schedule_node}{ScheduleNode}}));}
+\DoxyCodeLine{00745\ \ \ newNode-\/>\mbox{\hyperlink{struct_schedule_node_a6e532fc45a4a05e79ea39ba6a370f43e}{scheduleID}}\ =\ scheduleID;}
+\DoxyCodeLine{00746\ \ \ strcpy(newNode-\/>\mbox{\hyperlink{struct_schedule_node_ae1c0a80f6177207a72d7752d4dd6f111}{bandName}},\ bandName);}
+\DoxyCodeLine{00747\ \ \ strcpy(newNode-\/>\mbox{\hyperlink{struct_schedule_node_ab34965d2efa8e734256641f4730bf598}{date}},\ date);}
+\DoxyCodeLine{00748\ \ \ newNode-\/>\mbox{\hyperlink{struct_schedule_node_aad56d1759a9eab88b3b3973851f59259}{next}}\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_aeee5407776b4bdb0bf6db5bcd7387737}{scheduleHead}};}
+\DoxyCodeLine{00749\ \ \ newNode-\/>\mbox{\hyperlink{struct_schedule_node_af15a1f81bcfea7395104937d412bc4e6}{prev}}\ =\ NULL;}
+\DoxyCodeLine{00750\ }
+\DoxyCodeLine{00751\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{publictransportationscheduler_8h_aeee5407776b4bdb0bf6db5bcd7387737}{scheduleHead}}\ !=\ NULL)\ \{}
+\DoxyCodeLine{00752\ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8h_aeee5407776b4bdb0bf6db5bcd7387737}{scheduleHead}}-\/>\mbox{\hyperlink{struct_schedule_node_af15a1f81bcfea7395104937d412bc4e6}{prev}}\ =\ newNode;}
+\DoxyCodeLine{00753\ \ \ \}}
+\DoxyCodeLine{00754\ }
+\DoxyCodeLine{00755\ \ \ \mbox{\hyperlink{publictransportationscheduler_8h_aeee5407776b4bdb0bf6db5bcd7387737}{scheduleHead}}\ =\ newNode;}
+\DoxyCodeLine{00756\ \ \ printf(\textcolor{stringliteral}{"{}Schedule\ created\ for\ \%s\ on\ \%s.\(\backslash\)n"{}},\ bandName,\ date);}
+\DoxyCodeLine{00757\ \}}
+\DoxyCodeLine{00758\ }
+\DoxyCodeLine{00762\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_af254c2b4333b9bac57d59b111834014f}{saveScheduleDatabase}}()\ \{}
+\DoxyCodeLine{00763\ \ \ FILE\ *file;}
+\DoxyCodeLine{00764\ \ \ fopen\_s(\&file,\ \textcolor{stringliteral}{"{}scheduleDatabase.bin"{}},\ \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{00765\ }
+\DoxyCodeLine{00766\ \ \ \textcolor{keywordflow}{if}\ (file)\ \{}
+\DoxyCodeLine{00767\ \ \ \ \ \mbox{\hyperlink{struct_schedule_node}{ScheduleNode}}\ *current\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_aeee5407776b4bdb0bf6db5bcd7387737}{scheduleHead}};}
+\DoxyCodeLine{00768\ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 0;}
+\DoxyCodeLine{00769\ }
+\DoxyCodeLine{00770\ \ \ \ \ \textcolor{comment}{//\ Count\ nodes}}
+\DoxyCodeLine{00771\ \ \ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ count++;}
+\DoxyCodeLine{00773\ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_schedule_node_aad56d1759a9eab88b3b3973851f59259}{next}};}
+\DoxyCodeLine{00774\ \ \ \ \ \}}
+\DoxyCodeLine{00775\ }
+\DoxyCodeLine{00776\ \ \ \ \ \textcolor{comment}{//\ Write\ node\ count}}
+\DoxyCodeLine{00777\ \ \ \ \ fwrite(\&count,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}),\ 1,\ file);}
+\DoxyCodeLine{00778\ \ \ \ \ \textcolor{comment}{//\ Write\ schedule\ data}}
+\DoxyCodeLine{00779\ \ \ \ \ current\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_aeee5407776b4bdb0bf6db5bcd7387737}{scheduleHead}};}
+\DoxyCodeLine{00780\ }
+\DoxyCodeLine{00781\ \ \ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ fwrite(\&(current-\/>\mbox{\hyperlink{struct_schedule_node_a6e532fc45a4a05e79ea39ba6a370f43e}{scheduleID}}),\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}),\ 1,\ file);}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ fwrite(current-\/>\mbox{\hyperlink{struct_schedule_node_ae1c0a80f6177207a72d7752d4dd6f111}{bandName}},\ \textcolor{keyword}{sizeof}(current-\/>\mbox{\hyperlink{struct_schedule_node_ae1c0a80f6177207a72d7752d4dd6f111}{bandName}}),\ 1,\ file);}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ fwrite(current-\/>\mbox{\hyperlink{struct_schedule_node_ab34965d2efa8e734256641f4730bf598}{date}},\ \textcolor{keyword}{sizeof}(current-\/>\mbox{\hyperlink{struct_schedule_node_ab34965d2efa8e734256641f4730bf598}{date}}),\ 1,\ file);}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_schedule_node_aad56d1759a9eab88b3b3973851f59259}{next}};}
+\DoxyCodeLine{00786\ \ \ \ \ \}}
+\DoxyCodeLine{00787\ }
+\DoxyCodeLine{00788\ \ \ \ \ fclose(file);}
+\DoxyCodeLine{00789\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00790\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Error:\ Could\ not\ open\ file\ for\ writing.\(\backslash\)n"{}});}
+\DoxyCodeLine{00791\ \ \ \}}
+\DoxyCodeLine{00792\ \}}
+\DoxyCodeLine{00793\ }
+\DoxyCodeLine{00794\ \textcolor{comment}{//\ Ticket\ Sales\ Tracking\ Functions}}
+\DoxyCodeLine{00795\ }
+\DoxyCodeLine{00801\ \mbox{\hyperlink{struct_b_plus_tree_node}{BPlusTreeNode}}\ *\mbox{\hyperlink{publictransportationscheduler_8cpp_aeffc198935d210e3bbaf244809ca992c}{createNode}}(\textcolor{keywordtype}{bool}\ isLeaf)\ \{}
+\DoxyCodeLine{00802\ \ \ \mbox{\hyperlink{struct_b_plus_tree_node}{BPlusTreeNode}}\ *newNode\ =\ (\mbox{\hyperlink{struct_b_plus_tree_node}{BPlusTreeNode}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_b_plus_tree_node}{BPlusTreeNode}}));}
+\DoxyCodeLine{00803\ \ \ newNode-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a35ca3a83ab062bf9687a0d37607e3f17}{isLeaf}}\ =\ isLeaf;}
+\DoxyCodeLine{00804\ \ \ newNode-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7b81dce4b1107ca7e94fa0a3c623e56f}{numKeys}}\ =\ 0;}
+\DoxyCodeLine{00805\ \ \ newNode-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a2a31f32577529ef0a66102a1d77001ab}{next}}\ =\ NULL;}
+\DoxyCodeLine{00806\ }
+\DoxyCodeLine{00807\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <=\ \mbox{\hyperlink{publictransportationscheduler_8h_a3077ecca3770bdee50e6a17dfb55d002}{MAX\_KEYS}};\ i++)\ \{}
+\DoxyCodeLine{00808\ \ \ \ \ newNode-\/>\mbox{\hyperlink{struct_b_plus_tree_node_acd77908e459e0dba6d2f78068d1620f9}{children}}[i]\ =\ NULL;}
+\DoxyCodeLine{00809\ \ \ \}}
+\DoxyCodeLine{00810\ }
+\DoxyCodeLine{00811\ \ \ \textcolor{keywordflow}{return}\ newNode;}
+\DoxyCodeLine{00812\ \}}
+\DoxyCodeLine{00813\ }
+\DoxyCodeLine{00819\ \mbox{\hyperlink{struct_ticket_sale}{TicketSale}}\ *\mbox{\hyperlink{publictransportationscheduler_8cpp_a2f41eed3a6bebcb110434e5874c74fba}{searchBPlusTree}}(\textcolor{keywordtype}{int}\ key)\ \{}
+\DoxyCodeLine{00820\ \ \ \mbox{\hyperlink{struct_b_plus_tree_node}{BPlusTreeNode}}\ *current\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_a7e939d63c30c0a3095e349d7a88240ab}{root}};}
+\DoxyCodeLine{00821\ }
+\DoxyCodeLine{00822\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{00823\ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{00824\ }
+\DoxyCodeLine{00825\ \ \ \ \ \textcolor{keywordflow}{while}\ (i\ <\ current-\/>numKeys\ \&\&\ key\ >\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7f8f020ee553bc8b3c4f3432642c45cb}{keys}}[i])\ \{}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{00827\ \ \ \ \ \}}
+\DoxyCodeLine{00828\ }
+\DoxyCodeLine{00829\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ current-\/>numKeys\ \&\&\ key\ ==\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7f8f020ee553bc8b3c4f3432642c45cb}{keys}}[i])\ \{}
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a5b910ba3c17ed47131dbe27806af93d1}{sales}}[i];}
+\DoxyCodeLine{00831\ \ \ \ \ \}}
+\DoxyCodeLine{00832\ }
+\DoxyCodeLine{00833\ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a35ca3a83ab062bf9687a0d37607e3f17}{isLeaf}})\ \{}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00835\ \ \ \ \ \}}
+\DoxyCodeLine{00836\ }
+\DoxyCodeLine{00837\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_acd77908e459e0dba6d2f78068d1620f9}{children}}[i];}
+\DoxyCodeLine{00838\ \ \ \}}
+\DoxyCodeLine{00839\ }
+\DoxyCodeLine{00840\ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00841\ \}}
+\DoxyCodeLine{00842\ }
+\DoxyCodeLine{00848\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a34f0d3361e53b7a66d6d3e4806d7c9a8}{insertBPlusNode}}(\textcolor{keywordtype}{int}\ key,\ \mbox{\hyperlink{struct_ticket_sale}{TicketSale}}\ *sale)\ \{}
+\DoxyCodeLine{00849\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{publictransportationscheduler_8h_a7e939d63c30c0a3095e349d7a88240ab}{root}}\ ==\ NULL)\ \{}
+\DoxyCodeLine{00850\ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8h_a7e939d63c30c0a3095e349d7a88240ab}{root}}\ =\ \mbox{\hyperlink{publictransportationscheduler_8cpp_aeffc198935d210e3bbaf244809ca992c}{createNode}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00851\ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8h_a7e939d63c30c0a3095e349d7a88240ab}{root}}-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7f8f020ee553bc8b3c4f3432642c45cb}{keys}}[0]\ =\ key;}
+\DoxyCodeLine{00852\ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8h_a7e939d63c30c0a3095e349d7a88240ab}{root}}-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a5b910ba3c17ed47131dbe27806af93d1}{sales}}[0]\ =\ sale;}
+\DoxyCodeLine{00853\ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8h_a7e939d63c30c0a3095e349d7a88240ab}{root}}-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7b81dce4b1107ca7e94fa0a3c623e56f}{numKeys}}\ =\ 1;}
+\DoxyCodeLine{00854\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00855\ \ \ \}}
+\DoxyCodeLine{00856\ }
+\DoxyCodeLine{00857\ \ \ \mbox{\hyperlink{struct_b_plus_tree_node}{BPlusTreeNode}}\ *current\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_a7e939d63c30c0a3095e349d7a88240ab}{root}};}
+\DoxyCodeLine{00858\ \ \ \mbox{\hyperlink{struct_b_plus_tree_node}{BPlusTreeNode}}\ *parent\ =\ NULL;}
+\DoxyCodeLine{00859\ }
+\DoxyCodeLine{00860\ \ \ \textcolor{keywordflow}{while}\ (!current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a35ca3a83ab062bf9687a0d37607e3f17}{isLeaf}})\ \{}
+\DoxyCodeLine{00861\ \ \ \ \ parent\ =\ current;}
+\DoxyCodeLine{00862\ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{00863\ }
+\DoxyCodeLine{00864\ \ \ \ \ \textcolor{keywordflow}{while}\ (i\ <\ current-\/>numKeys\ \&\&\ key\ >\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7f8f020ee553bc8b3c4f3432642c45cb}{keys}}[i])\ \{}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{00866\ \ \ \ \ \}}
+\DoxyCodeLine{00867\ }
+\DoxyCodeLine{00868\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_acd77908e459e0dba6d2f78068d1620f9}{children}}[i];}
+\DoxyCodeLine{00869\ \ \ \}}
+\DoxyCodeLine{00870\ }
+\DoxyCodeLine{00871\ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7b81dce4b1107ca7e94fa0a3c623e56f}{numKeys}}\ <\ \mbox{\hyperlink{publictransportationscheduler_8h_a3077ecca3770bdee50e6a17dfb55d002}{MAX\_KEYS}})\ \{}
+\DoxyCodeLine{00872\ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7b81dce4b1107ca7e94fa0a3c623e56f}{numKeys}}\ -\/\ 1;}
+\DoxyCodeLine{00873\ }
+\DoxyCodeLine{00874\ \ \ \ \ \textcolor{keywordflow}{while}\ (i\ >=\ 0\ \&\&\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7f8f020ee553bc8b3c4f3432642c45cb}{keys}}[i]\ >\ key)\ \{}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7f8f020ee553bc8b3c4f3432642c45cb}{keys}}[i\ +\ 1]\ =\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7f8f020ee553bc8b3c4f3432642c45cb}{keys}}[i];}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a5b910ba3c17ed47131dbe27806af93d1}{sales}}[i\ +\ 1]\ =\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a5b910ba3c17ed47131dbe27806af93d1}{sales}}[i];}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ i-\/-\/;}
+\DoxyCodeLine{00878\ \ \ \ \ \}}
+\DoxyCodeLine{00879\ }
+\DoxyCodeLine{00880\ \ \ \ \ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7f8f020ee553bc8b3c4f3432642c45cb}{keys}}[i\ +\ 1]\ =\ key;}
+\DoxyCodeLine{00881\ \ \ \ \ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a5b910ba3c17ed47131dbe27806af93d1}{sales}}[i\ +\ 1]\ =\ sale;}
+\DoxyCodeLine{00882\ \ \ \ \ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7b81dce4b1107ca7e94fa0a3c623e56f}{numKeys}}++;}
+\DoxyCodeLine{00883\ \ \ \}}
+\DoxyCodeLine{00884\ \}}
+\DoxyCodeLine{00885\ }
+\DoxyCodeLine{00890\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a436bc8449c6d9e9b7b0b8a04d5c2bb77}{displayBPlusTree}}(\mbox{\hyperlink{struct_b_plus_tree_node}{BPlusTreeNode}}\ *node)\ \{}
+\DoxyCodeLine{00891\ \ \ \textcolor{keywordflow}{if}\ (node\ ==\ NULL)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00892\ }
+\DoxyCodeLine{00893\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ node-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7b81dce4b1107ca7e94fa0a3c623e56f}{numKeys}};\ i++)\ \{}
+\DoxyCodeLine{00894\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%d\ "{}},\ node-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7f8f020ee553bc8b3c4f3432642c45cb}{keys}}[i]);}
+\DoxyCodeLine{00895\ \ \ \}}
+\DoxyCodeLine{00896\ }
+\DoxyCodeLine{00897\ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00898\ }
+\DoxyCodeLine{00899\ \ \ \textcolor{keywordflow}{if}\ (!node-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a35ca3a83ab062bf9687a0d37607e3f17}{isLeaf}})\ \{}
+\DoxyCodeLine{00900\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <=\ node-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7b81dce4b1107ca7e94fa0a3c623e56f}{numKeys}};\ i++)\ \{}
+\DoxyCodeLine{00901\ \ \ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a436bc8449c6d9e9b7b0b8a04d5c2bb77}{displayBPlusTree}}(node-\/>\mbox{\hyperlink{struct_b_plus_tree_node_acd77908e459e0dba6d2f78068d1620f9}{children}}[i]);}
+\DoxyCodeLine{00902\ \ \ \ \ \}}
+\DoxyCodeLine{00903\ \ \ \}}
+\DoxyCodeLine{00904\ \}}
+\DoxyCodeLine{00905\ }
+\DoxyCodeLine{00909\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_acad3ee31c17cb0696e8df858ac13465f}{initializeBPlusTree}}()\ \{}
+\DoxyCodeLine{00910\ \ \ \mbox{\hyperlink{publictransportationscheduler_8h_a7e939d63c30c0a3095e349d7a88240ab}{root}}\ =\ NULL;}
+\DoxyCodeLine{00911\ \}}
+\DoxyCodeLine{00912\ }
+\DoxyCodeLine{00916\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a7ca5eb618ca02eba384a217adb2e3e70}{loadSalesDatabase}}()\ \{}
+\DoxyCodeLine{00917\ \ \ FILE\ *file\ =\ fopen(\textcolor{stringliteral}{"{}salesDatabase.bin"{}},\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{00918\ }
+\DoxyCodeLine{00919\ \ \ \textcolor{keywordflow}{if}\ (file\ ==\ NULL)\ \{}
+\DoxyCodeLine{00920\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ open\ salesDatabase.bin\ for\ reading.\(\backslash\)n"{}});}
+\DoxyCodeLine{00921\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00922\ \ \ \}}
+\DoxyCodeLine{00923\ }
+\DoxyCodeLine{00924\ \ \ \textcolor{keywordtype}{int}\ sampleCount;}
+\DoxyCodeLine{00925\ \ \ fread(\&sampleCount,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}),\ 1,\ file);}
+\DoxyCodeLine{00926\ \ \ \mbox{\hyperlink{struct_ticket_sale}{TicketSale}}\ *sales\ =\ (\mbox{\hyperlink{struct_ticket_sale}{TicketSale}}\ *)malloc(sampleCount\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_ticket_sale}{TicketSale}}));}
+\DoxyCodeLine{00927\ \ \ fread(sales,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_ticket_sale}{TicketSale}}),\ sampleCount,\ file);}
+\DoxyCodeLine{00928\ }
+\DoxyCodeLine{00929\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ sampleCount;\ i++)\ \{}
+\DoxyCodeLine{00930\ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a34f0d3361e53b7a66d6d3e4806d7c9a8}{insertBPlusNode}}(sales[i].saleID,\ \&sales[i]);}
+\DoxyCodeLine{00931\ \ \ \}}
+\DoxyCodeLine{00932\ }
+\DoxyCodeLine{00933\ \ \ fclose(file);}
+\DoxyCodeLine{00934\ \ \ printf(\textcolor{stringliteral}{"{}Sales\ data\ loaded\ from\ salesDatabase.bin\ successfully.\(\backslash\)n"{}});}
+\DoxyCodeLine{00935\ \}}
+\DoxyCodeLine{00936\ }
+\DoxyCodeLine{00940\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ae32e1898a3a814a0bb5c26d4fcb68de2}{viewSalesData}}()\ \{}
+\DoxyCodeLine{00941\ \ \ printf(\textcolor{stringliteral}{"{}Ticket\ Sales\ Data:\(\backslash\)n"{}});}
+\DoxyCodeLine{00942\ \ \ \mbox{\hyperlink{struct_b_plus_tree_node}{BPlusTreeNode}}\ *current\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_a7e939d63c30c0a3095e349d7a88240ab}{root}};}
+\DoxyCodeLine{00943\ }
+\DoxyCodeLine{00944\ \ \ \textcolor{keywordflow}{if}\ (current\ ==\ NULL)\ \{}
+\DoxyCodeLine{00945\ \ \ \ \ printf(\textcolor{stringliteral}{"{}No\ sales\ data\ available.\(\backslash\)n"{}});}
+\DoxyCodeLine{00946\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00947\ \ \ \}}
+\DoxyCodeLine{00948\ }
+\DoxyCodeLine{00949\ \ \ \textcolor{comment}{//\ Move\ to\ the\ leftmost\ leaf}}
+\DoxyCodeLine{00950\ \ \ \textcolor{keywordflow}{while}\ (!current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a35ca3a83ab062bf9687a0d37607e3f17}{isLeaf}})\ \{}
+\DoxyCodeLine{00951\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_acd77908e459e0dba6d2f78068d1620f9}{children}}[0];}
+\DoxyCodeLine{00952\ \ \ \}}
+\DoxyCodeLine{00953\ }
+\DoxyCodeLine{00954\ \ \ \textcolor{comment}{//\ Print\ all\ leaf\ nodes}}
+\DoxyCodeLine{00955\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{00956\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7b81dce4b1107ca7e94fa0a3c623e56f}{numKeys}};\ i++)\ \{}
+\DoxyCodeLine{00957\ \ \ \ \ \ \ \mbox{\hyperlink{struct_ticket_sale}{TicketSale}}\ *sale\ =\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a5b910ba3c17ed47131dbe27806af93d1}{sales}}[i];}
+\DoxyCodeLine{00958\ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Sale\ ID:\ \%d,\ Type:\ \%s,\ Amount:\ \%.2f,\ Date:\ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{00959\ \ \ \ \ \ \ \ \ \ \ \ \ \ sale-\/>\mbox{\hyperlink{struct_ticket_sale_ac9bb877a021b41e5387b511063ebd45e}{saleID}},\ sale-\/>\mbox{\hyperlink{struct_ticket_sale_ab9de4a1e9f1c4fadd300d86148ac6894}{ticketType}},\ sale-\/>\mbox{\hyperlink{struct_ticket_sale_aba94134a07d017f0c5e22bd6fb712c0d}{amount}},\ sale-\/>\mbox{\hyperlink{struct_ticket_sale_afa8729907fb1575e81a8d61873b8c3ba}{date}});}
+\DoxyCodeLine{00960\ \ \ \ \ \}}
+\DoxyCodeLine{00961\ }
+\DoxyCodeLine{00962\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a2a31f32577529ef0a66102a1d77001ab}{next}};}
+\DoxyCodeLine{00963\ \ \ \}}
+\DoxyCodeLine{00964\ \}}
+\DoxyCodeLine{00965\ }
+\DoxyCodeLine{00969\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ae6aaf9b1c0a852ddeeed4e6f9dc818f1}{saveSampleSalesData}}()\ \{}
+\DoxyCodeLine{00970\ \ \ FILE\ *file\ =\ fopen(\textcolor{stringliteral}{"{}salesDatabase.bin"{}},\ \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{00971\ }
+\DoxyCodeLine{00972\ \ \ \textcolor{keywordflow}{if}\ (file\ ==\ NULL)\ \{}
+\DoxyCodeLine{00973\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ open\ file\ for\ writing.\(\backslash\)n"{}});}
+\DoxyCodeLine{00974\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00975\ \ \ \}}
+\DoxyCodeLine{00976\ }
+\DoxyCodeLine{00977\ \ \ \mbox{\hyperlink{struct_ticket_sale}{TicketSale}}\ sampleSales[]\ =\ \{}
+\DoxyCodeLine{00978\ \ \ \ \ \{1,\ \textcolor{stringliteral}{"{}Normal"{}},\ 50.0,\ \textcolor{stringliteral}{"{}2024-\/11-\/01"{}}\},}
+\DoxyCodeLine{00979\ \ \ \ \ \{2,\ \textcolor{stringliteral}{"{}Student"{}},\ 30.0,\ \textcolor{stringliteral}{"{}2024-\/11-\/02"{}}\},}
+\DoxyCodeLine{00980\ \ \ \ \ \{3,\ \textcolor{stringliteral}{"{}Normal"{}},\ 45.0,\ \textcolor{stringliteral}{"{}2024-\/11-\/03"{}}\},}
+\DoxyCodeLine{00981\ \ \ \ \ \{4,\ \textcolor{stringliteral}{"{}Student"{}},\ 25.0,\ \textcolor{stringliteral}{"{}2024-\/11-\/04"{}}\},}
+\DoxyCodeLine{00982\ \ \ \ \ \{5,\ \textcolor{stringliteral}{"{}Normal"{}},\ 60.0,\ \textcolor{stringliteral}{"{}2024-\/11-\/05"{}}\}}
+\DoxyCodeLine{00983\ \ \ \};}
+\DoxyCodeLine{00984\ \ \ \textcolor{keywordtype}{int}\ sampleCount\ =\ \textcolor{keyword}{sizeof}(sampleSales)\ /\ \textcolor{keyword}{sizeof}(sampleSales[0]);}
+\DoxyCodeLine{00985\ \ \ fwrite(\&sampleCount,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}),\ 1,\ file);}
+\DoxyCodeLine{00986\ \ \ fwrite(sampleSales,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_ticket_sale}{TicketSale}}),\ sampleCount,\ file);}
+\DoxyCodeLine{00987\ \ \ fclose(file);}
+\DoxyCodeLine{00988\ \ \ printf(\textcolor{stringliteral}{"{}Sample\ sales\ data\ saved\ to\ salesDatabase.bin\ successfully.\(\backslash\)n"{}});}
+\DoxyCodeLine{00989\ \}}
+\DoxyCodeLine{00990\ }
+\DoxyCodeLine{00994\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a52c3863e2808e63bc383d10064016abe}{generateSalesReport}}()\ \{}
+\DoxyCodeLine{00995\ \ \ \textcolor{keywordtype}{double}\ totalAmount\ =\ 0.0;}
+\DoxyCodeLine{00996\ \ \ \textcolor{keywordtype}{int}\ normalCount\ =\ 0,\ studentCount\ =\ 0;}
+\DoxyCodeLine{00997\ \ \ \mbox{\hyperlink{struct_b_plus_tree_node}{BPlusTreeNode}}\ *current\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_a7e939d63c30c0a3095e349d7a88240ab}{root}};}
+\DoxyCodeLine{00998\ }
+\DoxyCodeLine{00999\ \ \ \textcolor{keywordflow}{while}\ (current\ \&\&\ !current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a35ca3a83ab062bf9687a0d37607e3f17}{isLeaf}})\ \{}
+\DoxyCodeLine{01000\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_acd77908e459e0dba6d2f78068d1620f9}{children}}[0];}
+\DoxyCodeLine{01001\ \ \ \}}
+\DoxyCodeLine{01002\ }
+\DoxyCodeLine{01003\ \ \ \textcolor{keywordflow}{while}\ (current)\ \{}
+\DoxyCodeLine{01004\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a7b81dce4b1107ca7e94fa0a3c623e56f}{numKeys}};\ i++)\ \{}
+\DoxyCodeLine{01005\ \ \ \ \ \ \ totalAmount\ +=\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a5b910ba3c17ed47131dbe27806af93d1}{sales}}[i]-\/>\mbox{\hyperlink{struct_ticket_sale_aba94134a07d017f0c5e22bd6fb712c0d}{amount}};}
+\DoxyCodeLine{01006\ }
+\DoxyCodeLine{01007\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a5b910ba3c17ed47131dbe27806af93d1}{sales}}[i]-\/>\mbox{\hyperlink{struct_ticket_sale_ab9de4a1e9f1c4fadd300d86148ac6894}{ticketType}},\ \textcolor{stringliteral}{"{}Normal"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{01008\ \ \ \ \ \ \ \ \ normalCount++;}
+\DoxyCodeLine{01009\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a5b910ba3c17ed47131dbe27806af93d1}{sales}}[i]-\/>\mbox{\hyperlink{struct_ticket_sale_ab9de4a1e9f1c4fadd300d86148ac6894}{ticketType}},\ \textcolor{stringliteral}{"{}Student"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{01010\ \ \ \ \ \ \ \ \ studentCount++;}
+\DoxyCodeLine{01011\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01012\ \ \ \ \ \}}
+\DoxyCodeLine{01013\ }
+\DoxyCodeLine{01014\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_b_plus_tree_node_a2a31f32577529ef0a66102a1d77001ab}{next}};}
+\DoxyCodeLine{01015\ \ \ \}}
+\DoxyCodeLine{01016\ }
+\DoxyCodeLine{01017\ \ \ printf(\textcolor{stringliteral}{"{}Sales\ Report:\(\backslash\)n"{}});}
+\DoxyCodeLine{01018\ \ \ printf(\textcolor{stringliteral}{"{}Total\ Sales\ Amount:\ \%.2f\(\backslash\)n"{}},\ totalAmount);}
+\DoxyCodeLine{01019\ \ \ printf(\textcolor{stringliteral}{"{}Total\ 'Normal'\ Tickets\ Sold:\ \%d\(\backslash\)n"{}},\ normalCount);}
+\DoxyCodeLine{01020\ \ \ printf(\textcolor{stringliteral}{"{}Total\ 'Student'\ Tickets\ Sold:\ \%d\(\backslash\)n"{}},\ studentCount);}
+\DoxyCodeLine{01021\ \ \ printf(\textcolor{stringliteral}{"{}Total\ Sales\ Count:\ \%d\(\backslash\)n"{}},\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a92feea896317e1b65a94d3765aa24ada}{salesCount}});}
+\DoxyCodeLine{01022\ \}}
+\DoxyCodeLine{01023\ }
+\DoxyCodeLine{01024\ \textcolor{comment}{//\ Vendor\ Management\ Functions}}
+\DoxyCodeLine{01025\ }
+\DoxyCodeLine{01032\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a46d5b27892b1949a92d1b5c3a4a0f490}{addVendor}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *serviceType)\ \{}
+\DoxyCodeLine{01033\ \ \ \mbox{\hyperlink{struct_vendor}{Vendor}}\ *newVendor\ =\ (\mbox{\hyperlink{struct_vendor}{Vendor}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_vendor}{Vendor}}));}
+\DoxyCodeLine{01034\ \ \ newVendor-\/>\mbox{\hyperlink{struct_vendor_a429ffb2ff9afc4df184d5028302ded3d}{id}}\ =\ id;}
+\DoxyCodeLine{01035\ \ \ strcpy(newVendor-\/>\mbox{\hyperlink{struct_vendor_a0e7d6abb02e20258baf69d63666d1793}{name}},\ name);}
+\DoxyCodeLine{01036\ \ \ strcpy(newVendor-\/>\mbox{\hyperlink{struct_vendor_a072cfa231994ea8f28b2b1f189001596}{serviceType}},\ serviceType);}
+\DoxyCodeLine{01037\ \ \ newVendor-\/>\mbox{\hyperlink{struct_vendor_af23998ef753c4ab0b2d8f4d781bf1540}{next}}\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_af73a147133c11773d1887e0897af0b79}{vendorListHead}};}
+\DoxyCodeLine{01038\ \ \ \mbox{\hyperlink{publictransportationscheduler_8h_af73a147133c11773d1887e0897af0b79}{vendorListHead}}\ =\ newVendor;}
+\DoxyCodeLine{01039\ \}}
+\DoxyCodeLine{01040\ }
+\DoxyCodeLine{01047\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ac380e4c79f20a62c0bf76f4bd7717784}{addSponsor}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name,\ \textcolor{keywordtype}{double}\ contributionAmount)\ \{}
+\DoxyCodeLine{01048\ \ \ \mbox{\hyperlink{struct_sponsor}{Sponsor}}\ *newSponsor\ =\ (\mbox{\hyperlink{struct_sponsor}{Sponsor}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_sponsor}{Sponsor}}));}
+\DoxyCodeLine{01049\ \ \ newSponsor-\/>\mbox{\hyperlink{struct_sponsor_ac52845ad9e257d80766134c258a4892a}{id}}\ =\ id;}
+\DoxyCodeLine{01050\ \ \ strcpy(newSponsor-\/>\mbox{\hyperlink{struct_sponsor_a41b238af3834b43678fa3891d1745cc9}{name}},\ name);}
+\DoxyCodeLine{01051\ \ \ newSponsor-\/>\mbox{\hyperlink{struct_sponsor_a0126d50906bf99303d498d09f881fe4e}{contributionAmount}}\ =\ contributionAmount;}
+\DoxyCodeLine{01052\ \ \ newSponsor-\/>\mbox{\hyperlink{struct_sponsor_a46bf285b954e9fd93128296fc2b7067b}{next}}\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_a981f0c84e6f00259bc2b7e14ee995b8a}{sponsorListHead}};}
+\DoxyCodeLine{01053\ \ \ \mbox{\hyperlink{publictransportationscheduler_8h_a981f0c84e6f00259bc2b7e14ee995b8a}{sponsorListHead}}\ =\ newSponsor;}
+\DoxyCodeLine{01054\ \}}
+\DoxyCodeLine{01055\ }
+\DoxyCodeLine{01059\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a0d6885f3029b75ce370431b95b54bf73}{saveVendorDatabase}}()\ \{}
+\DoxyCodeLine{01060\ \ \ FILE\ *file;}
+\DoxyCodeLine{01061\ \ \ fopen\_s(\&file,\ \textcolor{stringliteral}{"{}vendorDatabase.bin"{}},\ \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{01062\ \ \ \mbox{\hyperlink{struct_vendor}{Vendor}}\ *current\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_af73a147133c11773d1887e0897af0b79}{vendorListHead}};}
+\DoxyCodeLine{01063\ }
+\DoxyCodeLine{01064\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{01065\ \ \ \ \ fwrite(current,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_vendor}{Vendor}}),\ 1,\ file);}
+\DoxyCodeLine{01066\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_vendor_af23998ef753c4ab0b2d8f4d781bf1540}{next}};}
+\DoxyCodeLine{01067\ \ \ \}}
+\DoxyCodeLine{01068\ }
+\DoxyCodeLine{01069\ \ \ fclose(file);}
+\DoxyCodeLine{01070\ \}}
+\DoxyCodeLine{01071\ }
+\DoxyCodeLine{01075\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_ab7cac0638d8d265304799360555d9eec}{saveSponsorDatabase}}()\ \{}
+\DoxyCodeLine{01076\ \ \ FILE\ *file;}
+\DoxyCodeLine{01077\ \ \ fopen\_s(\&file,\ \textcolor{stringliteral}{"{}sponsorDatabase.bin"{}},\ \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{01078\ \ \ \mbox{\hyperlink{struct_sponsor}{Sponsor}}\ *current\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_a981f0c84e6f00259bc2b7e14ee995b8a}{sponsorListHead}};}
+\DoxyCodeLine{01079\ }
+\DoxyCodeLine{01080\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{01081\ \ \ \ \ fwrite(current,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_sponsor}{Sponsor}}),\ 1,\ file);}
+\DoxyCodeLine{01082\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_sponsor_a46bf285b954e9fd93128296fc2b7067b}{next}};}
+\DoxyCodeLine{01083\ \ \ \}}
+\DoxyCodeLine{01084\ }
+\DoxyCodeLine{01085\ \ \ fclose(file);}
+\DoxyCodeLine{01086\ \}}
+\DoxyCodeLine{01087\ }
+\DoxyCodeLine{01091\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a9478ff5b539d7d0ea768b43bb0b2a57b}{loadVendorDatabase}}()\ \{}
+\DoxyCodeLine{01092\ \ \ FILE\ *file;}
+\DoxyCodeLine{01093\ \ \ fopen\_s(\&file,\ \textcolor{stringliteral}{"{}vendorDatabase.bin"{}},\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{01094\ }
+\DoxyCodeLine{01095\ \ \ \textcolor{keywordflow}{if}\ (file)\ \{}
+\DoxyCodeLine{01096\ \ \ \ \ \mbox{\hyperlink{struct_vendor}{Vendor}}\ temp;}
+\DoxyCodeLine{01097\ }
+\DoxyCodeLine{01098\ \ \ \ \ \textcolor{keywordflow}{while}\ (fread(\&temp,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_vendor}{Vendor}}),\ 1,\ file))\ \{}
+\DoxyCodeLine{01099\ \ \ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a46d5b27892b1949a92d1b5c3a4a0f490}{addVendor}}(temp.\mbox{\hyperlink{struct_vendor_a429ffb2ff9afc4df184d5028302ded3d}{id}},\ temp.\mbox{\hyperlink{struct_vendor_a0e7d6abb02e20258baf69d63666d1793}{name}},\ temp.\mbox{\hyperlink{struct_vendor_a072cfa231994ea8f28b2b1f189001596}{serviceType}});}
+\DoxyCodeLine{01100\ \ \ \ \ \}}
+\DoxyCodeLine{01101\ }
+\DoxyCodeLine{01102\ \ \ \ \ fclose(file);}
+\DoxyCodeLine{01103\ \ \ \}}
+\DoxyCodeLine{01104\ \}}
+\DoxyCodeLine{01105\ }
+\DoxyCodeLine{01109\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_afc050fc76e7ac7bca437021f3842254a}{loadSponsorDatabase}}()\ \{}
+\DoxyCodeLine{01110\ \ \ FILE\ *file;}
+\DoxyCodeLine{01111\ \ \ fopen\_s(\&file,\ \textcolor{stringliteral}{"{}sponsorDatabase.bin"{}},\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{01112\ }
+\DoxyCodeLine{01113\ \ \ \textcolor{keywordflow}{if}\ (file)\ \{}
+\DoxyCodeLine{01114\ \ \ \ \ \mbox{\hyperlink{struct_sponsor}{Sponsor}}\ temp;}
+\DoxyCodeLine{01115\ }
+\DoxyCodeLine{01116\ \ \ \ \ \textcolor{keywordflow}{while}\ (fread(\&temp,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_sponsor}{Sponsor}}),\ 1,\ file))\ \{}
+\DoxyCodeLine{01117\ \ \ \ \ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_ac380e4c79f20a62c0bf76f4bd7717784}{addSponsor}}(temp.\mbox{\hyperlink{struct_sponsor_ac52845ad9e257d80766134c258a4892a}{id}},\ temp.\mbox{\hyperlink{struct_sponsor_a41b238af3834b43678fa3891d1745cc9}{name}},\ temp.\mbox{\hyperlink{struct_sponsor_a0126d50906bf99303d498d09f881fe4e}{contributionAmount}});}
+\DoxyCodeLine{01118\ \ \ \ \ \}}
+\DoxyCodeLine{01119\ }
+\DoxyCodeLine{01120\ \ \ \ \ fclose(file);}
+\DoxyCodeLine{01121\ \ \ \}}
+\DoxyCodeLine{01122\ \}}
+\DoxyCodeLine{01123\ }
+\DoxyCodeLine{01127\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a22e477b1167ee3a1a1fb74af23c4a4c1}{addVendorMenu}}()\ \{}
+\DoxyCodeLine{01128\ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{01129\ \ \ \textcolor{keywordtype}{char}\ name[50];}
+\DoxyCodeLine{01130\ \ \ \textcolor{keywordtype}{char}\ serviceType[50];}
+\DoxyCodeLine{01131\ \ \ printf(\textcolor{stringliteral}{"{}Enter\ Vendor\ ID:\ "{}});}
+\DoxyCodeLine{01132\ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&\textcolor{keywordtype}{id});}
+\DoxyCodeLine{01133\ \ \ printf(\textcolor{stringliteral}{"{}Enter\ Vendor\ Name:\ "{}});}
+\DoxyCodeLine{01134\ \ \ scanf(\textcolor{stringliteral}{"{}\%s"{}},\ name);}
+\DoxyCodeLine{01135\ \ \ printf(\textcolor{stringliteral}{"{}Enter\ Service\ Type:\ "{}});}
+\DoxyCodeLine{01136\ \ \ scanf(\textcolor{stringliteral}{"{}\%s"{}},\ serviceType);}
+\DoxyCodeLine{01137\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a46d5b27892b1949a92d1b5c3a4a0f490}{addVendor}}(\textcolor{keywordtype}{id},\ name,\ serviceType);}
+\DoxyCodeLine{01138\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a0d6885f3029b75ce370431b95b54bf73}{saveVendorDatabase}}();}
+\DoxyCodeLine{01139\ \ \ printf(\textcolor{stringliteral}{"{}Vendor\ added\ and\ saved\ successfully.\(\backslash\)n"{}});}
+\DoxyCodeLine{01140\ \}}
+\DoxyCodeLine{01141\ }
+\DoxyCodeLine{01145\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a05db9accf57963aae5e0da727b8b21d7}{addSponsorMenu}}()\ \{}
+\DoxyCodeLine{01146\ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{01147\ \ \ \textcolor{keywordtype}{char}\ name[50];}
+\DoxyCodeLine{01148\ \ \ \textcolor{keywordtype}{double}\ contributionAmount;}
+\DoxyCodeLine{01149\ \ \ printf(\textcolor{stringliteral}{"{}Enter\ Sponsor\ ID:\ "{}});}
+\DoxyCodeLine{01150\ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&\textcolor{keywordtype}{id});}
+\DoxyCodeLine{01151\ \ \ printf(\textcolor{stringliteral}{"{}Enter\ Sponsor\ Name:\ "{}});}
+\DoxyCodeLine{01152\ \ \ scanf(\textcolor{stringliteral}{"{}\%s"{}},\ name);}
+\DoxyCodeLine{01153\ \ \ printf(\textcolor{stringliteral}{"{}Enter\ Contribution\ Amount:\ "{}});}
+\DoxyCodeLine{01154\ \ \ scanf(\textcolor{stringliteral}{"{}\%lf"{}},\ \&contributionAmount);}
+\DoxyCodeLine{01155\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_ac380e4c79f20a62c0bf76f4bd7717784}{addSponsor}}(\textcolor{keywordtype}{id},\ name,\ contributionAmount);}
+\DoxyCodeLine{01156\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_ab7cac0638d8d265304799360555d9eec}{saveSponsorDatabase}}();}
+\DoxyCodeLine{01157\ \ \ printf(\textcolor{stringliteral}{"{}Sponsor\ added\ and\ saved\ successfully.\(\backslash\)n"{}});}
+\DoxyCodeLine{01158\ \}}
+\DoxyCodeLine{01159\ }
+\DoxyCodeLine{01163\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a707153d90df4a85d7b79bb0e2ac84561}{manageVendors}}()\ \{}
+\DoxyCodeLine{01164\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_a9478ff5b539d7d0ea768b43bb0b2a57b}{loadVendorDatabase}}();\ \ \textcolor{comment}{//\ Load\ the\ latest\ data}}
+\DoxyCodeLine{01165\ \ \ \mbox{\hyperlink{struct_vendor}{Vendor}}\ *current\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_af73a147133c11773d1887e0897af0b79}{vendorListHead}};}
+\DoxyCodeLine{01166\ \ \ printf(\textcolor{stringliteral}{"{}Vendors\ List:\(\backslash\)n"{}});}
+\DoxyCodeLine{01167\ }
+\DoxyCodeLine{01168\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{01169\ \ \ \ \ printf(\textcolor{stringliteral}{"{}ID:\ \%d\ |\ Name:\ \%s\ |\ Service:\ \%s\(\backslash\)n"{}},\ current-\/>\mbox{\hyperlink{struct_vendor_a429ffb2ff9afc4df184d5028302ded3d}{id}},\ current-\/>\mbox{\hyperlink{struct_vendor_a0e7d6abb02e20258baf69d63666d1793}{name}},\ current-\/>\mbox{\hyperlink{struct_vendor_a072cfa231994ea8f28b2b1f189001596}{serviceType}});}
+\DoxyCodeLine{01170\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_vendor_af23998ef753c4ab0b2d8f4d781bf1540}{next}};}
+\DoxyCodeLine{01171\ \ \ \}}
+\DoxyCodeLine{01172\ \}}
+\DoxyCodeLine{01173\ }
+\DoxyCodeLine{01177\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{publictransportationscheduler_8cpp_a47bb57a4772b96184408e7b601c028dc}{trackSponsors}}()\ \{}
+\DoxyCodeLine{01178\ \ \ \mbox{\hyperlink{publictransportationscheduler_8cpp_afc050fc76e7ac7bca437021f3842254a}{loadSponsorDatabase}}();\ \ \textcolor{comment}{//\ Load\ the\ latest\ data}}
+\DoxyCodeLine{01179\ \ \ \mbox{\hyperlink{struct_sponsor}{Sponsor}}\ *current\ =\ \mbox{\hyperlink{publictransportationscheduler_8h_a981f0c84e6f00259bc2b7e14ee995b8a}{sponsorListHead}};}
+\DoxyCodeLine{01180\ \ \ printf(\textcolor{stringliteral}{"{}Sponsors\ List:\(\backslash\)n"{}});}
+\DoxyCodeLine{01181\ }
+\DoxyCodeLine{01182\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)\ \{}
+\DoxyCodeLine{01183\ \ \ \ \ printf(\textcolor{stringliteral}{"{}ID:\ \%d\ |\ Name:\ \%s\ |\ Contribution:\ \%.2f\(\backslash\)n"{}},\ current-\/>\mbox{\hyperlink{struct_sponsor_ac52845ad9e257d80766134c258a4892a}{id}},\ current-\/>\mbox{\hyperlink{struct_sponsor_a41b238af3834b43678fa3891d1745cc9}{name}},\ current-\/>\mbox{\hyperlink{struct_sponsor_a0126d50906bf99303d498d09f881fe4e}{contributionAmount}});}
+\DoxyCodeLine{01184\ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_sponsor_a46bf285b954e9fd93128296fc2b7067b}{next}};}
+\DoxyCodeLine{01185\ \ \ \}}
+\DoxyCodeLine{01186\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="struct_sponsor" kind="struct" language="C++" prot="public">
+    <compoundname>Sponsor</compoundname>
+    <includes refid="publictransportationscheduler_8h" local="no">publictransportationscheduler.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_sponsor_1ac52845ad9e257d80766134c258a4892a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Sponsor::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <qualifiedname>Sponsor::id</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="47" column="7" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_sponsor_1a41b238af3834b43678fa3891d1745cc9" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char Sponsor::name[50]</definition>
+        <argsstring>[50]</argsstring>
+        <name>name</name>
+        <qualifiedname>Sponsor::name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="48" column="8" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_sponsor_1a0126d50906bf99303d498d09f881fe4e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Sponsor::contributionAmount</definition>
+        <argsstring></argsstring>
+        <name>contributionAmount</name>
+        <qualifiedname>Sponsor::contributionAmount</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="49" column="10" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_sponsor_1a46bf285b954e9fd93128296fc2b7067b" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_sponsor" kindref="compound">Sponsor</ref> *</type>
+        <definition>struct Sponsor* Sponsor::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <qualifiedname>Sponsor::next</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="50" column="16" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Sponsor</label>
+        <link refid="struct_sponsor"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>+next</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="46" column="1" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="46" bodyend="51"/>
+    <listofallmembers>
+      <member refid="struct_sponsor_1a0126d50906bf99303d498d09f881fe4e" prot="public" virt="non-virtual"><scope>Sponsor</scope><name>contributionAmount</name></member>
+      <member refid="struct_sponsor_1ac52845ad9e257d80766134c258a4892a" prot="public" virt="non-virtual"><scope>Sponsor</scope><name>id</name></member>
+      <member refid="struct_sponsor_1a41b238af3834b43678fa3891d1745cc9" prot="public" virt="non-virtual"><scope>Sponsor</scope><name>name</name></member>
+      <member refid="struct_sponsor_1a46bf285b954e9fd93128296fc2b7067b" prot="public" virt="non-virtual"><scope>Sponsor</scope><name>next</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

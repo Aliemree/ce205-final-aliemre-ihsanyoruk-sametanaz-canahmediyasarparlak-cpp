@@ -1,0 +1,74 @@
+\doxysection{BPlus\+Tree\+Node Struct Reference}
+\hypertarget{struct_b_plus_tree_node}{}\label{struct_b_plus_tree_node}\index{BPlusTreeNode@{BPlusTreeNode}}
+
+
+{\ttfamily \#include $<$publictransportationscheduler.\+h$>$}
+
+
+
+Collaboration diagram for BPlus\+Tree\+Node\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{struct_b_plus_tree_node__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_b_plus_tree_node_a7f8f020ee553bc8b3c4f3432642c45cb}{keys}} \mbox{[}\mbox{\hyperlink{publictransportationscheduler_8h_a3077ecca3770bdee50e6a17dfb55d002}{MAX\+\_\+\+KEYS}}\mbox{]}
+\item 
+\mbox{\hyperlink{struct_ticket_sale}{Ticket\+Sale}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_b_plus_tree_node_a5b910ba3c17ed47131dbe27806af93d1}{sales}} \mbox{[}\mbox{\hyperlink{publictransportationscheduler_8h_a3077ecca3770bdee50e6a17dfb55d002}{MAX\+\_\+\+KEYS}}\mbox{]}
+\item 
+struct \mbox{\hyperlink{struct_b_plus_tree_node}{BPlus\+Tree\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_b_plus_tree_node_acd77908e459e0dba6d2f78068d1620f9}{children}} \mbox{[}\mbox{\hyperlink{publictransportationscheduler_8h_a3077ecca3770bdee50e6a17dfb55d002}{MAX\+\_\+\+KEYS}}+1\mbox{]}
+\item 
+int \mbox{\hyperlink{struct_b_plus_tree_node_a7b81dce4b1107ca7e94fa0a3c623e56f}{num\+Keys}}
+\item 
+bool \mbox{\hyperlink{struct_b_plus_tree_node_a35ca3a83ab062bf9687a0d37607e3f17}{is\+Leaf}}
+\item 
+struct \mbox{\hyperlink{struct_b_plus_tree_node}{BPlus\+Tree\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_b_plus_tree_node_a2a31f32577529ef0a66102a1d77001ab}{next}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_b_plus_tree_node_acd77908e459e0dba6d2f78068d1620f9}\index{BPlusTreeNode@{BPlusTreeNode}!children@{children}}
+\index{children@{children}!BPlusTreeNode@{BPlusTreeNode}}
+\doxysubsubsection{\texorpdfstring{children}{children}}
+{\footnotesize\ttfamily \label{struct_b_plus_tree_node_acd77908e459e0dba6d2f78068d1620f9} 
+struct \mbox{\hyperlink{struct_b_plus_tree_node}{BPlus\+Tree\+Node}}\texorpdfstring{$\ast$}{*} BPlus\+Tree\+Node\+::children\mbox{[}\mbox{\hyperlink{publictransportationscheduler_8h_a3077ecca3770bdee50e6a17dfb55d002}{MAX\+\_\+\+KEYS}}+1\mbox{]}}
+
+\Hypertarget{struct_b_plus_tree_node_a35ca3a83ab062bf9687a0d37607e3f17}\index{BPlusTreeNode@{BPlusTreeNode}!isLeaf@{isLeaf}}
+\index{isLeaf@{isLeaf}!BPlusTreeNode@{BPlusTreeNode}}
+\doxysubsubsection{\texorpdfstring{isLeaf}{isLeaf}}
+{\footnotesize\ttfamily \label{struct_b_plus_tree_node_a35ca3a83ab062bf9687a0d37607e3f17} 
+bool BPlus\+Tree\+Node\+::is\+Leaf}
+
+\Hypertarget{struct_b_plus_tree_node_a7f8f020ee553bc8b3c4f3432642c45cb}\index{BPlusTreeNode@{BPlusTreeNode}!keys@{keys}}
+\index{keys@{keys}!BPlusTreeNode@{BPlusTreeNode}}
+\doxysubsubsection{\texorpdfstring{keys}{keys}}
+{\footnotesize\ttfamily \label{struct_b_plus_tree_node_a7f8f020ee553bc8b3c4f3432642c45cb} 
+int BPlus\+Tree\+Node\+::keys\mbox{[}\mbox{\hyperlink{publictransportationscheduler_8h_a3077ecca3770bdee50e6a17dfb55d002}{MAX\+\_\+\+KEYS}}\mbox{]}}
+
+\Hypertarget{struct_b_plus_tree_node_a2a31f32577529ef0a66102a1d77001ab}\index{BPlusTreeNode@{BPlusTreeNode}!next@{next}}
+\index{next@{next}!BPlusTreeNode@{BPlusTreeNode}}
+\doxysubsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily \label{struct_b_plus_tree_node_a2a31f32577529ef0a66102a1d77001ab} 
+struct \mbox{\hyperlink{struct_b_plus_tree_node}{BPlus\+Tree\+Node}}\texorpdfstring{$\ast$}{*} BPlus\+Tree\+Node\+::next}
+
+\Hypertarget{struct_b_plus_tree_node_a7b81dce4b1107ca7e94fa0a3c623e56f}\index{BPlusTreeNode@{BPlusTreeNode}!numKeys@{numKeys}}
+\index{numKeys@{numKeys}!BPlusTreeNode@{BPlusTreeNode}}
+\doxysubsubsection{\texorpdfstring{numKeys}{numKeys}}
+{\footnotesize\ttfamily \label{struct_b_plus_tree_node_a7b81dce4b1107ca7e94fa0a3c623e56f} 
+int BPlus\+Tree\+Node\+::num\+Keys}
+
+\Hypertarget{struct_b_plus_tree_node_a5b910ba3c17ed47131dbe27806af93d1}\index{BPlusTreeNode@{BPlusTreeNode}!sales@{sales}}
+\index{sales@{sales}!BPlusTreeNode@{BPlusTreeNode}}
+\doxysubsubsection{\texorpdfstring{sales}{sales}}
+{\footnotesize\ttfamily \label{struct_b_plus_tree_node_a5b910ba3c17ed47131dbe27806af93d1} 
+\mbox{\hyperlink{struct_ticket_sale}{Ticket\+Sale}}\texorpdfstring{$\ast$}{*} BPlus\+Tree\+Node\+::sales\mbox{[}\mbox{\hyperlink{publictransportationscheduler_8h_a3077ecca3770bdee50e6a17dfb55d002}{MAX\+\_\+\+KEYS}}\mbox{]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/publictransportationscheduler/header/\mbox{\hyperlink{publictransportationscheduler_8h}{publictransportationscheduler.\+h}}\end{DoxyCompactItemize}

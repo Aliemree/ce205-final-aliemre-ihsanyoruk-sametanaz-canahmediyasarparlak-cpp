@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="struct_double_node" kind="struct" language="C++" prot="public">
+    <compoundname>DoubleNode</compoundname>
+    <includes refid="publictransportationscheduler_8h" local="no">publictransportationscheduler.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_double_node_1ace4d84500ef6d0dc3dcf88f0d12e002c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int DoubleNode::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <qualifiedname>DoubleNode::data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="59" column="7" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_double_node_1a9cf812c3258fd9670f7bafd856ab9cf4" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char DoubleNode::routeName[50]</definition>
+        <argsstring>[50]</argsstring>
+        <name>routeName</name>
+        <qualifiedname>DoubleNode::routeName</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="60" column="8" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_double_node_1aeb28d101b1871961c75fa86a0145320a" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char DoubleNode::startPoint[50]</definition>
+        <argsstring>[50]</argsstring>
+        <name>startPoint</name>
+        <qualifiedname>DoubleNode::startPoint</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="61" column="8" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_double_node_1a86d86f690c62d74749076efb1d0542e9" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char DoubleNode::endPoint[50]</definition>
+        <argsstring>[50]</argsstring>
+        <name>endPoint</name>
+        <qualifiedname>DoubleNode::endPoint</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="62" column="8" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_double_node_1a5eb6461fb0145cc9247d8bf9d02e8089" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_double_node" kindref="compound">DoubleNode</ref> *</type>
+        <definition>struct DoubleNode* DoubleNode::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <qualifiedname>DoubleNode::next</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="63" column="19" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_double_node_1abb9ca166e5960d5def98c7014a572397" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_double_node" kindref="compound">DoubleNode</ref> *</type>
+        <definition>struct DoubleNode* DoubleNode::prev</definition>
+        <argsstring></argsstring>
+        <name>prev</name>
+        <qualifiedname>DoubleNode::prev</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="64" column="19" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>DoubleNode</label>
+        <link refid="struct_double_node"/>
+        <childnode refid="1" relation="usage">
+          <edgelabel>+next</edgelabel>
+          <edgelabel>+prev</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="src/publictransportationscheduler/header/publictransportationscheduler.h" line="58" column="1" bodyfile="src/publictransportationscheduler/header/publictransportationscheduler.h" bodystart="58" bodyend="65"/>
+    <listofallmembers>
+      <member refid="struct_double_node_1ace4d84500ef6d0dc3dcf88f0d12e002c" prot="public" virt="non-virtual"><scope>DoubleNode</scope><name>data</name></member>
+      <member refid="struct_double_node_1a86d86f690c62d74749076efb1d0542e9" prot="public" virt="non-virtual"><scope>DoubleNode</scope><name>endPoint</name></member>
+      <member refid="struct_double_node_1a5eb6461fb0145cc9247d8bf9d02e8089" prot="public" virt="non-virtual"><scope>DoubleNode</scope><name>next</name></member>
+      <member refid="struct_double_node_1abb9ca166e5960d5def98c7014a572397" prot="public" virt="non-virtual"><scope>DoubleNode</scope><name>prev</name></member>
+      <member refid="struct_double_node_1a9cf812c3258fd9670f7bafd856ab9cf4" prot="public" virt="non-virtual"><scope>DoubleNode</scope><name>routeName</name></member>
+      <member refid="struct_double_node_1aeb28d101b1871961c75fa86a0145320a" prot="public" virt="non-virtual"><scope>DoubleNode</scope><name>startPoint</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

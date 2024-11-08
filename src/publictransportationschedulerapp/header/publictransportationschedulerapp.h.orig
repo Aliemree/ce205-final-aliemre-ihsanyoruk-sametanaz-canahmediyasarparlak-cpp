@@ -14,7 +14,7 @@ void showDataManagementMenu();
 
 // Utility fonksiyonlar
 int getConsoleWidth();
-void centerText(const char* text);
-void centerMenuOption(const char* text, int isSelected);
+void centerText(const char *text);
+void centerMenuOption(const char *text, int isSelected);
 
 #endif // PUBLICTRANSPORTATIONSCHEDULERAPP_H
