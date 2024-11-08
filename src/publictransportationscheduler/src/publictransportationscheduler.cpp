@@ -22,6 +22,7 @@ Sponsor sponsorDatabase[100];
 int sponsorCount = 0;
 DoubleNode* routeListHead = NULL;
 
+
 // Hash Table Definitions
 #define TABLE_SIZE 100
 User* hashTable[TABLE_SIZE];
@@ -569,20 +570,16 @@ void addBand(const char* name) {
  * @param newName The new name for the band or artist.
  */
 void editBand(const char* oldName, const char* newName) {
-    loadBandDatabase();
-
     for (int i = 0; i < bandCount; i++) {
         if (strcmp(bandDatabase[i].name, oldName) == 0) {
-            strcpy_s(bandDatabase[i].name, sizeof(bandDatabase[i].name), newName);
-            saveBandDatabase();
+            // Güncellenen adı bandDatabase dizisine kaydet
+            strcpy(bandDatabase[i].name, newName);
             printf("Band/Artist %s updated to %s.\n", oldName, newName);
             return;
         }
     }
-
     printf("Band/Artist %s not found.\n", oldName);
 }
-
 /**
  * @brief Displays the list of all bands and artists.
  */
