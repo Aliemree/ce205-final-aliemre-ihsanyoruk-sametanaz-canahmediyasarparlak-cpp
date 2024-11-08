@@ -1,15 +1,18 @@
 ﻿#ifndef PUBLICTRANSPORTATIONSCHEDULERAPP_H
 #define PUBLICTRANSPORTATIONSCHEDULERAPP_H
 
-// Helper function prototypes
+#include "publictransportationscheduler.h"
+
+// Fonksiyon prototipleri
 void showMainMenu();
 void showUserAuthenticationMenu();
-void showBandManagementMenu();
+void showRouteManagementMenu();
 void showSchedulingMenu();
 void showTicketSalesMenu();
-void showVendorSponsorMenu();
+void showDataManagementMenu();
 
-// Utility functions
+
+// Utility fonksiyonlar
 int getConsoleWidth();
 void centerText(const char* text);
 void centerMenuOption(const char* text, int isSelected);
