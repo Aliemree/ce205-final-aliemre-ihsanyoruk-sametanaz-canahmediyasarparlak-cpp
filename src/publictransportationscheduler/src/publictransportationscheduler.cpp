@@ -6,6 +6,9 @@
 #include <stdbool.h>
 #include "../../publictransportationschedulerapp/header/publictransportationschedulerapp.h"
 
+
+
+
 // Global Definitions
 int userCount = 0;
 User userDatabase[100];
