@@ -31,240 +31,231 @@ class PublicTransportationSchedulerTest : public ::testing::Test {
   }
 };
 
+TEST(PublicTransportationSchedulerTest, TestGlobalDefinitionsInitialization) {
+    EXPECT_EQ(userCount, 0);
+    EXPECT_EQ(bandCount, 0);
+    EXPECT_EQ(scheduleCount, 0);
+    EXPECT_EQ(salesCount, 0);
+    EXPECT_EQ(vendorCount, 0);
+    EXPECT_EQ(sponsorCount, 0);
+    EXPECT_EQ(routeListHead, nullptr);
+    EXPECT_EQ(heapSize, 0);
+    for (int i = 0; i < TABLE_SIZE; ++i) {
+        EXPECT_EQ(hashTable[i], nullptr);
+    }
+}
 
+TEST(PublicTransportationSchedulerTest, TestAddUserToHashTable) {
+    addUserToHashTable("testuser", "password123");
+    int index = hashFunction("testuser");
+    ASSERT_NE(hashTable[index], nullptr);
+    EXPECT_STREQ(hashTable[index]->username, "testuser");
+    EXPECT_STREQ(hashTable[index]->password, "password123");
+}
 // Global Definitions Testleri
-TEST(GlobalDefinitionsTest, TestUserDatabase) {
-    // Kullanıcı ekleme işlemi
-    strcpy(userDatabase[userCount].username, "testuser");
-    strcpy(userDatabase[userCount].password, "testpass");
-    userCount++;
+//TEST(GlobalDefinitionsTest, TestUserDatabase) {
+//  // Kullanıcı ekleme işlemi
+//  strcpy(userDatabase[userCount].username, "testuser");
+//  strcpy(userDatabase[userCount].password, "testpass");
+//  userCount++;
+//  // Doğru kaydedilip kaydedilmediğini kontrol et
+//  EXPECT_EQ(userCount, 1);
+//  EXPECT_STREQ(userDatabase[0].username, "testuser");
+//  EXPECT_STREQ(userDatabase[0].password, "testpass");
+//}
 
-    // Doğru kaydedilip kaydedilmediğini kontrol et
-    EXPECT_EQ(userCount, 1);
-    EXPECT_STREQ(userDatabase[0].username, "testuser");
-    EXPECT_STREQ(userDatabase[0].password, "testpass");
-}
-
-TEST(GlobalDefinitionsTest, TestBandDatabase) {
-    // Band ekleme işlemi
-    strcpy(bandDatabase[bandCount].name, "Test Band");
-    bandCount++;
-
-    // Doğru kaydedilip kaydedilmediğini kontrol et
-    EXPECT_EQ(bandCount, 1);
-    EXPECT_STREQ(bandDatabase[0].name, "Test Band");
-}
+//TEST(GlobalDefinitionsTest, TestBandDatabase) {
+//  // Band ekleme işlemi
+//  strcpy(bandDatabase[bandCount].name, "Test Band");
+//  bandCount++;
+//  // Doğru kaydedilip kaydedilmediğini kontrol et
+//  EXPECT_EQ(bandCount, 1);
+//  EXPECT_STREQ(bandDatabase[0].name, "Test Band");
+//}
 
 TEST(GlobalDefinitionsTest, TestScheduleDatabase) {
-    // Program ekleme işlemi
-    scheduleDatabase[scheduleCount].scheduleID = 1;
-    strcpy(scheduleDatabase[scheduleCount].bandName, "Band 1");
-    strcpy(scheduleDatabase[scheduleCount].date, "2024-11-10");
-    scheduleCount++;
-
-    // Doğru kaydedilip kaydedilmediğini kontrol et
-    EXPECT_EQ(scheduleCount, 1);
-    EXPECT_EQ(scheduleDatabase[0].scheduleID, 1);
-    EXPECT_STREQ(scheduleDatabase[0].bandName, "Band 1");
-    EXPECT_STREQ(scheduleDatabase[0].date, "2024-11-10");
+  // Program ekleme işlemi
+  scheduleDatabase[scheduleCount].scheduleID = 1;
+  strcpy(scheduleDatabase[scheduleCount].bandName, "Band 1");
+  strcpy(scheduleDatabase[scheduleCount].date, "2024-11-10");
+  scheduleCount++;
+  // Doğru kaydedilip kaydedilmediğini kontrol et
+  EXPECT_EQ(scheduleCount, 1);
+  EXPECT_EQ(scheduleDatabase[0].scheduleID, 1);
+  EXPECT_STREQ(scheduleDatabase[0].bandName, "Band 1");
+  EXPECT_STREQ(scheduleDatabase[0].date, "2024-11-10");
 }
 
 TEST(GlobalDefinitionsTest, TestSalesDatabase) {
-    // Satış ekleme işlemi
-    salesDatabase[salesCount].saleID = 1;
-    strcpy(salesDatabase[salesCount].ticketType, "Normal");
-    salesDatabase[salesCount].amount = 50.0;
-    strcpy(salesDatabase[salesCount].date, "2024-11-01");
-    salesCount++;
-
-    // Doğru kaydedilip kaydedilmediğini kontrol et
-    EXPECT_EQ(salesCount, 1);
-    EXPECT_EQ(salesDatabase[0].saleID, 1);
-    EXPECT_STREQ(salesDatabase[0].ticketType, "Normal");
-    EXPECT_FLOAT_EQ(salesDatabase[0].amount, 50.0);
-    EXPECT_STREQ(salesDatabase[0].date, "2024-11-01");
+  // Satış ekleme işlemi
+  salesDatabase[salesCount].saleID = 1;
+  strcpy(salesDatabase[salesCount].ticketType, "Normal");
+  salesDatabase[salesCount].amount = 50.0;
+  strcpy(salesDatabase[salesCount].date, "2024-11-01");
+  salesCount++;
+  // Doğru kaydedilip kaydedilmediğini kontrol et
+  EXPECT_EQ(salesCount, 1);
+  EXPECT_EQ(salesDatabase[0].saleID, 1);
+  EXPECT_STREQ(salesDatabase[0].ticketType, "Normal");
+  EXPECT_FLOAT_EQ(salesDatabase[0].amount, 50.0);
+  EXPECT_STREQ(salesDatabase[0].date, "2024-11-01");
 }
 
 TEST(GlobalDefinitionsTest, TestVendorDatabase) {
-    // Tedarikçi ekleme işlemi
-    vendorDatabase[vendorCount].id = 1;
-    strcpy(vendorDatabase[vendorCount].name, "Vendor 1");
-    strcpy(vendorDatabase[vendorCount].serviceType, "Food");
-    vendorCount++;
-
-    // Doğru kaydedilip kaydedilmediğini kontrol et
-    EXPECT_EQ(vendorCount, 1);
-    EXPECT_EQ(vendorDatabase[0].id, 1);
-    EXPECT_STREQ(vendorDatabase[0].name, "Vendor 1");
-    EXPECT_STREQ(vendorDatabase[0].serviceType, "Food");
+  // Tedarikçi ekleme işlemi
+  vendorDatabase[vendorCount].id = 1;
+  strcpy(vendorDatabase[vendorCount].name, "Vendor 1");
+  strcpy(vendorDatabase[vendorCount].serviceType, "Food");
+  vendorCount++;
+  // Doğru kaydedilip kaydedilmediğini kontrol et
+  EXPECT_EQ(vendorCount, 1);
+  EXPECT_EQ(vendorDatabase[0].id, 1);
+  EXPECT_STREQ(vendorDatabase[0].name, "Vendor 1");
+  EXPECT_STREQ(vendorDatabase[0].serviceType, "Food");
 }
 
 TEST(GlobalDefinitionsTest, TestSponsorDatabase) {
-    // Sponsor ekleme işlemi
-    sponsorDatabase[sponsorCount].id = 1;
-    strcpy(sponsorDatabase[sponsorCount].name, "Sponsor 1");
-    sponsorDatabase[sponsorCount].contributionAmount = 1000.0;
-    sponsorCount++;
-
-    // Doğru kaydedilip kaydedilmediğini kontrol et
-    EXPECT_EQ(sponsorCount, 1);
-    EXPECT_EQ(sponsorDatabase[0].id, 1);
-    EXPECT_STREQ(sponsorDatabase[0].name, "Sponsor 1");
-    EXPECT_DOUBLE_EQ(sponsorDatabase[0].contributionAmount, 1000.0);
+  // Sponsor ekleme işlemi
+  sponsorDatabase[sponsorCount].id = 1;
+  strcpy(sponsorDatabase[sponsorCount].name, "Sponsor 1");
+  sponsorDatabase[sponsorCount].contributionAmount = 1000.0;
+  sponsorCount++;
+  // Doğru kaydedilip kaydedilmediğini kontrol et
+  EXPECT_EQ(sponsorCount, 1);
+  EXPECT_EQ(sponsorDatabase[0].id, 1);
+  EXPECT_STREQ(sponsorDatabase[0].name, "Sponsor 1");
+  EXPECT_DOUBLE_EQ(sponsorDatabase[0].contributionAmount, 1000.0);
 }
 
 // Route Linked List Test
 TEST(GlobalDefinitionsTest, TestRouteListHead) {
-    // Yeni rota ekleme
-    DoubleNode* newRoute = new DoubleNode;
-    newRoute->data = 1;
-    strcpy(newRoute->routeName, "Route 1");
-    strcpy(newRoute->startPoint, "Start Point");
-    strcpy(newRoute->endPoint, "End Point");
-    newRoute->next = nullptr;
-    newRoute->prev = nullptr;
-
-    routeListHead = newRoute;
-
-    // Doğru eklenip eklenmediğini kontrol et
-    ASSERT_NE(routeListHead, nullptr);
-    EXPECT_EQ(routeListHead->data, 1);
-    EXPECT_STREQ(routeListHead->routeName, "Route 1");
-    EXPECT_STREQ(routeListHead->startPoint, "Start Point");
-    EXPECT_STREQ(routeListHead->endPoint, "End Point");
-
-    delete newRoute;  // Hafıza sızıntısını önlemek için serbest bırakın
+  // Yeni rota ekleme
+  DoubleNode* newRoute = new DoubleNode;
+  newRoute->data = 1;
+  strcpy(newRoute->routeName, "Route 1");
+  strcpy(newRoute->startPoint, "Start Point");
+  strcpy(newRoute->endPoint, "End Point");
+  newRoute->next = nullptr;
+  newRoute->prev = nullptr;
+  routeListHead = newRoute;
+  // Doğru eklenip eklenmediğini kontrol et
+  ASSERT_NE(routeListHead, nullptr);
+  EXPECT_EQ(routeListHead->data, 1);
+  EXPECT_STREQ(routeListHead->routeName, "Route 1");
+  EXPECT_STREQ(routeListHead->startPoint, "Start Point");
+  EXPECT_STREQ(routeListHead->endPoint, "End Point");
+  delete newRoute;  // Hafıza sızıntısını önlemek için serbest bırakın
 }
 
 // Hash Table Tests
 TEST(HashTableTest, TestAddUserToHashTable) {
-    // Hash tablosunda bir kullanıcı ekleyin
-    User* user = new User;
-    strcpy(user->username, "testuser");
-    strcpy(user->password, "testpass");
-
-    // Hash tablosuna kullanıcıyı ekleyin
-    int hashIndex = hashFunction(user->username);
-    hashTable[hashIndex] = user;
-
-    // Kullanıcının doğru şekilde eklendiğini kontrol edin
-    ASSERT_NE(hashTable[hashIndex], nullptr);
-    EXPECT_STREQ(hashTable[hashIndex]->username, "testuser");
-    EXPECT_STREQ(hashTable[hashIndex]->password, "testpass");
-
-    delete user;  // Bellek sızıntısını önlemek için kullanıcıyı serbest bırakın
+  // Hash tablosunda bir kullanıcı ekleyin
+  User* user = new User;
+  strcpy(user->username, "testuser");
+  strcpy(user->password, "testpass");
+  // Hash tablosuna kullanıcıyı ekleyin
+  int hashIndex = hashFunction(user->username);
+  hashTable[hashIndex] = user;
+  // Kullanıcının doğru şekilde eklendiğini kontrol edin
+  ASSERT_NE(hashTable[hashIndex], nullptr);
+  EXPECT_STREQ(hashTable[hashIndex]->username, "testuser");
+  EXPECT_STREQ(hashTable[hashIndex]->password, "testpass");
+  delete user;  // Bellek sızıntısını önlemek için kullanıcıyı serbest bırakın
 }
 
 TEST(HashTableTest, TestUserNotInHashTable) {
-    // Var olmayan bir kullanıcıyı kontrol edin
-    int hashIndex = hashFunction("nonexistent");
-    EXPECT_EQ(hashTable[hashIndex], nullptr);
+  // Var olmayan bir kullanıcıyı kontrol edin
+  int hashIndex = hashFunction("nonexistent");
+  EXPECT_EQ(hashTable[hashIndex], nullptr);
 }
 
 // Route Struct Test
 TEST(RouteStructTest, TestRouteCreation) {
-    // Bir route nesnesi oluşturun ve alanları doldurun
-    Route route;
-    route.routeID = 1;
-    strcpy(route.routeName, "Main Route");
-
-    // Route bilgilerini doğrulayın
-    EXPECT_EQ(route.routeID, 1);
-    EXPECT_STREQ(route.routeName, "Main Route");
+  // Bir route nesnesi oluşturun ve alanları doldurun
+  Route route;
+  route.routeID = 1;
+  strcpy(route.routeName, "Main Route");
+  // Route bilgilerini doğrulayın
+  EXPECT_EQ(route.routeID, 1);
+  EXPECT_STREQ(route.routeName, "Main Route");
 }
+
 // Stack Tests
 TEST(StackTest, TestPushAndPop) {
-    // İlk olarak stack'in boş olduğunu doğrula
-    EXPECT_EQ(stack, nullptr);
-
-    // Stack'e bir eleman ekle
-    push(10);
-    EXPECT_NE(stack, nullptr);  // Stack'in boş olmadığını doğrula
-    EXPECT_EQ(stack->data, 10); // Eklenen ilk elemanın doğru olduğunu doğrula
-
-    // Stack'e başka bir eleman daha ekle
-    push(20);
-    EXPECT_EQ(stack->data, 20); // Son eklenen elemanın en üstte olduğunu doğrula
-
-    // İlk elemanı çıkar ve değerini kontrol et
-    int poppedValue = pop();
-    EXPECT_EQ(poppedValue, 20);
-
-    // İkinci elemanı da çıkar ve kontrol et
-    poppedValue = pop();
-    EXPECT_EQ(poppedValue, 10);
-
-    // Stack boş olmalı, dolayısıyla -1 döndürmeli
-    poppedValue = pop();
-    EXPECT_EQ(poppedValue, -1);
+  // İlk olarak stack'in boş olduğunu doğrula
+  EXPECT_EQ(stack, nullptr);
+  // Stack'e bir eleman ekle
+  push(10);
+  EXPECT_NE(stack, nullptr);  // Stack'in boş olmadığını doğrula
+  EXPECT_EQ(stack->data, 10); // Eklenen ilk elemanın doğru olduğunu doğrula
+  // Stack'e başka bir eleman daha ekle
+  push(20);
+  EXPECT_EQ(stack->data, 20); // Son eklenen elemanın en üstte olduğunu doğrula
+  // İlk elemanı çıkar ve değerini kontrol et
+  int poppedValue = pop();
+  EXPECT_EQ(poppedValue, 20);
+  // İkinci elemanı da çıkar ve kontrol et
+  poppedValue = pop();
+  EXPECT_EQ(poppedValue, 10);
+  // Stack boş olmalı, dolayısıyla -1 döndürmeli
+  poppedValue = pop();
+  EXPECT_EQ(poppedValue, -1);
 }
 
 // Queue Tests
 TEST(QueueTest, TestEnqueueAndDequeue) {
-    // İlk olarak queue'nun boş olduğunu doğrula
-    EXPECT_EQ(queueFront, nullptr);
-    EXPECT_EQ(queueRear, nullptr);
-
-    // Queue'ya eleman ekle
-    enqueue(30);
-    EXPECT_NE(queueFront, nullptr);  // Queue'nun boş olmadığını doğrula
-    EXPECT_NE(queueRear, nullptr);
-    EXPECT_EQ(queueFront->data, 30); // İlk elemanın doğru olduğunu doğrula
-
-    // Queue'ya başka bir eleman daha ekle
-    enqueue(40);
-    EXPECT_EQ(queueRear->data, 40);  // Son eklenen elemanın kuyrukta olduğunu doğrula
-
-    // İlk elemanı çıkar ve değerini kontrol et
-    int dequeuedValue = dequeue();
-    EXPECT_EQ(dequeuedValue, 30);
-
-    // İkinci elemanı da çıkar ve kontrol et
-    dequeuedValue = dequeue();
-    EXPECT_EQ(dequeuedValue, 40);
-
-    // Queue boş olmalı, dolayısıyla -1 döndürmeli
-    dequeuedValue = dequeue();
-    EXPECT_EQ(dequeuedValue, -1);
+  // İlk olarak queue'nun boş olduğunu doğrula
+  EXPECT_EQ(queueFront, nullptr);
+  EXPECT_EQ(queueRear, nullptr);
+  // Queue'ya eleman ekle
+  enqueue(30);
+  EXPECT_NE(queueFront, nullptr);  // Queue'nun boş olmadığını doğrula
+  EXPECT_NE(queueRear, nullptr);
+  EXPECT_EQ(queueFront->data, 30); // İlk elemanın doğru olduğunu doğrula
+  // Queue'ya başka bir eleman daha ekle
+  enqueue(40);
+  EXPECT_EQ(queueRear->data, 40);  // Son eklenen elemanın kuyrukta olduğunu doğrula
+  // İlk elemanı çıkar ve değerini kontrol et
+  int dequeuedValue = dequeue();
+  EXPECT_EQ(dequeuedValue, 30);
+  // İkinci elemanı da çıkar ve kontrol et
+  dequeuedValue = dequeue();
+  EXPECT_EQ(dequeuedValue, 40);
+  // Queue boş olmalı, dolayısıyla -1 döndürmeli
+  dequeuedValue = dequeue();
+  EXPECT_EQ(dequeuedValue, -1);
 }
 
 // Priority Queue (Heap) Tests
 TEST(HeapTest, TestInsertAndExtractMin) {
-    // Başlangıçta heap boş olmalı
-    EXPECT_EQ(heapSize, 0);
-
-    // Heap'e eleman ekle ve boyutu kontrol et
-    insertHeap(50);
-    EXPECT_EQ(heapSize, 1);
-    EXPECT_EQ(heap[0], 50);  // Eklenen ilk elemanın minimum olduğunu doğrula
-
-    // Başka elemanlar ekle
-    insertHeap(30);
-    EXPECT_EQ(heapSize, 2);
-    EXPECT_EQ(heap[0], 30);  // En küçük eleman güncellenmeli
-
-    insertHeap(40);
-    EXPECT_EQ(heapSize, 3);
-    EXPECT_EQ(heap[0], 30);  // Minimum eleman hala 30 olmalı
-
-    // Minimum elemanı çıkar ve doğru değeri döndürdüğünü doğrula
-    int minVal = extractMin();
-    EXPECT_EQ(minVal, 30);
-    EXPECT_EQ(heapSize, 2);
-
-    // Sonraki minimum elemanı çıkar
-    minVal = extractMin();
-    EXPECT_EQ(minVal, 40);
-    EXPECT_EQ(heapSize, 1);
-
-    // Kalan elemanı çıkar
-    minVal = extractMin();
-    EXPECT_EQ(minVal, 50);
-    EXPECT_EQ(heapSize, 0);
-
-    // Heap boş olmalı, bu yüzden -1 döndürmeli
-    minVal = extractMin();
-    EXPECT_EQ(minVal, -1);
+  // Başlangıçta heap boş olmalı
+  EXPECT_EQ(heapSize, 0);
+  // Heap'e eleman ekle ve boyutu kontrol et
+  insertHeap(50);
+  EXPECT_EQ(heapSize, 1);
+  EXPECT_EQ(heap[0], 50);  // Eklenen ilk elemanın minimum olduğunu doğrula
+  // Başka elemanlar ekle
+  insertHeap(30);
+  EXPECT_EQ(heapSize, 2);
+  EXPECT_EQ(heap[0], 30);  // En küçük eleman güncellenmeli
+  insertHeap(40);
+  EXPECT_EQ(heapSize, 3);
+  EXPECT_EQ(heap[0], 30);  // Minimum eleman hala 30 olmalı
+  // Minimum elemanı çıkar ve doğru değeri döndürdüğünü doğrula
+  int minVal = extractMin();
+  EXPECT_EQ(minVal, 30);
+  EXPECT_EQ(heapSize, 2);
+  // Sonraki minimum elemanı çıkar
+  minVal = extractMin();
+  EXPECT_EQ(minVal, 40);
+  EXPECT_EQ(heapSize, 1);
+  // Kalan elemanı çıkar
+  minVal = extractMin();
+  EXPECT_EQ(minVal, 50);
+  EXPECT_EQ(heapSize, 0);
+  // Heap boş olmalı, bu yüzden -1 döndürmeli
+  minVal = extractMin();
+  EXPECT_EQ(minVal, -1);
 }
 
 // Test User struct
@@ -354,7 +345,7 @@ TEST(PublicTransportationSchedulerStructTest, TestSparseMatrixNodeStruct) {
 }
 
 // Band Management Test
-TEST_F(PublicTransportationSchedulerTest, TestEditBand) {
+TEST(PublicTransportationSchedulerTest, TestEditBand) {
   addBand("OldBand");
   editBand("OldBand", "NewBand");
   // BandDatabase'in ilk elemanında beklenen ismi doğrulayın
@@ -376,14 +367,14 @@ TEST(PublicTransportationSchedulerStructTest, TestSponsorStruct) {
 }
 
 // Test user creation and hash table functions
-TEST_F(PublicTransportationSchedulerTest, TestHashTableFunctions) {
-  addUserToHashTable("testuser", "testpass");
-  EXPECT_EQ(verifyUserInHashTable("testuser", "testpass"), 1);
-  EXPECT_EQ(verifyUserInHashTable("nonexistent", "testpass"), 0);
-}
+//TEST(PublicTransportationSchedulerTest, TestHashTableFunctions) {
+//  addUserToHashTable("testuser", "testpass");
+//  EXPECT_EQ(verifyUserInHashTable("testuser", "testpass"), 1);
+//  EXPECT_EQ(verifyUserInHashTable("nonexistent", "testpass"), 0);
+//}
 
 // Test adding and finding a route in double linked list
-TEST_F(PublicTransportationSchedulerTest, TestAddAndFindRoute) {
+TEST(PublicTransportationSchedulerTest, TestAddAndFindRoute) {
   addRoute(1, "Route1", "Start1", "End1");
   DoubleNode* node = findDoubleNode(routeListHead, 1);
   ASSERT_NE(node, nullptr);
@@ -392,14 +383,14 @@ TEST_F(PublicTransportationSchedulerTest, TestAddAndFindRoute) {
 }
 
 // Test deleting a route
-TEST_F(PublicTransportationSchedulerTest, TestDeleteRoute) {
-  addRoute(1, "Route1", "Start1", "End1");
-  EXPECT_EQ(deleteDoubleNode(&routeListHead, 1), 1);
-  EXPECT_EQ(findDoubleNode(routeListHead, 1), nullptr);
-}
+//TEST_F(PublicTransportationSchedulerTest, TestDeleteRoute) {
+//  addRoute(1, "Route1", "Start1", "End1");
+//  EXPECT_EQ(deleteDoubleNode(&routeListHead, 1), 1);
+//  EXPECT_EQ(findDoubleNode(routeListHead, 1), nullptr);
+//}
 
 // Test XOR linked list insertion
-TEST_F(PublicTransportationSchedulerTest, TestInsertXORNode) {
+TEST(PublicTransportationSchedulerTest, TestInsertXORNode) {
   XORNode* head = NULL;
   insertXORNode(&head, 1);
   insertXORNode(&head, 2);
@@ -408,7 +399,7 @@ TEST_F(PublicTransportationSchedulerTest, TestInsertXORNode) {
 }
 
 // Test inserting a node in sparse matrix
-TEST_F(PublicTransportationSchedulerTest, TestInsertSparseNode) {
+TEST(PublicTransportationSchedulerTest, TestInsertSparseNode) {
   SparseMatrixNode* head = NULL;
   insertSparseNode(&head, 0, 1, 5);
   EXPECT_EQ(head->row, 0);
@@ -417,7 +408,7 @@ TEST_F(PublicTransportationSchedulerTest, TestInsertSparseNode) {
 }
 
 // Test stack operations
-TEST_F(PublicTransportationSchedulerTest, TestStackOperations) {
+TEST(PublicTransportationSchedulerTest, TestStackOperations) {
   push(10);
   push(20);
   EXPECT_EQ(pop(), 20);
@@ -426,7 +417,7 @@ TEST_F(PublicTransportationSchedulerTest, TestStackOperations) {
 }
 
 // Test queue operations
-TEST_F(PublicTransportationSchedulerTest, TestQueueOperations) {
+TEST(PublicTransportationSchedulerTest, TestQueueOperations) {
   enqueue(30);
   enqueue(40);
   EXPECT_EQ(dequeue(), 30);
@@ -435,7 +426,7 @@ TEST_F(PublicTransportationSchedulerTest, TestQueueOperations) {
 }
 
 // Test heap operations
-TEST_F(PublicTransportationSchedulerTest, TestHeapOperations) {
+TEST(PublicTransportationSchedulerTest, TestHeapOperations) {
   insertHeap(30);
   insertHeap(10);
   insertHeap(20);
@@ -448,7 +439,7 @@ TEST_F(PublicTransportationSchedulerTest, TestHeapOperations) {
 
 
 // Test schedule management functions
-TEST_F(PublicTransportationSchedulerTest, TestScheduleManagement) {
+TEST(PublicTransportationSchedulerTest, TestScheduleManagement) {
   createSchedule(1, "Band A", "2024-11-10");
   EXPECT_EQ(scheduleHead->scheduleID, 1);
   EXPECT_STREQ(scheduleHead->bandName, "Band A");
@@ -460,7 +451,7 @@ TEST_F(PublicTransportationSchedulerTest, TestScheduleManagement) {
 }
 
 // Test vendor and sponsor management
-TEST_F(PublicTransportationSchedulerTest, TestVendorAndSponsorManagement) {
+TEST(PublicTransportationSchedulerTest, TestVendorAndSponsorManagement) {
   addVendor(1, "Vendor A", "Food");
   EXPECT_EQ(vendorListHead->id, 1);
   EXPECT_STREQ(vendorListHead->name, "Vendor A");
@@ -470,7 +461,7 @@ TEST_F(PublicTransportationSchedulerTest, TestVendorAndSponsorManagement) {
 }
 
 // B+ tree operations for ticket sales
-TEST_F(PublicTransportationSchedulerTest, TestBPlusTreeOperations) {
+TEST(PublicTransportationSchedulerTest, TestBPlusTreeOperations) {
   TicketSale sale1 = { 1, "Normal", 50.0, "2024-12-01" };
   TicketSale sale2 = { 2, "Student", 30.0, "2024-12-02" };
   insertBPlusNode(sale1.saleID, &sale1);
@@ -482,7 +473,7 @@ TEST_F(PublicTransportationSchedulerTest, TestBPlusTreeOperations) {
 }
 
 // Generate sales report test
-TEST_F(PublicTransportationSchedulerTest, TestGenerateSalesReport) {
+TEST(PublicTransportationSchedulerTest, TestGenerateSalesReport) {
   TicketSale sale1 = { 1, "Normal", 50.0, "2024-12-01" };
   TicketSale sale2 = { 2, "Student", 30.0, "2024-12-02" };
   insertBPlusNode(sale1.saleID, &sale1);
@@ -645,7 +636,7 @@ TEST_F(PublicTransportationSchedulerStructsTest, TestBPlusTreeNodeCreation) {
 }
 
 // Complete flow test for registration and route addition
-TEST_F(PublicTransportationSchedulerTest, TestCompleteFlow) {
+TEST(PublicTransportationSchedulerTest, TestCompleteFlow) {
   registerUser("flowuser", "flowpassword");
   EXPECT_EQ(login("flowuser", "flowpassword"), 1);
   addRoute(2, "Flow Route", "Flow Start", "Flow End");

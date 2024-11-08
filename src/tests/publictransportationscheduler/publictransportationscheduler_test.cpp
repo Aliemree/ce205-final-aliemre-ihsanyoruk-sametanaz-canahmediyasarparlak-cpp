@@ -32,26 +32,28 @@ class PublicTransportationSchedulerTest : public ::testing::Test {
 };
 
 TEST(PublicTransportationSchedulerTest, TestGlobalDefinitionsInitialization) {
-    EXPECT_EQ(userCount, 0);
-    EXPECT_EQ(bandCount, 0);
-    EXPECT_EQ(scheduleCount, 0);
-    EXPECT_EQ(salesCount, 0);
-    EXPECT_EQ(vendorCount, 0);
-    EXPECT_EQ(sponsorCount, 0);
-    EXPECT_EQ(routeListHead, nullptr);
-    EXPECT_EQ(heapSize, 0);
-    for (int i = 0; i < TABLE_SIZE; ++i) {
-        EXPECT_EQ(hashTable[i], nullptr);
-    }
+  EXPECT_EQ(userCount, 0);
+  EXPECT_EQ(bandCount, 0);
+  EXPECT_EQ(scheduleCount, 0);
+  EXPECT_EQ(salesCount, 0);
+  EXPECT_EQ(vendorCount, 0);
+  EXPECT_EQ(sponsorCount, 0);
+  EXPECT_EQ(routeListHead, nullptr);
+  EXPECT_EQ(heapSize, 0);
+
+  for (int i = 0; i < TABLE_SIZE; ++i) {
+    EXPECT_EQ(hashTable[i], nullptr);
+  }
 }
 
 TEST(PublicTransportationSchedulerTest, TestAddUserToHashTable) {
-    addUserToHashTable("testuser", "password123");
-    int index = hashFunction("testuser");
-    ASSERT_NE(hashTable[index], nullptr);
-    EXPECT_STREQ(hashTable[index]->username, "testuser");
-    EXPECT_STREQ(hashTable[index]->password, "password123");
+  addUserToHashTable("testuser", "password123");
+  int index = hashFunction("testuser");
+  ASSERT_NE(hashTable[index], nullptr);
+  EXPECT_STREQ(hashTable[index]->username, "testuser");
+  EXPECT_STREQ(hashTable[index]->password, "password123");
 }
+
 // Global Definitions Testleri
 //TEST(GlobalDefinitionsTest, TestUserDatabase) {
 //  // Kullanıcı ekleme işlemi

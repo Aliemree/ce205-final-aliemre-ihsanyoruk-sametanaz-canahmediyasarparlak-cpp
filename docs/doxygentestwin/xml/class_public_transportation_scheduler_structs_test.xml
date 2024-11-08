@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/tests/publictransportationscheduler/publictransportationscheduler_test.cpp" line="491" column="8" bodyfile="src/tests/publictransportationscheduler/publictransportationscheduler_test.cpp" bodystart="491" bodyend="496"/>
+        <location file="src/tests/publictransportationscheduler/publictransportationscheduler_test.cpp" line="493" column="8" bodyfile="src/tests/publictransportationscheduler/publictransportationscheduler_test.cpp" bodystart="493" bodyend="498"/>
       </memberdef>
       <memberdef kind="function" id="class_public_transportation_scheduler_structs_test_1a8a01f7b5c884ca9133b50927292255f2" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/tests/publictransportationscheduler/publictransportationscheduler_test.cpp" line="498" column="8" bodyfile="src/tests/publictransportationscheduler/publictransportationscheduler_test.cpp" bodystart="498" bodyend="503"/>
+        <location file="src/tests/publictransportationscheduler/publictransportationscheduler_test.cpp" line="500" column="8" bodyfile="src/tests/publictransportationscheduler/publictransportationscheduler_test.cpp" bodystart="500" bodyend="505"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -59,7 +59,7 @@
         <label>testing::Test</label>
       </node>
     </collaborationgraph>
-    <location file="src/tests/publictransportationscheduler/publictransportationscheduler_test.cpp" line="489" column="1" bodyfile="src/tests/publictransportationscheduler/publictransportationscheduler_test.cpp" bodystart="489" bodyend="504"/>
+    <location file="src/tests/publictransportationscheduler/publictransportationscheduler_test.cpp" line="491" column="1" bodyfile="src/tests/publictransportationscheduler/publictransportationscheduler_test.cpp" bodystart="491" bodyend="506"/>
     <listofallmembers>
       <member refid="class_public_transportation_scheduler_structs_test_1a3e1ee2e7a654182966da74746e14e103" prot="protected" virt="non-virtual"><scope>PublicTransportationSchedulerStructsTest</scope><name>SetUp</name></member>
       <member refid="class_public_transportation_scheduler_structs_test_1a8a01f7b5c884ca9133b50927292255f2" prot="protected" virt="non-virtual"><scope>PublicTransportationSchedulerStructsTest</scope><name>TearDown</name></member>

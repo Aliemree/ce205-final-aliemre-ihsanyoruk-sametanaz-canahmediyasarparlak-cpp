@@ -1,5 +1,4 @@
-﻿#include "publictransportationscheduler.h"
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>  // for uintptr_t
@@ -108,7 +107,7 @@ void addRoute(int routeID, const char *routeName, const char *startPoint, const 
   newNode->prev = NULL;
 
   if (routeListHead != NULL) {
-    }
+  }
 
   routeListHead = newNode;
 }
@@ -145,6 +144,7 @@ DoubleNode *findDoubleNode(DoubleNode *head, int data) {
       return current;
     }
   }
+
   return NULL;  // Not found
 }
 
@@ -172,8 +172,10 @@ int deleteDoubleNode(DoubleNode **head, int data) {
       free(current);
       return 1;  // Deletion successful
     }
+
     current = current->next;
   }
+
   return 0;  // Route not found
 }
 
@@ -228,6 +230,7 @@ void printDoubleList(DoubleNode *head) {
     printf("No routes available.\n");
   }
 }
+
 // XOR Linked List Functions
 
 /**
@@ -417,6 +420,7 @@ void dfs(int startNode) {
 
   printf("\n");
 }
+
 // Huffman Coding Functions
 
 /**
@@ -522,6 +526,7 @@ int login(const char *username, const char *password) {
       return 1;
     }
   }
+
   printf("Invalid username or password.\n");
   return 0;
 }
@@ -587,13 +592,14 @@ void saveBandDatabase() {
  * @param name The name of the band or artist to add.
  */
 void addBand(const char* name) {
-     if (name == NULL || strlen(name) == 0) {
-        printf("Band name cannot be empty.\n");
-        return;
-    }
-    strcpy_s(bandDatabase[bandCount].name, sizeof(bandDatabase[bandCount].name), name);
-    bandCount++;
-    printf("Band/Artist %s added.\n", name);
+  if (name == NULL || strlen(name) == 0) {
+    printf("Band name cannot be empty.\n");
+    return;
+  }
+
+  strcpy_s(bandDatabase[bandCount].name, sizeof(bandDatabase[bandCount].name), name);
+  bandCount++;
+  printf("Band/Artist %s added.\n", name);
 }
 
 /**
@@ -613,6 +619,7 @@ void editBand(const char *oldName, const char *newName) {
 
   printf("Band/Artist %s not found.\n", oldName);
 }
+
 /**
  * @brief Displays the list of all bands and artists.
  */

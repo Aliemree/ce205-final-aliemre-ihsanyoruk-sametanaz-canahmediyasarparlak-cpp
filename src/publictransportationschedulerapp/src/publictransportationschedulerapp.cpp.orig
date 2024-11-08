@@ -7,6 +7,8 @@
 #include "publictransportationschedulerapp.h"
 #include "../../publictransportationscheduler/src/publictransportationscheduler.cpp"
 
+
+
 /**
  * @brief Gets the width of the console for centering text.
  * @return Width of the console.
